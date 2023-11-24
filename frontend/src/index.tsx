@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./style.css";
-import { App } from "./components/App";
+import { App } from "./components/app";
 
-ReactDOM.render(<App num={1234} />, document.getElementById("root"));
+ReactDOM.render(<App/>, document.getElementById("root"));

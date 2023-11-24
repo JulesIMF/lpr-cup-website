@@ -5,10 +5,12 @@ module.exports = {
    entry: './src/index.tsx',
    output: {
       path: path.join(__dirname, '/dist'),
-      filename: 'bundle.js'
+      filename: 'bundle.js',
+      publicPath: '/'
    },
    devServer: {
-      port: 8080
+      port: 8080,
+      historyApiFallback: true
    },
    module: {
       rules: [
@@ -25,6 +27,15 @@ module.exports = {
          {
             test: /\.css$/,
             use: ['style-loader', 'css-loader']
+         },
+         {
+            test: /\.(jpg|png|gif|woff|eot|ttf|svg)/,
+            use: {
+               loader: 'url-loader', // this need file-loader
+               options: {
+                  limit: 50000
+               }
+            }
          }
       ]
    },

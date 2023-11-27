@@ -14,7 +14,7 @@ export function Welcome() {
                 </CentralHeader>
                 <CentralText>
                     <i className='welcome_text'>
-                        Перейди во вкладку <a href='/rules' style={{ color: "black" }}>“Правила”</a>, чтобы узнать про олимпиаду подробнее.<br />
+                        Перейди во вкладку <a href='/info/rules' style={{ color: "black" }}>“Правила”</a>, чтобы узнать про олимпиаду подробнее.<br />
                         Четвёртый Сезон Кубка ЛФИ закончился 3 июня 2023 г.
                     </i>
                 </CentralText>

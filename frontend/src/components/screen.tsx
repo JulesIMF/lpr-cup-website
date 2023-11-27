@@ -17,9 +17,9 @@ export function Screen(params: ScreenParams) {
         document.title = params.pageTitle;
     });
     return (
-        <div className="welcome">
+        <div className="screen">
             <TitleBar text={params.titleBarText} hideLogIn={params.hideLogIn}/>
-            <div className="welcome_content">
+            <div className="screen_content">
                 {params.children}
             </div>
             {params.hideFooter? <></> : <Footer />}

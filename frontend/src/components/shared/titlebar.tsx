@@ -48,7 +48,7 @@ export function TitleBar(params: TitleBarParams) {
     return (
         <header className="titlebar">
             {/* Логотип */}
-            <a className='titlebar_logo' style={{ backgroundImage: "url(images/lprcup_logo.jpg)" }} href='/' />
+            <a className='titlebar_logo' style={{ backgroundImage: "url(/images/lprcup_logo.jpg)" }} href='/' />
 
             {/* Надпись */}
             <b className='titlebar_lprcupisyou'>

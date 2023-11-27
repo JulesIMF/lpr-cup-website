@@ -1,9 +1,14 @@
 import React from 'react';
+import { Screen } from './screen';
+
+
 
 export function Grades() {
     return (
-        <div className="grades">
-            Grades
-        </div>
+        <Screen pageTitle="Оценки">
+            
+        </Screen>
     );
 }
+
+

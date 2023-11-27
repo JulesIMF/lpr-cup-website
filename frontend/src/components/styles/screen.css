@@ -10,7 +10,7 @@ body {
     flex-direction: column;
 }
 
-.welcome_content {
+.screen_content {
     display: flex;
     flex-direction: column;
     align-items: center;

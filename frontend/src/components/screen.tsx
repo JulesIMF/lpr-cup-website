@@ -6,16 +6,19 @@ import './styles/screen.css';
 
 interface ScreenParams {
     children?: React.ReactNode
+    hideFooter?: boolean
+    hideLogIn?: boolean
+    titleBarText?: string
 }
 
 export function Screen(params: ScreenParams) {
     return (
         <div className="welcome">
-            <TitleBar />
+            <TitleBar text={params.titleBarText} hideLogIn={params.hideLogIn}/>
             <div className="welcome_content">
                 {params.children}
             </div>
-            <Footer />
+            {params.hideFooter? <></> : <Footer />}
         </div>
     );
 }

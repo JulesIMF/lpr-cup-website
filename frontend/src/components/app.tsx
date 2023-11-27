@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { BrowserRouter, Route, Routes, Navigate, Link } from "react-router-dom"
-import {Welcome} from "./welcome";
-import {Grades} from "./grades";
-import {NotFound} from "./notfound";
+import React from 'react';
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { Grades } from "./grades";
+import { NotFound } from "./notfound";
 import "./style.css";
+import { Welcome } from "./welcome";
 
 const loggedIn = (() => false);
 

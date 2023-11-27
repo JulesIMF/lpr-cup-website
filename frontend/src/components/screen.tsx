@@ -5,13 +5,17 @@ import { Footer } from './shared/footer';
 import './styles/screen.css';
 
 interface ScreenParams {
-    children?: React.ReactNode
-    hideFooter?: boolean
-    hideLogIn?: boolean
-    titleBarText?: string
+    children?: React.ReactNode;
+    pageTitle: string;
+    hideFooter?: boolean;
+    hideLogIn?: boolean;
+    titleBarText?: string;
 }
 
 export function Screen(params: ScreenParams) {
+    useEffect(()=>{
+        document.title = params.pageTitle;
+    });
     return (
         <div className="welcome">
             <TitleBar text={params.titleBarText} hideLogIn={params.hideLogIn}/>

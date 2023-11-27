@@ -8,7 +8,7 @@ import './styles/welcome.css';
 export function Welcome() {
     return (
 
-        <Screen>
+        <Screen pageTitle="Добро пожаловать на Кубок ЛФИ!">
             <div className='welcome_text_div'>
                 <div className="welcome_text_header">
                     Добро пожаловать на Кубок ЛФИ!

@@ -20,7 +20,7 @@ class TitleBarParams {
 }
 
 export function TitleBar(params: TitleBarParams) {
-    var text: string = params.text;
+    var text: string | undefined = params.text;
 
     if (params.text == undefined) {
         text = "Кубок ЛФИ — это вы";

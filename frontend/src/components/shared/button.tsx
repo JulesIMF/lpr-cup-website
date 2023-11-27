@@ -3,7 +3,7 @@ import "./styles/button.css";
 
 class ButtonParams {
     width?: string = "inherit";
-    text: string;
+    text?: string;
     height?: string = "100px";
     where?: string;
     action?: () => void;

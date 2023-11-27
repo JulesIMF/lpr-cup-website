@@ -29,14 +29,22 @@ module.exports = {
             use: ['style-loader', 'css-loader']
          },
          {
-            test: /\.(jpg|png|gif|woff|eot|ttf|svg)/,
-            use: {
-               loader: 'url-loader', // this need file-loader
-               options: {
-                  limit: 50000
-               }
-            }
-         }
+            test: /\.html$/i,
+            loader: "html-loader",
+            options: {
+              // Disables attributes processing
+              sources: false,
+            },
+          },
+         // {
+         //    test: /\.(jpg|png|gif|woff|eot|ttf|svg)/,
+         //    use: {
+         //       loader: 'url-loader', // this need file-loader
+         //       options: {
+         //          limit: 50000
+         //       }
+         //    }
+         // },
       ]
    },
    resolve:

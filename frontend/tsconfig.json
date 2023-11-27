@@ -10,5 +10,10 @@
       "moduleResolution": "Node",
       "strict": true,
       "forceConsistentCasingInFileNames": true,
-    }
+    },
+    "include": [
+      "**/*.ts",
+      "**/*.tsx",
+      "**/*.html",
+    ],
 }

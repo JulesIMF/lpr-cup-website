@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { TitleBar } from './shared/titlebar';
-import { Button } from './shared/button'
-import { Footer } from './shared/footer'
+import React from 'react';
+import { CentralHeader, CentralText } from './shared/central';
+import { Button } from './shared/button';
 import { Screen } from './screen';
 import './styles/welcome.css';
 
@@ -10,13 +9,16 @@ export function Welcome() {
 
         <Screen pageTitle="Добро пожаловать на Кубок ЛФИ!">
             <div className='welcome_text_div'>
-                <div className="welcome_text_header">
+                <CentralHeader>
                     Добро пожаловать на Кубок ЛФИ!
-                </div>
-                <i className='welcome_text'>
-                    Перейди во вкладку <a href='/rules' style={{ color: "black" }}>“Правила”</a>, чтобы узнать про олимпиаду подробнее.<br />
-                    Четвёртый Сезон Кубка ЛФИ закончился 3 июня 2023 г.
-                </i>
+                </CentralHeader>
+                <CentralText>
+                    <i className='welcome_text'>
+                        Перейди во вкладку <a href='/rules' style={{ color: "black" }}>“Правила”</a>, чтобы узнать про олимпиаду подробнее.<br />
+                        Четвёртый Сезон Кубка ЛФИ закончился 3 июня 2023 г.
+                    </i>
+                </CentralText>
+                
             </div>
 
             <div className='welcome_login'>

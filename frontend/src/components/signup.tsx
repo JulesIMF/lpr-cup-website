@@ -1,11 +1,11 @@
 import React from 'react';
 import { Screen } from './screen';
 import { Button } from './shared/button';
-import './styles/welcome.css';
+import './styles/signup.css';
 
-export function Welcome() {
+export function SignUp() {
     return (
-        <Screen>
+        <Screen pageTitle="Регистрация на Кубок ЛФИ">
             
         </Screen>
     );

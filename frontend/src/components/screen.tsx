@@ -26,5 +26,3 @@ export function Screen(params: ScreenParams) {
         </div>
     );
 }
-
-

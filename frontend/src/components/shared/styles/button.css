@@ -1,0 +1,19 @@
+.yellow_button {
+    display: flex;
+    flex-grow: 0;
+    background: #FAC70A;
+    border-radius: 50px;
+    height: inherit;
+    width: inherit;
+    justify-content: center;
+    text-decoration: none;
+    color: black;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 39px;
+    align-items: center;
+    text-align: center;
+    /* transform: matrix(-1, 0, 0, 1, 0, 0); */
+}

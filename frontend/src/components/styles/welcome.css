@@ -1,0 +1,56 @@
+.welcome {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.welcome_text_div {
+    display: flex;
+    width: max-content;
+    margin-top: 5%;
+    flex-direction: column;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    align-items: center;
+    text-align: center;
+    gap: 45px 0px;
+}
+
+.welcome_text {
+    font-size: 37px;
+}
+
+.welcome_text_header {
+    font-size: 50px;
+}
+
+.welcome_login {
+    display: flex;
+    flex-grow: 0;
+    width: max-content;
+    height: 300px;
+    margin-top: 5%;
+    flex-direction: row;
+}
+
+.welcome_login_buttons {
+    display: flex;
+    width: max-content;
+    height: inherit;
+    gap: 18%;
+    margin-left: 0px;
+    margin-right: 0px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome_login_oleg {
+    display: flex;
+    width: 300px;
+}
+
+.welcome_sponsors {
+    
+}

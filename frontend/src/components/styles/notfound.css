@@ -1,0 +1,26 @@
+.notfound {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.notfound_text_div {
+    display: flex;
+    width: max-content;
+    margin-top: 2%;
+    flex-direction: column;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    align-items: center;
+    text-align: center;
+    gap: 25px;
+}
+
+.notfound_text {
+    font-size: 37px;
+}
+
+.notfound_text_header {
+    font-size: 50px;
+}

@@ -1,9 +1,10 @@
 .plain_text {
-    margin-top: 60px;
     display: flex;
+    margin-top: 60px;
     font-family: geometria light;
     font-kerning: auto;
     width: 80%;
+    align-self: center;
     font-size: 18px;
 }
 

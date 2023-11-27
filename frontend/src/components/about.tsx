@@ -9,7 +9,7 @@ export function About() {
     return (
         <Screen pageTitle="Про Кубок ЛФИ">
             <PlainText>
-                <div dangerouslySetInnerHTML={{ __html: about }} />
+                <div style={{width: "100%"}} dangerouslySetInnerHTML={{ __html: about }} />
             </PlainText>
         </Screen>
     );
@@ -19,7 +19,7 @@ export function Rules() {
     return (
         <Screen pageTitle="Правила Кубка ЛФИ">
             <PlainText>
-                <div dangerouslySetInnerHTML={{ __html: rules }} />
+                <div style={{width: "100%"}} dangerouslySetInnerHTML={{ __html: rules }} />
             </PlainText>
 
             <div style={{width: "100%", alignItems: "center"}}>

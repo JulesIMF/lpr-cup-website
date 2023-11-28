@@ -8,9 +8,9 @@ import rules from "./html/rules.html";
 export function About() {
     return (
         <Screen pageTitle="Про Кубок ЛФИ">
-            <PlainText>
+            {/* <PlainText>
                 <div style={{width: "100%"}} dangerouslySetInnerHTML={{ __html: about }} />
-            </PlainText>
+            </PlainText> */}
         </Screen>
     );
 }

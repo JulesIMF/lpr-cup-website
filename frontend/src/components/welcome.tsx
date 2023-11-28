@@ -13,8 +13,9 @@ export function Welcome() {
                     Добро пожаловать на Кубок ЛФИ!
                 </CentralHeader>
                 <CentralText>
-                    <i className='welcome_text'>
-                        Перейди во вкладку <a href='/info/rules' style={{ color: "black" }}>“Правила”</a>, чтобы узнать про олимпиаду подробнее.<br />
+                    <i className='welcome_text' style={{fontSize: "inherit"}}>
+                        Перейди во вкладку <a href='/info/rules' style={{ color: "black" }}>“Правила”</a>&#44;
+                        чтобы узнать про олимпиаду подробнее.<br />
                         Четвёртый Сезон Кубка ЛФИ закончился 3 июня 2023 г.
                     </i>
                 </CentralText>
@@ -25,8 +26,8 @@ export function Welcome() {
                 <img src="images/oleg.png" alt="" className="welcome_login_oleg" />
 
                 <div className="welcome_login_buttons">
-                    <Button text="Регистрация на Кубок ЛФИ" where='/signup' height="80px" width="700px" />
-                    <Button text="Вход в личный кабинет (я уже Смешарик!)" where='/login' height="80px" width="700px" />
+                    <Button caption="Регистрация на Кубок ЛФИ" where='/signup' height="80px" width="700px" />
+                    <Button caption="Вход в личный кабинет (я уже Смешарик!)" where='/login' height="80px" width="700px" />
                 </div>
             </div>
 

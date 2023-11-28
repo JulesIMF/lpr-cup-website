@@ -3,10 +3,10 @@ import "./styles/button.css";
 
 class ButtonParams {
     width?: string = "inherit";
-    text?: string;
+    caption?: string;
     height?: string = "100px";
     where?: string;
-    action?: () => void;
+    action?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export function Button(params: ButtonParams) {
@@ -18,7 +18,7 @@ export function Button(params: ButtonParams) {
                 style={{width: params.width, height: params.height}}
                 href={params.where}
             >
-                {params.text}
+                {params.caption}
             </a>
         );
     }
@@ -26,7 +26,7 @@ export function Button(params: ButtonParams) {
     // Действие
     return (
         <button className='yellow_button' onClick={params.action} style={{width: params.width, height: params.height}} type='button'>
-            {params.text}
+            {params.caption}
         </button>
     );
 }

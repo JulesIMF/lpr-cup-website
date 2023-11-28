@@ -20,7 +20,7 @@ export function NotFound() {
                 </CentralText>
             </div>
             <div style={{ marginTop: "35px" }}>
-                <Button text="Вернуться на главный экран" where="/" height="60px" width="500px" />
+                <Button caption="Вернуться на главный экран" where="/" height="60px" width="500px" />
             </div>
         </Screen>
     );

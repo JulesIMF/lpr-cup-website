@@ -8,12 +8,14 @@
     justify-content: center;
     text-decoration: none;
     color: black;
+    border: none;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
-    font-size: 32px;
+    font-size: 30px;
     line-height: 39px;
     align-items: center;
     text-align: center;
+    cursor: pointer;
     /* transform: matrix(-1, 0, 0, 1, 0, 0); */
 }

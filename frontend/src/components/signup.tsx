@@ -141,7 +141,7 @@ export function SignUp() {
     }
 
     return (
-        <Screen pageTitle="Регистрация на Кубок ЛФИ">
+        <Screen pageTitle="Регистрация на Кубок ЛФИ" hideFooter>
             <div id="signup_text_div">
                 <CentralHeader>
                     Регистрация на Кубок ЛФИ
@@ -155,9 +155,9 @@ export function SignUp() {
             <div id="signup_data">
                 <div className="signup_group">
                     <i>Личная информация</i>
-                    <TextBox id="surname" caption="Фамилия" type="text" width="700px"/>
-                    <TextBox id="name" caption="Имя" type="text" width="700px"/>
-                    <TextBox id="patronimic" caption="Отчество" type="text" width="700px"/>
+                    <TextBox id="surname" caption="Фамилия" type="text" width="700px" onEnter={processSignUp}/>
+                    <TextBox id="name" caption="Имя" type="text" width="700px" onEnter={processSignUp}/>
+                    <TextBox id="patronimic" caption="Отчество" type="text" width="700px" onEnter={processSignUp}/>
                     <Select id="country" caption="Страна" width="700px" onChange={(v) => {changeRussiaSelected(v == "RU")}}>
                         <option value="AU">Австралия</option>
                         <option value="AT">Австрия</option>
@@ -412,7 +412,7 @@ export function SignUp() {
                         <option value="JM">Ямайка</option>
                         <option value="JP">Япония</option>
                     </Select>
-                    {russiaSelected ? <RussiaRegionSelector/> : <TextBox id="region" caption="Регион / провинция / штат" type="text" width="700px"/>}
+                    {russiaSelected ? <RussiaRegionSelector/> : <TextBox id="region" caption="Регион / провинция / штат" type="text" width="700px" onEnter={processSignUp}/>}
                 </div>
 
                 <div className="signup_group">
@@ -441,12 +441,12 @@ export function SignUp() {
                         </Select>
                     </div>
                     
-                    <TextBox id="telegram" caption="Телеграм (если есть)" type="text" width="700px"/>
-                    <TextBox id="email" caption="Электронная почта (лучше Gmail)" type="email" width="700px"/>
+                    <TextBox id="telegram" caption="Телеграм (если есть)" type="text" width="700px" onEnter={processSignUp}/>
+                    <TextBox id="email" caption="Электронная почта (лучше Gmail)" type="email" width="700px" onEnter={processSignUp}/>
                     <TextBox id="password" caption="Пароль" type="password" width="700px" 
-                        onChange={matcher.onPasswordChange}/>
+                        onChange={matcher.onPasswordChange} onEnter={processSignUp}/>
                     <TextBox id="confirm" caption="Подтвердите пароль" type="password" width="700px"
-                        onChange={matcher.onConfirmChange} passwordMatchState={matcher.isMatched()}/>
+                        onChange={matcher.onConfirmChange} passwordMatchState={matcher.isMatched()} onEnter={processSignUp}/>
                 </div>
             </div>
 

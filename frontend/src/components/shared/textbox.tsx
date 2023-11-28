@@ -67,6 +67,7 @@ interface TextBoxParams {
     "url" |
     "time";
     onChange?: (newValue: string) => void;
+    onEnter?: () => void;
     passwordMatchState?: MatchState;
 }
 
@@ -103,7 +104,13 @@ export function TextBox(params: TextBoxParams) {
                         var value = target.value;
                         // console.log(`${params.id} now is "${value}"`)
                         params.onChange?.(value);
-                    }} />
+                    }}
+                    onKeyDown={(e) => {
+                        if (e.code === "Enter") {
+                            params.onEnter?.();
+                        }
+                    }}
+                    />
             </div>
         );
     }
@@ -148,6 +155,11 @@ export function TextBox(params: TextBoxParams) {
                     var value = target.value;
                     // console.log(`${params.id} now is "${value}"`)
                     params.onChange?.(value);
+                }}
+                onKeyDown={(e) => {
+                    if (e.code === "Enter") {
+                        params.onEnter?.();
+                    }
                 }}
             />
         </div>

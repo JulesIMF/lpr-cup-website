@@ -16,13 +16,6 @@
     margin-top: 150px;
 }
 
-#login_fail {
-    display: flex;
-    margin-top: -5px;
-    color: red;
-    font-size: 30px;
-}
-
 #login_restoration {
     display: flex;
     margin-top: -5px;

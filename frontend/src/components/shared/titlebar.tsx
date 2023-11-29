@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "./styles/titlebar.css";
+import { isLoggedIn } from '../../server/server';
 
 interface TitleBarButtonParams {
     id: string;
@@ -16,14 +17,13 @@ function TitleBarButton(params: TitleBarButtonParams) {
 }
 
 class TitleBarParams {
-    hideLogIn?: boolean = false;
     text?: string
 }
 
 export function TitleBar(params: TitleBarParams) {
     var text: string | undefined = params.text;
 
-    var [addCaption, changeAddCaption] = useState(true);
+    var [addCaption, changeAddCaption] = useState((document.getElementById('root') as HTMLElement).clientWidth > 850);
 
     if (params.text == undefined && addCaption) {
         text = "Кубок ЛФИ — это вы";
@@ -36,8 +36,12 @@ export function TitleBar(params: TitleBarParams) {
             <TitleBarButton id="info" text="Инфо" where="/info"/>
         ];
 
-        if (!params.hideLogIn) {
+        if (!isLoggedIn()) {
             buttons.push(<TitleBarButton id="login" text="Войти" where="/login"/>)
+        }
+
+        else {
+            buttons.push(<TitleBarButton id="login" text="Настройки" where="/settings"/>)
         }
 
         return (

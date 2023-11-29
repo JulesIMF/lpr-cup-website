@@ -59,5 +59,5 @@ export function signUp(data: SignUpData) {
     data.checkAndPrepare();
     // HACK: это, конечно, временное решение
     var promise = postSignUpRequest(data);
-    promise.then((v) => {console.log(`Got ${v} on signup`)});
+    return promise.then((v) => {console.log(`Got ${v} on signup`)});
 }

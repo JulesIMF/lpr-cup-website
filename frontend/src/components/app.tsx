@@ -9,17 +9,19 @@ import { LogIn } from './login';
 import { About } from './about';
 import { Rules } from './about';
 
-const loggedIn = (() => false);
+import { isLoggedIn } from '../server/server';
+import { Restoration } from './restoration';
 
 export function App() {
     return (
         <div className="app">
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={false ? <Navigate to="/grades"/> : <Welcome/>} />
-                    <Route path="/grades" element={<Grades/>} />
+                    <Route path="/" element={isLoggedIn() ? <Navigate to="/grades"/> : <Welcome/>} />
+                    <Route path="/grades" element={true ? <Grades/> : <Navigate to="/login"/>} />
                     <Route path="/signup" element={<SignUp/>} />
                     <Route path="/login" element={<LogIn/>} />
+                    <Route path="/restoration" element={<Restoration/>} />
 
                     <Route path="/info" element={<Outlet/>}>
                         <Route index element={<About/>} />

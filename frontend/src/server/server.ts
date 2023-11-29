@@ -1,7 +1,10 @@
 import { SignUpData } from "./signup";
 import { LogInData } from "./login";
 
-var user: SignUpData | undefined = undefined;
+var user: SignUpData | undefined = new SignUpData();
+user.password = "11111111"
+user.email = "doroshenko.ia@phystech.edu"
+
 var loggedIn: boolean = false;
 
 export async function postSignUpRequest(data: SignUpData): Promise<Response> {
@@ -29,4 +32,8 @@ export async function postLogInRequest(data: LogInData): Promise<number> {
     })
 
     return promise;
+}
+
+export function isLoggedIn(): boolean {
+    return loggedIn;
 }

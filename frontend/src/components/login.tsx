@@ -4,8 +4,7 @@ import { Button } from './shared/button';
 import './styles/login.css';
 import { CentralHeader, CentralText } from './shared/central';
 import { TextBox, getTextBoxValue } from './shared/textbox';
-import { postLogInRequest } from '../server/server';
-import { LogInData } from '../server/login';
+import { LogInData, logIn } from '../server/login';
 import { useNavigate } from 'react-router-dom';
 
 export function LogIn() {
@@ -16,16 +15,22 @@ export function LogIn() {
         data.email = getTextBoxValue("email");
         data.password = getTextBoxValue("password");
 
-        var response = postLogInRequest(data);
-        response.then((v) => {
-            if (v == 200) {
-                navigateTo("/grades")
-            }
+        try {
+            var response = logIn(data);
+            response.then((v) => {
+                if (v == 200) {
+                    navigateTo("/grades")
+                }
 
-            else {
-                updateFailText("Неправильные данные для входа!");
-            }
-        })
+                else {
+                    updateFailText("Неправильные данные для входа!");
+                }
+            })
+        }
+        catch(e) {
+            updateFailText((e as Error).message);
+        }
+        
     };
 
     return (
@@ -45,7 +50,10 @@ export function LogIn() {
                 <TextBox id="password" type="password" caption="Пароль" width="700px" onEnter={processLogin}/>
                 <label id="login_fail">{failText}</label>
                 <Button caption="Войти в личный кабинет" width="700px" height="60px" action={processLogin}/>
-                <a id="login_restoration" href="/restoration">Не можешь войти?</a>
+                <div id="login_a_div">
+                    <a id="login_signup" href="/signup">Регистрация</a>
+                    <a id="login_restoration" href="/restoration">Не можешь войти?</a>
+                </div>
             </div>
         </Screen>
     );

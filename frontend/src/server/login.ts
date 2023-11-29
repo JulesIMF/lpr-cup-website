@@ -1,3 +1,5 @@
+import { postLogInRequest } from "./server";
+
 export class LogInData {
     email: string = "";
     password: string = "";
@@ -8,4 +10,9 @@ export class LogInData {
             throw new Error("Некорректный адрес электронной почты!")
         }
     }
+}
+
+export async function logIn(data: LogInData) {
+    data.check();
+    return postLogInRequest(data);
 }

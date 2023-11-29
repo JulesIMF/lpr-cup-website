@@ -8,7 +8,6 @@ interface ScreenParams {
     children?: React.ReactNode;
     pageTitle: string;
     hideFooter?: boolean;
-    hideLogIn?: boolean;
     titleBarText?: string;
 }
 
@@ -18,7 +17,7 @@ export function Screen(params: ScreenParams) {
     });
     return (
         <div className="screen">
-            <TitleBar text={params.titleBarText} hideLogIn={params.hideLogIn}/>
+            <TitleBar text={params.titleBarText}/>
             <div className="screen_content">
                 {params.children}
             </div>

@@ -1,0 +1,45 @@
+.grades_list {
+    display: flex;
+    align-items: left;
+    align-content: left;
+    width: 80%;
+    flex-direction: column;
+}
+
+.grades_season {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin-bottom: 70px;
+}
+
+.grades_labels_div {
+    display: flex;
+    position: relative;
+    gap: 35px;
+    vertical-align: bottom;
+    width: fit-content;
+}
+
+.grades_season_label {
+    display: flex;
+    font-size: 40px;
+}
+
+.grades_season_user_label {
+    display: flex;
+    font-size: 20px;
+    height: fit-content;
+    vertical-align: bottom;
+    position: relative;
+    width: max-content;
+    margin: auto;
+    bottom: -6px;
+}
+
+.grades_buttons_div {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    gap: 50px;
+}

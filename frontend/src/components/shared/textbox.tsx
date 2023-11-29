@@ -88,6 +88,19 @@ export function getTextBoxValue(id: string) {
 export function TextBox(params: TextBoxParams) {
     var width = (params.width ? params.width : "100px")
 
+    var onInput = (e: React.FormEvent<HTMLInputElement>) => {
+        const target = e.target as HTMLInputElement;
+        var value = target.value;
+        // console.log(`${params.id} now is "${value}"`)
+        params.onChange?.(value);
+    }
+
+    var onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.code === "Enter" || e.code == "NumpadEnter") {
+            params.onEnter?.();
+        }
+    }
+
     if (params.type != "password" || 
         params.passwordMatchState == undefined || 
         params.passwordMatchState == MatchState.Empty) {
@@ -99,17 +112,8 @@ export function TextBox(params: TextBoxParams) {
                     type={params.type}
                     id={params.id}
                     style={{ width: width }}
-                    onInput={(e) => {
-                        const target = e.target as HTMLInputElement;
-                        var value = target.value;
-                        // console.log(`${params.id} now is "${value}"`)
-                        params.onChange?.(value);
-                    }}
-                    onKeyDown={(e) => {
-                        if (e.code === "Enter") {
-                            params.onEnter?.();
-                        }
-                    }}
+                    onInput={onInput}
+                    onKeyDown={onKeyDown}
                     />
             </div>
         );
@@ -150,17 +154,8 @@ export function TextBox(params: TextBoxParams) {
                 type={params.type}
                 id={params.id}
                 style={{ width: width }}
-                onInput={(e) => {
-                    const target = e.target as HTMLInputElement;
-                    var value = target.value;
-                    // console.log(`${params.id} now is "${value}"`)
-                    params.onChange?.(value);
-                }}
-                onKeyDown={(e) => {
-                    if (e.code === "Enter") {
-                        params.onEnter?.();
-                    }
-                }}
+                onInput={onInput}
+                onKeyDown={onKeyDown}
             />
         </div>
     );

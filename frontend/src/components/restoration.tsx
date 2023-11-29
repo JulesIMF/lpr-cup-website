@@ -1,35 +1,21 @@
 import React from 'react';
 import { Screen } from './screen';
-import { Button } from './shared/button';
-import './styles/login.css';
 import { CentralHeader, CentralText } from './shared/central';
-import { TextBox } from './shared/textbox';
 
-
-
-
-export function LogIn() {
-    var onClick = () => {
-
-    };
-
+export function Restoration() {
     return (
-        <Screen pageTitle="Вход в личный кабинет" hideFooter>
+        <Screen pageTitle="Восстановление пароля" hideFooter>
             <div id="login_text">
                 <CentralHeader>
                     Восстановление пароля
                 </CentralHeader>
 
                 <CentralText>
-                    Введи данные, указанные при регистрации.
-                </CentralText>
-            </div>
+                    Пока что у нас нет автоматической формы восстановления...
 
-            <div id="login_form">
-                <TextBox id="email" type="email" caption="Электронная почта" width="700px" />
-                <TextBox id="password" type="password" caption="Пароль" width="700px" />
-                <Button caption="Войти в личный кабинет" width="700px" height="60px" action={onClick}/>
-                <a id="login_restoration" href="/restoration">Не можешь войти?</a>
+                    <p>Напиши <a href="https://t.me/jules_imf">@jules_imf</a> (Ивану Дорошенко) в Телеграм,<br/>
+                    он оперативно восстановит доступ!</p>
+                </CentralText>
             </div>
         </Screen>
     );

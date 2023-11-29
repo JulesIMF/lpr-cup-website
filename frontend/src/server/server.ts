@@ -5,7 +5,7 @@ var user: SignUpData | undefined = new SignUpData();
 user.password = "11111111"
 user.email = "doroshenko.ia@phystech.edu"
 
-var loggedIn: boolean = false;
+var loggedIn: boolean = true;
 
 export async function postSignUpRequest(data: SignUpData): Promise<Response> {
     // HACK: один большой хак

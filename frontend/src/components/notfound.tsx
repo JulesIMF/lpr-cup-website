@@ -6,7 +6,7 @@ import { CentralHeader, CentralText } from './shared/central';
 
 export function NotFound() {
     return (
-        <Screen pageTitle="Кубок ЛФИ потерялся..." titleBarText="Кубок ЛФИ потерялся..." hideFooter={true}>
+        <Screen pageTitle="Кубок ЛФИ потерялся..." titleBarCaption="Кубок ЛФИ потерялся..." hideFooter={true}>
             <img src="images/hedgehog.webp" alt="" style={{ width: "300px", height: "300px", marginTop: "2%" }} />
             <div className="notfound_text_div">
                 <CentralHeader>

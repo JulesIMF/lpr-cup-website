@@ -4,6 +4,8 @@ import { Season, getSeasons } from '../server/get';
 import './styles/grades.css'
 import { CentralHeader } from './shared/central';
 import { Button } from './shared/button';
+import { isLoggedIn } from '../server/server';
+import { useNavigate } from 'react-router-dom';
 
 interface SeasonsListParams {
     seasons: Array<Season>;
@@ -43,10 +45,16 @@ function SeasonsList(params: SeasonsListParams) {
 }
 
 export function Grades() {
+    var navigateTo = useNavigate()      
     var [seasons, changeSeasons] = useState(new Array<Season>());
 
     // Выполняется один раз за загрузку страницы
     useEffect(() => {
+        console.log(isLoggedIn());
+        if (!isLoggedIn()) {
+            navigateTo("/login")
+        }
+        console.log(seasons)
         getSeasons().then((loadedSeasons) => {
             console.log(loadedSeasons)
             changeSeasons(loadedSeasons);

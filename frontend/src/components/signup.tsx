@@ -22,7 +22,7 @@ function RussiaRegionSelector() {
     return (
     <Select id="region" caption="Регион РФ" width="700px">
         <option value="1">Республика Адыгея</option>
-        <option value="2">Республика Алтай</option>
+        <option value="2">Республика Алтай  </option>
         <option value="3">Республика Башкортостан</option>
         <option value="4">Республика Бурятия</option>
         <option value="5">Республика Дагестан</option>

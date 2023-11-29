@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Screen } from './screen';
 import { Button } from './shared/button';
 import './styles/login.css';
@@ -6,8 +6,15 @@ import { CentralHeader, CentralText } from './shared/central';
 import { TextBox, getTextBoxValue } from './shared/textbox';
 import { LogInData, logIn } from '../server/login';
 import { useNavigate } from 'react-router-dom';
+import { isLoggedIn } from '../server/server';
 
 export function LogIn() {
+    useEffect(() => {
+        if (isLoggedIn()) {
+            navigateTo("/grades")
+        }
+    }, [])
+
     var navigateTo = useNavigate();
     var [failText, updateFailText] = useState("");
     var processLogin = () => {
@@ -19,6 +26,8 @@ export function LogIn() {
             var response = logIn(data);
             response.then((v) => {
                 if (v == 200) {
+                    console.log("Navigate")
+                    console.log(isLoggedIn())
                     navigateTo("/grades")
                 }
 

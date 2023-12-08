@@ -9,7 +9,8 @@ import { LogIn } from './login';
 import { About } from './about';
 import { Rules } from './about';
 import { Restoration } from './restoration';
-import { LprCup } from './cup';
+import { LprCup } from './lprcup';
+import { Submissions } from './submission';
 
 export function App() {
     return (
@@ -18,7 +19,6 @@ export function App() {
                 <Routes>
                     <Route path="/" element={<Welcome/>} />
                     <Route path="/grades" element={<Grades/>} />
-                    <Route path="/lprcup" element={<LprCup/>} />
                     <Route path="/signup" element={<SignUp/>} />
                     <Route path="/login" element={<LogIn/>} />
                     <Route path="/restoration" element={<Restoration/>} />
@@ -26,6 +26,11 @@ export function App() {
                     <Route path="/info" element={<Outlet />}>
                         <Route index element={<About/>} />
                         <Route path="rules" element={<Rules/>} />
+                    </Route>
+
+                    <Route path="/lprcup" element={<Outlet />}>
+                        <Route index element={<LprCup/>} />
+                        <Route path="submissions" element={<Submissions/>} />
                     </Route>
 
                     // 404

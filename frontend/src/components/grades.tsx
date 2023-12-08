@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Screen } from './screen';
-import { Season, getSeasons } from '../server/get';
+import { getSeasons } from '../server/get';
+import { Season } from "../server/season";
 import './styles/grades.css'
 import { CentralHeader } from './shared/central';
 import { Button } from './shared/button';

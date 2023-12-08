@@ -51,16 +51,6 @@ export function TitleBar(params: TitleBarParams) {
         );
     }
 
-    useEffect(() => {
-        const handleResize = () => {
-            changeAddCaption((document.getElementById('root') as HTMLElement).clientWidth > 850);
-        };
-
-        window.addEventListener('resize', handleResize);
-        return () => {
-          window.removeEventListener('resize', handleResize);
-    };},[]);
-
     return (
         <header className="titlebar">
             {/* Логотип */}

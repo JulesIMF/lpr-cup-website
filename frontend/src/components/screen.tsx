@@ -9,12 +9,14 @@ interface ScreenParams {
     pageTitle: string;
     hideFooter?: boolean;
     titleBarCaption?: string;
+    direction?: string;
 }
 
 export function Screen(params: ScreenParams) {
     useEffect(()=>{
         document.title = params.pageTitle;
     });
+    
     return (
         <div className="screen">
             <TitleBar text={params.titleBarCaption}/>

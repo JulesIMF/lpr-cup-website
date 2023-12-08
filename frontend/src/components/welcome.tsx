@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { CentralHeader, CentralText } from './shared/central';
 import { Button } from './shared/button';
 import { Screen } from './screen';
 import './styles/welcome.css';
+import { useNavigate } from 'react-router-dom';
+import { isLoggedIn } from '../server/server';
 
 export function Welcome() {
-    return (
+    var navigateTo = useNavigate();
+    
+    useEffect(() => {
+        if (isLoggedIn()) {
+            navigateTo("/grades")
+        }
+    }, [])
 
+    return (
         <Screen pageTitle="Добро пожаловать на Кубок ЛФИ!">
             <div className='welcome_text_div'>
                 <CentralHeader>

@@ -1,0 +1,128 @@
+#lprcup_episode_panel {
+    display: flex;
+    background-color: #FFEA9C;
+    border-right: black 2px solid;
+    height: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0px;
+}
+
+.lprcup_episode_selector {
+    display: flex;
+    position: relative;
+    width: 170px;
+    height: 60px;
+    margin: 20px 5px 0px 5px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 44px;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    align-self: flex-start;
+    border-radius: 15px;
+    border-style: none;
+    cursor: pointer;
+    outline: none;
+    background-color: #F1D777;
+}
+
+.lces_active {
+    background-color: #FAC70A;
+}
+
+#lces_real_selectors {
+    align-self: flex-start;
+    width: 100%;
+    height: fit-content;
+}
+
+.lces_back {
+    align-self: flex-end;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+#lprcup_student_panel {
+    display: flex;
+    background-color: white;
+    border-right: black 2px solid;
+    height: 100%;
+    width: 350px;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none; 
+}
+
+#lprcup_student_panel::-webkit-scrollbar {
+    display: none;
+}
+
+.lprcup_student_selector {
+    display: flex;
+    width: 100%;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 44px;
+    border: none;
+    height: 50px;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+    align-items: left;
+    align-content: left;
+    cursor: pointer;
+    outline: none;
+}
+
+.lcss_date {
+    display: flex;
+    font-size: 10px;
+    align-self: flex-end;
+    margin-right: 0px;
+}
+
+.lcss_name {
+    display: flex;
+    align-self: flex-start;
+}
+
+.lcss_none {
+    background-color: #c4c4c4;
+}
+
+.lcss_normal {
+    background-color: #c8ffb2;
+}
+
+.lcss_deadline {
+    background-color: rgb(255, 231, 126);
+}
+
+.lcss_overdue {
+    background-color: #ff7373;
+}
+
+.lcss_active {
+    background-color: rgb(177, 198, 255);
+}
+
+.lcss_back {
+    display: flex;
+    align-self: flex-end;
+    position: fixed;
+    bottom: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+

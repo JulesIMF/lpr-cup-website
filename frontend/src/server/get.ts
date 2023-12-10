@@ -47,7 +47,9 @@ export async function getStudentDialogs(season: number, grade: number, episode: 
             "Никита Всегдаправ",
             "Azamat Gimaev",
             "Тот самый Леонардо Кронекер",
-        ];
+        ];  
+
+        array.push(new Dialog(id++, `Канал ${grade}.s${season}.e${episode}`, new Date(), "channel", episode, false));
 
         for (var i = 0; i < count; i++) {
             var date = new Date(Date.now());
@@ -82,7 +84,7 @@ export async function getStudentDialogs(season: number, grade: number, episode: 
 
 
         array.sort((a, b) => {
-            var statuses = ["none", "normal", "deadline", "overdue"]
+            var statuses = ["none", "normal", "deadline", "overdue", "channel"]
             var statusA = statuses.indexOf(a.status);
             var statusB = statuses.indexOf(b.status);
 

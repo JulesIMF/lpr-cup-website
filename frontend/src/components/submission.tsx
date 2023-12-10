@@ -106,7 +106,7 @@ export function LprCupSubmission() {
     }, [])
 
     return (
-        <Screen pageTitle="Посылка" hideFooter>
+        <Screen pageTitle="Попытка по Эпизоду" hideFooter>
             <div id="submission_screen">
                 <CentralHeader>
                     {

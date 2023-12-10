@@ -113,7 +113,7 @@ export async function getAdminDialog(season: number, episode: number) {
 }
 
 export function isAdmin() {
-    return true;
+    return false;
 }
 var messages = new Array<Message>(
     // new DateMessage(new Date(Date.parse('18 May 2024 00:00:00'))),

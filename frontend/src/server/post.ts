@@ -19,12 +19,13 @@ function escapeHtml (x: string) {
 };
 
 export async function postTextMessage(dialog: Dialog, text: string, file?: File) {
+    text = escapeHtml(text)
     if (!isAdmin() && file) {
         // HACK: это все делает сервер
-        text = "<a href=\"/lprcup/submission?id=456\">Попытка #2</a>" + text
+        text = "<a href=\"/lprcup/submission?id=456\">Попытка #2</a><br/><br/>" + text
     }
 
-    addNewMessages([new RealMessage(escapeHtml(text), new Date(), true, file ? `/files/${file.name}` : undefined)]);
+    addNewMessages([new RealMessage(text, new Date(), true, file ? `/files/${file.name}` : undefined)]);
 }
 
 export async function postSubmissionUpdate(submission: Submission) {

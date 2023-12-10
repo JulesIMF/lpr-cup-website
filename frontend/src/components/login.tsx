@@ -58,7 +58,7 @@ export function LogIn() {
                 <TextBox id="email" type="email" caption="Электронная почта" width="700px" onEnter={processLogin}/>
                 <TextBox id="password" type="password" caption="Пароль" width="700px" onEnter={processLogin}/>
                 <label id="login_fail">{failText}</label>
-                <Button caption="Войти в личный кабинет" width="700px" height="60px" action={processLogin}/>
+                <Button caption="Войти в личный кабинет" width="700px" height="60px" onClick={processLogin}/>
                 <div id="login_a_div">
                     <a id="login_signup" href="/signup">Регистрация</a>
                     <a id="login_restoration" href="/restoration">Не можешь войти?</a>

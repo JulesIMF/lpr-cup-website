@@ -6,7 +6,7 @@ class ButtonParams {
     caption?: string;
     height?: string = "100px";
     where?: string;
-    action?: React.MouseEventHandler<HTMLButtonElement>;
+    onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export function Button(params: ButtonParams) {
@@ -25,7 +25,7 @@ export function Button(params: ButtonParams) {
 
     // Действие
     return (
-        <button className='yellow_button' onClick={params.action} style={{width: params.width, height: params.height}} type='button'>
+        <button className='yellow_button' onClick={params.onClick} style={{width: params.width, height: params.height}} type='button'>
             {params.caption}
         </button>
     );

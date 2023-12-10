@@ -1,5 +1,6 @@
 import { Dialog } from "./dialog";
 import { isAdmin } from "./get";
+import { Submission } from "./submission";
 import { Message, RealMessage } from "./message";
 import { addNewMessages } from "./server";
 
@@ -26,3 +27,5 @@ export async function postTextMessage(dialog: Dialog, text: string, file?: File)
     addNewMessages([new RealMessage(escapeHtml(text), new Date(), true, file ? `/files/${file.name}` : undefined)]);
 }
 
+export async function postSubmissionUpdate(submission: Submission) {
+}

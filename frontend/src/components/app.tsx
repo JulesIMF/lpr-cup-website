@@ -10,7 +10,7 @@ import { About } from './about';
 import { Rules } from './about';
 import { Restoration } from './restoration';
 import { LprCup } from './lprcup';
-import { Submissions } from './submission';
+import { LprCupSubmission } from './submission';
 
 export function App() {
     return (
@@ -30,7 +30,7 @@ export function App() {
 
                     <Route path="/lprcup" element={<Outlet />}>
                         <Route index element={<LprCup/>} />
-                        <Route path="submissions" element={<Submissions/>} />
+                        <Route path="submission" element={<LprCupSubmission/>} />
                     </Route>
 
                     // 404

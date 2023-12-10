@@ -1,8 +1,8 @@
-import { LprCup } from "../components/lprcup";
-import { Message, DateMessage, RealMessage } from "./message";
+import { Message, RealMessage } from "./message";
 import { Season } from "./season";
 import { Dialog } from "./dialog";
 import { extractNewMessages } from "./server";
+import { Submission } from "./submission";
 
 export async function getSeasons() {
     // FIXME: на самом деле спрашиваем на сервере
@@ -47,7 +47,7 @@ export async function getStudentDialogs(season: number, grade: number, episode: 
             "Никита Всегдаправ",
             "Azamat Gimaev",
             "Тот самый Леонардо Кронекер",
-        ];  
+        ];
 
         array.push(new Dialog(id++, `Канал ${grade}.s${season}.e${episode}`, new Date(), "channel", episode, false));
 
@@ -89,14 +89,14 @@ export async function getStudentDialogs(season: number, grade: number, episode: 
             var statusB = statuses.indexOf(b.status);
 
             // Проверять надо сначала ранние, а не поздние
-            return (statusB - statusA) * 1000000000000000 + 
-                (a.date.valueOf() - b.date.valueOf()) * 
+            return (statusB - statusA) * 1000000000000000 +
+                (a.date.valueOf() - b.date.valueOf()) *
                 ((a.status == b.status && a.status == "none") ? -1 : 1);
         })
 
         resolve(array);
     });
-    
+
     return promise;
 }
 
@@ -154,4 +154,34 @@ export async function getNewIncomingMessages(dialog: Dialog) {
     return promise;
 }
 
+export async function getSubmission(id: number) {
+    var promise = new Promise<Submission>((resolve, reject) => {
+        var verdict = new Map<string, "n" | "m" | "c" | "p" | "i">();
+        if (id == 123) {
+            verdict.set("1", "c");
+            verdict.set("2", "p");
+            verdict.set("3", "i");
+            verdict.set("4", "m");
+        }
 
+        else {
+            verdict.set("1", "n");
+            verdict.set("2", "n");
+            verdict.set("3", "n");
+            verdict.set("4", "n");
+        }
+
+        resolve(new Submission(
+            id,
+            "Сабина Ахмедова",
+            5,
+            10,
+            3,
+            (id == 123 ? 1 : 2),
+            id == 123,
+            verdict
+        ))
+    });
+
+    return promise;
+}

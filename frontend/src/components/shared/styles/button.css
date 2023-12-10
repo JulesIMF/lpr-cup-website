@@ -17,6 +17,8 @@
     align-items: center;
     text-align: center;
     cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
     /* transform: matrix(-1, 0, 0, 1, 0, 0); */
 }
 

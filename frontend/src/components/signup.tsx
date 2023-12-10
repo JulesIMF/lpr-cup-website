@@ -452,7 +452,7 @@ export function SignUp() {
 
             <label id="signup_error_text">{errorText}</label>
 
-            <Button caption="Зарегистрироваться!" action={processSignUp} width="600px" height="60px"/>
+            <Button caption="Зарегистрироваться!" onClick={processSignUp} width="600px" height="60px"/>
         </Screen>
     );
 }

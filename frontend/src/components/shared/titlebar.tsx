@@ -31,8 +31,8 @@ export function TitleBar(params: TitleBarParams) {
 
     function TitleBarButtonsList() {
         var buttons = [
-            <TitleBarButton id="rating" text="Рейтинг" where="/rating"/>,
-            <TitleBarButton id="tasks" text="Задания" where="/tasks"/>,
+            // <TitleBarButton id="rating" text="Рейтинг" where="/rating"/>,
+            // <TitleBarButton id="tasks" text="Задания" where="/tasks"/>,
             <TitleBarButton id="info" text="Инфо" where="/info"/>
         ];
 
@@ -41,7 +41,7 @@ export function TitleBar(params: TitleBarParams) {
         }
 
         else {
-            buttons.push(<TitleBarButton id="login" text="Настройки" where="/settings"/>)
+            // buttons.push(<TitleBarButton id="login" text="Настройки" where="/settings"/>)
         }
 
         return (

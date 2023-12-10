@@ -112,6 +112,10 @@
     background-color: #ff7373;
 }
 
+.lcss_chanel {
+    background-color: rgb(195, 148, 255);
+}
+
 .lcss_active {
     background-color: rgb(177, 198, 255);
 }

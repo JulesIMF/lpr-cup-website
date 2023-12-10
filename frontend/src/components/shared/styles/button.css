@@ -19,3 +19,7 @@
     cursor: pointer;
     /* transform: matrix(-1, 0, 0, 1, 0, 0); */
 }
+
+.yellow_button:hover {
+    background: #fcd341;
+}

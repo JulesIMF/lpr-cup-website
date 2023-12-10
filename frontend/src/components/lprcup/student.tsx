@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StudentDialog } from '../../server/studentdialog';
+import { Dialog } from '../../server/dialog';
 
 // 
 // Выбор эпизода
@@ -10,8 +10,11 @@ interface LprCupStudentSelectorParams {
     status: string;
     activeId: number | undefined;
     activeIdUpdate: React.Dispatch<React.SetStateAction<number | undefined>>;
+    activeDialogUpdate: React.Dispatch<React.SetStateAction<Dialog>>;
+    dialog: Dialog;
     date: Date;
 }
+
 function formatDate(date: Date) {
     var now = new Date(Date.now());
     if (now.getFullYear() != date.getFullYear()) {
@@ -47,6 +50,7 @@ function LprCupStudentSelector(params: LprCupStudentSelectorParams) {
             onClick={(e) => {
                 console.log(`Select ${params.id}`);
                 params.activeIdUpdate(params.id);
+                params.activeDialogUpdate(params.dialog)
             }}
         >
             <label className="lcss_name">
@@ -57,10 +61,12 @@ function LprCupStudentSelector(params: LprCupStudentSelectorParams) {
     );
 }
 interface LprCupStudentsParams {
-    dialogs: Array<StudentDialog>;
+    dialogs: Array<Dialog>;
     activeId: number | undefined;
     activeIdUpdate: React.Dispatch<React.SetStateAction<number | undefined>>;
+    activeDialogUpdate: React.Dispatch<React.SetStateAction<Dialog>>;
 }
+
 function LprCupStudents(params: LprCupStudentsParams) {
     var episodes = params.dialogs.map((dialog) => {
         return (
@@ -70,46 +76,34 @@ function LprCupStudents(params: LprCupStudentsParams) {
                 status={dialog.status}
                 date={dialog.date}
                 activeId={params.activeId}
-                activeIdUpdate={params.activeIdUpdate} />
+                dialog={dialog}
+                activeIdUpdate={params.activeIdUpdate}
+                activeDialogUpdate={params.activeDialogUpdate} />
         );
     });
 
     return episodes;
 }
 interface LprCupStudentPanelParams {
-    dialogs: Array<StudentDialog>;
-    activeStudentIdUpdate: React.Dispatch<React.SetStateAction<number | undefined>>;
+    dialogs: Array<Dialog>;
+    activeDialogUpdate: React.Dispatch<React.SetStateAction<Dialog>>;
 }
 
 export function LprCupStudentPanel(params: LprCupStudentPanelParams) {
     if (params.dialogs.length == 0) {
         return (
             <div>
-                <div id='lprcup_student_panel' onKeyDown={(e) => {
-                    if (e.code == "Escape") {
-                        console.log("Unselect all");
-                        activeIdUpdate(undefined);
-                    }
-                }}>
+                <div id='lprcup_student_panel'>
                     <center style={{ width: "100%", height: "100%", marginTop: "300px" }}><i>Здесь пока пусто...</i></center>
                 </div>
             </div>);
     }
     var [activeId, activeIdUpdate] = useState<number | undefined>(undefined);
 
-    useEffect(() => {
-        params.activeStudentIdUpdate(activeId);
-    }, [activeId]);
-
     return (
         <div>
-            <div id='lprcup_student_panel' onKeyDown={(e) => {
-                if (e.code == "Escape") {
-                    console.log("Unselect all");
-                    activeIdUpdate(undefined);
-                }
-            }}>
-                {LprCupStudents({ dialogs: params.dialogs, activeId: activeId, activeIdUpdate: activeIdUpdate })}
+            <div id='lprcup_student_panel'>
+                {LprCupStudents({ dialogs: params.dialogs, activeId: activeId, activeIdUpdate: activeIdUpdate, activeDialogUpdate: params.activeDialogUpdate })}
             </div>
         </div>
 

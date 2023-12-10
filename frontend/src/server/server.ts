@@ -1,5 +1,6 @@
 import { SignUpData } from "./signup";
 import { LogInData } from "./login";
+import { Message } from "./message";
 
 var user: SignUpData | undefined = new SignUpData();
 user.password = "11111111"
@@ -32,6 +33,22 @@ export async function postLogInRequest(data: LogInData): Promise<number> {
     })
 
     return promise;
+}
+
+export var newMessages = new Array<Message>();
+
+export function addNewMessages(extraMessages: Array<Message>) {
+    newMessages = newMessages.concat(extraMessages);
+}
+
+export function extractNewMessages() {
+    if (newMessages.length == 0) {
+        return []
+    }
+
+    var oldNewMessages = newMessages;
+    newMessages = new Array<Message>();
+    return oldNewMessages;
 }
 
 export function isLoggedIn(): boolean {

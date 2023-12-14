@@ -19,24 +19,15 @@ public class User {
     private String surname;
     private String name;
     private String patronymic;
+    @Column(unique = true)
     private String email;
     private String password;
-
-    // @OneToOne(mappedBy = "user")
-    // private Image image;
+    @Column(name = "is_admin")
+    private Boolean isAdmin;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
-    
-    // @OneToMany(mappedBy = "user")
-    // private List<Plant> plants;
-    
-    // @OneToMany(mappedBy = "user")
-    // private List<Blog> blogs;
-    
-    // @OneToMany(mappedBy = "user")
-    // private List<LikeReaction> likes;
-    
-    // @OneToMany(mappedBy = "user")
-    // private List<Dislike> dislikes;
+
+    @ManyToMany
+    private Set<Grade> grades;
 }

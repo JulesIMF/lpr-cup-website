@@ -3,9 +3,11 @@ package ru.lprcup.backend.service.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.lprcup.backend.data.Grade;
 import ru.lprcup.backend.data.Role;
 
 import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -18,4 +20,6 @@ public class UserDto {
     private String email;
     private String password;
     private List<RoleDto> roles;
+    private Boolean isAdmin;
+    private Set<GradeDto> grades;
 }

@@ -22,7 +22,7 @@ function SeasonsList(params: SeasonsListParams) {
                         <div className="grades_season">
                             <div className="grades_labels_div">
                                 <label className="grades_season_label">{`${season.seasonNumber} Сезон`}</label>
-                                <label className="grades_season_user_label">{`(${season.year} год, твой ${season.userGrade} класс)`}</label>
+                                <label className="grades_season_user_label">{`(${season.year} год`}</label>
                             </div>
                             <div className="grades_buttons_div">
                                 {

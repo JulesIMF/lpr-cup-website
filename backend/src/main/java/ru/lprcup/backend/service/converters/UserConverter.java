@@ -37,12 +37,14 @@ public class UserConverter {
         }
         userDto.setRoles(roles.stream().toList());
 
-        HashSet<GradeDto> grades = new HashSet<GradeDto>();
-        var gradeConverter = new GradeConverter();
-        for (var grade : user.getGrades()) {
-            grades.add(gradeConverter.toDto(grade));
+        if (user.getGrades() != null) {
+            var gradeConverter = new GradeConverter();
+            HashSet<GradeDto> grades = new HashSet<GradeDto>();
+            for (var grade : user.getGrades()) {
+                grades.add(gradeConverter.toDto(grade));
+            }
+            userDto.setGrades(grades);
         }
-        userDto.setGrades(grades);
 
         return userDto;
     }
@@ -70,10 +72,12 @@ public class UserConverter {
 
         HashSet<Grade> grades = new HashSet<Grade>();
         var gradeConverter = new GradeConverter();
-        for (var grade : userDto.getGrades()) {
-            grades.add(gradeConverter.toEntity(grade));
+        if (userDto.getGrades() != null) {
+            for (var grade : userDto.getGrades()) {
+                grades.add(gradeConverter.toEntity(grade));
+            }
+            user.setGrades(grades);
         }
-        user.setGrades(grades);
 
         return user;
     }

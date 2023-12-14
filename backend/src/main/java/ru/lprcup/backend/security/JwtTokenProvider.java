@@ -50,10 +50,9 @@ public class JwtTokenProvider {
         return false;
     }
 
-    public String createToken(Long id, String email, String username, List<RoleDto> roles) {
+    public String createToken(Long id, String email, List<RoleDto> roles) {
         Claims claims = Jwts.claims().setSubject(Long.toString(id));
         claims.put("email", email);
-        claims.put("username", username);
         claims.put("roles", roles);
 
         Date now = new Date();

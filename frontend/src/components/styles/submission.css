@@ -1,0 +1,75 @@
+#submission_screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    gap: 35px;
+    margin-top: 100px;
+}
+
+#lcss_update {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+#lpr_cup_submission_overview {
+    display: flex;
+}
+
+#lpr_cup_submission_status {
+    display: flex;
+    font-size: 20px;
+
+}
+
+.lcss_ok {
+    color: green;
+}
+
+.lcss_error {
+    color: red;
+}
+
+.lpr_cup_verdict_span {
+    display: flex;
+    width: 50px;
+    height: 50px;
+    margin: 0px;
+    justify-content: center;
+    align-items: center;
+    -webkit-user-select: none;
+    user-select: none;
+    border: 2px black solid;
+}
+
+.lpr_cup_task_span {
+    display: flex;
+    width: 100px;
+    height: 50px;
+    align-items: center;
+    border: 2px black solid;
+    padding-left: 10px;
+}
+
+.lcvs_n {
+    background-color: white;
+}
+
+.lcvs_m {
+    background-color: gray;
+}
+
+.lcvs_c {
+    background-color: green;
+}
+
+.lcvs_p {
+    background-color: yellow;
+}
+
+.lcvs_i {
+    background-color: red;
+}

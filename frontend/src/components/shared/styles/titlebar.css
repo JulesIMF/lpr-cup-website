@@ -1,0 +1,50 @@
+.titlebar {
+    display: flex;
+    position: fixed;
+    top: 0;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    width: 100%;
+    height: max-content;
+    background-color: black;
+    color: #e9b809;
+    text-align: left;
+    text-indent: 10px;
+    font-size: 150%;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-variant: small-caps;
+}
+
+.titlebar_logo {
+    display: flex;
+
+    width: 80px;
+    height: 80px;
+
+    appearance: none;
+    border: none;
+    border-color: transparent;
+    background-size:cover;
+}
+
+.titlebar_lprcupisyou {
+    display: flex;
+}
+
+.titlebar_a_div {
+    display: flex;
+    justify-self: self-end;
+    justify-content: right;
+    margin-left: auto;
+    margin-right: 4%;
+    width: auto;
+    gap: 15%;
+}
+
+.titlebar_a{
+    display: flex;
+    color: #e9b809;
+    text-decoration: none;  
+}

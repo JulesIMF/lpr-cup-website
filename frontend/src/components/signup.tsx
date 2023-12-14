@@ -121,7 +121,7 @@ export function SignUp() {
 
         data.surname = getTextBoxValue("surname");
         data.name = getTextBoxValue("name");
-        data.patronimic = getTextBoxValue("patronimic");
+        data.patronymic = getTextBoxValue("patronymic");
         data.country = getSelectValue("country");
         data.region = russiaSelected ? getSelectValue("region") : getTextBoxValue("region");
         data.currentGrade = getSelectValue("current_grade");
@@ -157,7 +157,7 @@ export function SignUp() {
                     <i>Личная информация</i>
                     <TextBox id="surname" caption="Фамилия" type="text" width="700px" onEnter={processSignUp}/>
                     <TextBox id="name" caption="Имя" type="text" width="700px" onEnter={processSignUp}/>
-                    <TextBox id="patronimic" caption="Отчество" type="text" width="700px" onEnter={processSignUp}/>
+                    <TextBox id="patronymic" caption="Отчество" type="text" width="700px" onEnter={processSignUp}/>
                     <Select id="country" caption="Страна" width="700px" onChange={(v) => {changeRussiaSelected(v == "RU")}}>
                         <option value="AU">Австралия</option>
                         <option value="AT">Австрия</option>

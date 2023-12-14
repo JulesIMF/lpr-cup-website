@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import ru.lprcup.backend.data.User;
 import ru.lprcup.backend.security.JwtTokenProvider;
 import ru.lprcup.backend.security.UserPrincipal;
+import ru.lprcup.backend.service.api.GradeService;
 import ru.lprcup.backend.service.api.JwtTokenService;
 import ru.lprcup.backend.service.api.RoleService;
 import ru.lprcup.backend.service.api.UserService;
@@ -28,6 +29,7 @@ public class UserController {
     @Autowired
     private final UserService userService;
     private final RoleService roleService;
+    private final GradeService gradeService;
     @Autowired
     private final JwtTokenProvider jwtTokenProvider;
     private final JwtTokenService jwtTokenService;
@@ -93,7 +95,11 @@ public class UserController {
     }
 
     @PostMapping("/auth/signup")
-    public ResponseEntity<?> registerUser(@RequestBody final UserDto userDto) {
+    public ResponseEntity<?> registerUser(@RequestBody final SignUpRequest signUpRequest) {
+        UserDto userDto = signUpRequest.toUserDto();
+
+        userDto.setGrades(gradeService.getActualGrades(signUpRequest.getParticipationGrades()));
+
         RoleDto role = roleService.getRoleByName("USER");
         if (role == null) {
             role = roleService.createRole(new RoleDto(Math.abs(UUID.randomUUID().getLeastSignificantBits()), "USER"));

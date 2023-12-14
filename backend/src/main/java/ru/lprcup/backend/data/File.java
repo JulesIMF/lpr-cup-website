@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "grades")
+@Table(name = "files")
 @Getter
 @Setter
 public class File {

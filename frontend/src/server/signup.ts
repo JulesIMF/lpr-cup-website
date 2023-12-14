@@ -3,7 +3,7 @@ import { postSignUpRequest } from './server'
 export class SignUpData {
     surname: string = "";
     name: string = "";
-    patronimic: string = "";
+    patronymic: string = "";
     country: string = "";
     region: string = "";
     currentGrade: string | number = "";

@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -14,5 +15,7 @@ import java.util.Set;
 public class GradeDto {
     private Long id;
     private Long number;
+    private Long year;
     private Long season;
+    private List<EpisodeDto> episodes;
 }

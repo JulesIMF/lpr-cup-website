@@ -3,10 +3,14 @@ package ru.lprcup.backend.service.converters;
 import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
+import ru.lprcup.backend.data.Dialog;
 import ru.lprcup.backend.data.Grade;
 import ru.lprcup.backend.data.Message;
+import ru.lprcup.backend.data.User;
+import ru.lprcup.backend.service.dto.DialogDto;
 import ru.lprcup.backend.service.dto.GradeDto;
 import ru.lprcup.backend.service.dto.MessageDto;
+import ru.lprcup.backend.service.dto.UserDto;
 
 @Component
 @RequiredArgsConstructor
@@ -15,11 +19,21 @@ public class MessageConverter {
         MessageDto messageDto = new MessageDto();
         messageDto.setId(message.getId());
 
-        var userConverter = new UserConverter();
-        messageDto.setFromUser(userConverter.toDto(message.getFromUser()));
+        if (message.getFromUser() != null) {
+            var user = new UserDto();
+            user.setId(message.getFromUser().getId());
+            user.setName(message.getFromUser().getName());
+            user.setSurname(message.getFromUser().getSurname());
+            user.setPatronymic(message.getFromUser().getPatronymic());
+            user.setEmail(message.getFromUser().getEmail());
+            messageDto.setFromUser(user);
+        }
 
-        var dialogConverter = new DialogConverter();
-        messageDto.setDialog(dialogConverter.toDto(message.getDialog()));
+        if (message.getDialog() != null) {
+            var dialog = new DialogDto();
+            dialog.setId(message.getDialog().getId());
+            messageDto.setDialog(dialog);
+        }
 
         messageDto.setTime(message.getTime());
         messageDto.setText(message.getText());
@@ -34,11 +48,21 @@ public class MessageConverter {
         Message message = new Message();
         message.setId(messageDto.getId());
 
-        var userConverter = new UserConverter();
-        message.setFromUser(userConverter.toEntity(messageDto.getFromUser()));
+        if (message.getFromUser() != null) {
+            var user = new User();
+            user.setId(messageDto.getFromUser().getId());
+            user.setName(messageDto.getFromUser().getName());
+            user.setSurname(messageDto.getFromUser().getSurname());
+            user.setPatronymic(messageDto.getFromUser().getPatronymic());
+            user.setEmail(messageDto.getFromUser().getEmail());
+            message.setFromUser(user);
+        }
 
-        var dialogConverter = new DialogConverter();
-        message.setDialog(dialogConverter.toEntity(messageDto.getDialog()));
+        if (message.getDialog() != null) {
+            var dialog = new Dialog();
+            dialog.setId(message.getDialog().getId());
+            message.setDialog(dialog);
+        }
 
         message.setTime(messageDto.getTime());
         message.setText(messageDto.getText());

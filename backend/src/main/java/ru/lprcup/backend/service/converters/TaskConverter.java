@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
+import ru.lprcup.backend.data.Episode;
 import ru.lprcup.backend.data.Grade;
 import ru.lprcup.backend.data.Message;
 import ru.lprcup.backend.data.Submission;
 import ru.lprcup.backend.data.Task;
 import ru.lprcup.backend.data.Verdict;
+import ru.lprcup.backend.service.dto.EpisodeDto;
 import ru.lprcup.backend.service.dto.GradeDto;
 import ru.lprcup.backend.service.dto.MessageDto;
 import ru.lprcup.backend.service.dto.SubmissionDto;
@@ -23,8 +25,10 @@ public class TaskConverter {
         TaskDto taskDto = new TaskDto();
         taskDto.setId(task.getId());
 
-        var episodeConverter = new EpisodeConverter();
-        taskDto.setEpisode(episodeConverter.toDto(task.getEpisode()));
+        var episode = new EpisodeDto();
+        episode.setId(task.getEpisode().getId());
+        episode.setNumber(task.getEpisode().getNumber());
+        taskDto.setEpisode(episode);
 
         taskDto.setName(task.getName());
         return taskDto;
@@ -34,8 +38,10 @@ public class TaskConverter {
         Task task = new Task();
         task.setId(taskDto.getId());
 
-        var episodeConverter = new EpisodeConverter();
-        task.setEpisode(episodeConverter.toEntity(taskDto.getEpisode()));
+        var episode = new Episode();
+        episode.setId(task.getEpisode().getId());
+        episode.setNumber(task.getEpisode().getNumber());
+        task.setEpisode(episode);
 
         task.setName(taskDto.getName());
         return task;

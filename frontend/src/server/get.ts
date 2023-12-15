@@ -4,6 +4,7 @@ import { Dialog } from "./dialog";
 import { extractNewMessages } from "./server";
 import { Submission } from "./submission";
 
+// Done
 export async function getSeasons() {
     // FIXME: на самом деле спрашиваем на сервере
     var promise = new Promise<Array<Season>>((resolve, reject) => {
@@ -17,6 +18,7 @@ export async function getSeasons() {
     return promise;
 }
 
+// Done
 export async function getEpisodesCount(season: number, grade: number) {
     var promise = new Promise<number>((resolve, reject) => {
         resolve(3);
@@ -25,6 +27,7 @@ export async function getEpisodesCount(season: number, grade: number) {
     return promise;
 }
 
+// Done
 export async function getStudentDialogs(season: number, grade: number, episode: number) {
     var promise = new Promise<Array<Dialog>>((resolve, reject) => {
         var array = new Array<Dialog>();
@@ -100,10 +103,12 @@ export async function getStudentDialogs(season: number, grade: number, episode: 
     return promise;
 }
 
+// Done
 export function getNewsDialog(season: number) {
     return new Dialog(-season, `Новости ${season} Сезона`, new Date(), "none", 0, !isAdmin())
 }
 
+// Done
 export async function getAdminDialog(season: number, episode: number) {
     var promise = new Promise<Dialog>((resolve, reject) => {
         resolve(new Dialog(season * 10 + episode, `Беседа с Жюри по ${episode} Эпизоду ${season} Сезона`, new Date(), "none", episode, false));
@@ -115,6 +120,7 @@ export async function getAdminDialog(season: number, episode: number) {
 export function isAdmin() {
     return false;
 }
+
 var messages = new Array<Message>(
     // new DateMessage(new Date(Date.parse('18 May 2024 00:00:00'))),
     new RealMessage("Мессага с анонсом<br/>с анонсом мессага<br/>Траляляляля", new Date(Date.parse('18 May 2023 12:00:00')), isAdmin(), "/task.pdf"),

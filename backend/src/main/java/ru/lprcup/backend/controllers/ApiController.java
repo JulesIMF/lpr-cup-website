@@ -16,17 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-class GradeDescription {
-    public Long grade;
-    public Long season;
-}
-
-class EpisodeDescription {
-    public Long grade;
-    public Long season;
-    public Long episode;
-}
-
 @CrossOrigin(origins = "http://localhost:*", maxAge = 3600)
 @RestController
 @RequestMapping("/api")
@@ -57,8 +46,9 @@ public class ApiController {
     @GetMapping("/episodesCount")
     public ResponseEntity<?> getEpisodesCount(
             @RequestHeader("ApiToken") final String jwtToken,
-            @RequestBody final GradeDescription grade) {
-        if (grade.grade == null || grade.season == null) {
+            @RequestParam final Long season,
+            @RequestParam final Long grade) {
+        if (grade == null || season == null) {
             return ResponseEntity.badRequest().body("Null options");
         }
         JwtTokenDto token = jwtTokenService.getTokenByName(jwtToken);
@@ -66,14 +56,16 @@ public class ApiController {
             return ResponseEntity.badRequest().body("No such token");
         }
 
-        return ResponseEntity.ok(gradeService.getEpisodesCount(grade.season, grade.grade));
+        return ResponseEntity.ok(gradeService.getEpisodesCount(season, grade));
     }
 
     @GetMapping("/adminDialog")
     public ResponseEntity<?> getAdminDialog(
             @RequestHeader("ApiToken") final String jwtToken,
-            @RequestBody final EpisodeDescription episode) {
-        if (episode.grade == null || episode.season == null || episode.episode == null) {
+            @RequestParam final Long season,
+            @RequestParam final Long grade,
+            @RequestParam final Long episode) {
+        if (grade == null || season == null || episode == null) {
             return ResponseEntity.badRequest().body("Null options");
         }
         JwtTokenDto token = jwtTokenService.getTokenByName(jwtToken);
@@ -86,12 +78,44 @@ public class ApiController {
             return ResponseEntity.badRequest().body("Invalid token");
         }
 
-        var dialog = dialogService.getAdminDialog(user, episode.season, episode.grade, episode.episode);
+        var dialog = dialogService.getAdminDialog(user, season, grade, episode);
         if (dialog == null) {
             return ResponseEntity.notFound().build();
         }
 
         dialog.setMessages(null);
         return ResponseEntity.ok(dialog);
+    }
+
+    @GetMapping("/studentDialogs")
+    public ResponseEntity<?> getStudentDialogs(
+            @RequestHeader("ApiToken") final String jwtToken,
+            @RequestParam final Long season,
+            @RequestParam final Long grade,
+            @RequestParam final Long episode) {
+        if (grade == null || season == null || episode == null) {
+            return ResponseEntity.badRequest().body("Null options");
+        }
+
+        JwtTokenDto token = jwtTokenService.getTokenByName(jwtToken);
+        if (!jwtTokenProvider.validateToken(jwtToken) || token == null) {
+            return ResponseEntity.badRequest().body("No such token");
+        }
+
+        UserDto user = userService.getUserById(jwtTokenProvider.getUserIdFromToken(jwtToken));
+        if (user == null) {
+            return ResponseEntity.badRequest().body("Invalid token");
+        }
+
+        if (!user.getIsAdmin()) {
+            return ResponseEntity.status(403).build();
+        }
+
+        var dialogs = dialogService.getStudentDialogs(season, grade, episode);
+        if (dialogs == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(dialogs);
     }
 }

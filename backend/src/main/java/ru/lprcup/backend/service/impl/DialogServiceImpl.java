@@ -86,4 +86,25 @@ public class DialogServiceImpl implements DialogService {
         dialog.setEpisode(ep);
         return dialogConverter.toDto(dialogRepository.save(dialog));
     }
+
+    @Override
+    public List<DialogDto> getStudentDialogs(Long season, Long grade, Long episode) {
+        var gr = gradeRepository.findByNumberAndSeason(grade, season);
+
+        if (gr == null) {
+            return null;
+        }
+
+        var ep = episodeRepository.findByNumberAndGrade(episode, gr);
+        if (ep == null) {
+            return null;
+        }
+
+        var list = new ArrayList<DialogDto>();
+        for (var d : ep.getDialogs()) {
+            list.add(dialogConverter.toDto(d));
+        }
+
+        return list;
+    }
 }

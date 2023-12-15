@@ -23,11 +23,13 @@ public class EpisodeConverter {
         episodeDto.setId(episode.getId());
 
         var grade = new GradeDto();
-        grade.setId(episode.getGrade().getId());
-        grade.setNumber(episode.getGrade().getNumber());
-        grade.setSeason(episode.getGrade().getSeason());
-        grade.setYear(episode.getGrade().getYear());
-        episodeDto.setGrade(grade);
+        if (episode.getGrade() != null) {
+            grade.setId(episode.getGrade().getId());
+            grade.setNumber(episode.getGrade().getNumber());
+            grade.setSeason(episode.getGrade().getSeason());
+            grade.setYear(episode.getGrade().getYear());
+            episodeDto.setGrade(grade);
+        }
 
         episodeDto.setNumber(episode.getNumber());
 
@@ -52,12 +54,14 @@ public class EpisodeConverter {
         Episode episode = new Episode();
         episode.setId(episodeDto.getId());
 
-        var grade = new Grade();
-        grade.setId(episodeDto.getGrade().getId());
-        grade.setNumber(episodeDto.getGrade().getNumber());
-        grade.setSeason(episodeDto.getGrade().getSeason());
-        grade.setYear(episodeDto.getGrade().getYear());
-        episode.setGrade(grade);
+        if (episodeDto.getGrade() != null) {
+            var grade = new Grade();
+            grade.setId(episodeDto.getGrade().getId());
+            grade.setNumber(episodeDto.getGrade().getNumber());
+            grade.setSeason(episodeDto.getGrade().getSeason());
+            grade.setYear(episodeDto.getGrade().getYear());
+            episode.setGrade(grade);
+        }
 
         episode.setNumber(episodeDto.getNumber());
 
@@ -70,9 +74,12 @@ public class EpisodeConverter {
 
         ArrayList<Dialog> dialogs = new ArrayList<Dialog>();
         var dialogConverter = new DialogConverter();
-        for (var dialog : episodeDto.getDialogs()) {
-            dialogs.add(dialogConverter.toEntity(dialog));
+        if (episodeDto.getDialogs() != null) {
+            for (var dialog : episodeDto.getDialogs()) {
+                dialogs.add(dialogConverter.toEntity(dialog));
+            }
         }
+
         episode.setDialogs(dialogs.stream().toList());
 
         return episode;

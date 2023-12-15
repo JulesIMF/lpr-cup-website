@@ -10,4 +10,5 @@ import java.util.List;
 
 public interface DialogService {
     public DialogDto getAdminDialog(UserDto user, Long season, Long grade, Long episode);
+    public List<DialogDto> getStudentDialogs(Long season, Long grade, Long episode);
 }

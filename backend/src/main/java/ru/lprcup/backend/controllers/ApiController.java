@@ -9,6 +9,7 @@ import ru.lprcup.backend.service.api.DialogService;
 import ru.lprcup.backend.service.api.GradeService;
 import ru.lprcup.backend.service.api.JwtTokenService;
 import ru.lprcup.backend.service.api.MessageService;
+import ru.lprcup.backend.service.api.SubmissionService;
 import ru.lprcup.backend.service.api.UserService;
 import ru.lprcup.backend.service.dto.JwtTokenDto;
 import ru.lprcup.backend.service.dto.UserDto;
@@ -34,6 +35,7 @@ public class ApiController {
     private final GradeService gradeService;
     private final DialogService dialogService;
     private final MessageService messageService;
+    private final SubmissionService submissionService;
 
     @GetMapping("/seasons")
     public ResponseEntity<?> getSeasons(
@@ -200,5 +202,49 @@ public class ApiController {
         }
 
         return ResponseEntity.ok(messages);
+    }
+
+    @GetMapping("/submission")
+    public ResponseEntity<?> getSubmission(
+            @RequestHeader("ApiToken") final String jwtToken,
+            @RequestParam final Long submissionId) {
+        if (submissionId == null) {
+            return ResponseEntity.badRequest().body("Null options");
+        }
+
+        JwtTokenDto token = jwtTokenService.getTokenByName(jwtToken);
+        if (!jwtTokenProvider.validateToken(jwtToken) || token == null) {
+            return ResponseEntity.badRequest().body("No such token");
+        }
+
+        UserDto user = userService.getUserById(jwtTokenProvider.getUserIdFromToken(jwtToken));
+        if (user == null) {
+            return ResponseEntity.badRequest().body("Invalid token");
+        }
+
+        var submission = submissionService.getSubmission(user, submissionId);
+
+        return submission != null ? ResponseEntity.ok().body(submission) : ResponseEntity.status(403).build();
+    }
+
+    @PatchMapping("/patchSubmission")
+    public ResponseEntity<?> patchSubmission(
+            @RequestHeader("ApiToken") final String jwtToken,
+            @RequestBody final SubmissionService.SubmissionPatch patch) {
+        if (patch.verdicts == null || patch.submissionId == null) {
+            return ResponseEntity.badRequest().body("Null options");
+        }
+
+        JwtTokenDto token = jwtTokenService.getTokenByName(jwtToken);
+        if (!jwtTokenProvider.validateToken(jwtToken) || token == null) {
+            return ResponseEntity.badRequest().body("No such token");
+        }
+
+        UserDto user = userService.getUserById(jwtTokenProvider.getUserIdFromToken(jwtToken));
+        if (user == null) {
+            return ResponseEntity.badRequest().body("Invalid token");
+        }
+
+        return submissionService.patchSubmission(user, patch) ? ResponseEntity.ok().build() : ResponseEntity.status(403).build();
     }
 }

@@ -23,8 +23,9 @@ public class VerdictConverter {
         VerdictDto verdictDto = new VerdictDto();
         verdictDto.setId(verdict.getId());
 
-        var submissionConverter = new SubmissionConverter();
-        verdictDto.setSubmission(submissionConverter.toDto(verdict.getSubmission()));
+        var submission = new SubmissionDto();
+        submission.setId(verdict.getSubmission().getId());
+        verdictDto.setSubmission(submission);
 
         var taskConverter = new TaskConverter();
         verdictDto.setTask(taskConverter.toDto(verdict.getTask()));
@@ -37,8 +38,9 @@ public class VerdictConverter {
         Verdict verdict = new Verdict();
         verdict.setId(verdictDto.getId());
 
-        var submissionConverter = new SubmissionConverter();
-        verdict.setSubmission(submissionConverter.toEntity(verdictDto.getSubmission()));
+        var submission = new Submission();
+        submission.setId(verdict.getSubmission().getId());
+        verdict.setSubmission(submission);
 
         var taskConverter = new TaskConverter();
         verdict.setTask(taskConverter.toEntity(verdictDto.getTask()));

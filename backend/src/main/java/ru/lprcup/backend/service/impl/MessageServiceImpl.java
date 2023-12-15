@@ -71,7 +71,7 @@ public class MessageServiceImpl implements MessageService {
     private final UserConverter userConverter;
     private final UserRepository userRepository;
 
-    protected static String escapeHtml(String input) {
+    public static String escapeHtml(String input) {
         StringBuilder escaped = new StringBuilder();
         for (char c : input.toCharArray()) {
             switch (c) {

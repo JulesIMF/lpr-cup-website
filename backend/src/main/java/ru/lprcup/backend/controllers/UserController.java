@@ -37,7 +37,7 @@ public class UserController {
 
     @GetMapping("/info/{userId}")
     public ResponseEntity<?> getInfoById(
-            @RequestHeader("Authorization") final String jwtToken,
+            @RequestHeader("ApiToken") final String jwtToken,
             @PathVariable Long userId) {
         JwtTokenDto token = jwtTokenService.getTokenByName(jwtToken);
         if (!jwtTokenProvider.validateToken(jwtToken) || token == null) {
@@ -70,7 +70,7 @@ public class UserController {
     }
 
     @GetMapping("/auth/signup")
-    public ResponseEntity<?> registerUser(@RequestHeader("Authorization") final String jwtToken) {
+    public ResponseEntity<?> registerUser(@RequestHeader("ApiToken") final String jwtToken) {
         if (!jwtTokenProvider.validateToken(jwtToken)) {
             return ResponseEntity.badRequest().body("No such token");
         }
@@ -83,7 +83,7 @@ public class UserController {
     }
 
     @GetMapping("/logout")
-    public ResponseEntity<?> logout(@RequestHeader("Authorization") final String jwtToken) {
+    public ResponseEntity<?> logout(@RequestHeader("ApiToken") final String jwtToken) {
         JwtTokenDto token = jwtTokenService.getTokenByName(jwtToken);
         if (!jwtTokenProvider.validateToken(jwtToken) || token == null) {
             return ResponseEntity.badRequest().body("No such token");

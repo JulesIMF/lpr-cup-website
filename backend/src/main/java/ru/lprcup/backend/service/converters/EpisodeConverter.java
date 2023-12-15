@@ -3,9 +3,11 @@ package ru.lprcup.backend.service.converters;
 import lombok.RequiredArgsConstructor;
 import ru.lprcup.backend.data.Dialog;
 import ru.lprcup.backend.data.Episode;
+import ru.lprcup.backend.data.Grade;
 import ru.lprcup.backend.data.Task;
 import ru.lprcup.backend.service.dto.DialogDto;
 import ru.lprcup.backend.service.dto.EpisodeDto;
+import ru.lprcup.backend.service.dto.GradeDto;
 import ru.lprcup.backend.service.dto.TaskDto;
 
 import org.springframework.stereotype.Component;
@@ -20,8 +22,12 @@ public class EpisodeConverter {
         EpisodeDto episodeDto = new EpisodeDto();
         episodeDto.setId(episode.getId());
 
-        var gradeConverter = new GradeConverter();
-        episodeDto.setGrade(gradeConverter.toDto(episode.getGrade()));
+        var grade = new GradeDto();
+        grade.setId(episode.getGrade().getId());
+        grade.setNumber(episode.getGrade().getNumber());
+        grade.setSeason(episode.getGrade().getSeason());
+        grade.setYear(episode.getGrade().getYear());
+        episodeDto.setGrade(grade);
 
         episodeDto.setNumber(episode.getNumber());
 
@@ -46,8 +52,12 @@ public class EpisodeConverter {
         Episode episode = new Episode();
         episode.setId(episodeDto.getId());
 
-        var gradeConverter = new GradeConverter();
-        episode.setGrade(gradeConverter.toEntity(episodeDto.getGrade()));
+        var grade = new Grade();
+        grade.setId(episodeDto.getGrade().getId());
+        grade.setNumber(episodeDto.getGrade().getNumber());
+        grade.setSeason(episodeDto.getGrade().getSeason());
+        grade.setYear(episodeDto.getGrade().getYear());
+        episode.setGrade(grade);
 
         episode.setNumber(episodeDto.getNumber());
 

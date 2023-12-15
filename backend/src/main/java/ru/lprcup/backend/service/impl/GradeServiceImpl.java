@@ -34,7 +34,12 @@ public class GradeServiceImpl implements GradeService {
         for (var pg : participationGrades) {
             var grade = gradeRepository.findByNumberAndMaxYear(pg);
             if (grade != null) {
-                result.add(gradeConverter.toDto(grade));
+                var gradeDto = gradeConverter.toDto(grade);
+                for (var ep : gradeDto.getEpisodes()) {
+                    ep.setDialogs(null);
+                    ep.setGrade(null);
+                }
+                result.add(gradeDto);
             }
         }
 

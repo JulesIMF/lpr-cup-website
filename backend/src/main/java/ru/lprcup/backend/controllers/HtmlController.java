@@ -1,7 +1,6 @@
 package ru.lprcup.backend.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.util.RouteMatcher.Route;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller

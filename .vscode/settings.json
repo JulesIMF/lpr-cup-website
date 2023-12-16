@@ -10,5 +10,6 @@
             "password": "password",
             "database": "postgres"
         }
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

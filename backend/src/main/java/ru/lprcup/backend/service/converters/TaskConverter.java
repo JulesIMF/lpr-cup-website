@@ -25,10 +25,12 @@ public class TaskConverter {
         TaskDto taskDto = new TaskDto();
         taskDto.setId(task.getId());
 
-        var episode = new EpisodeDto();
-        episode.setId(task.getEpisode().getId());
-        episode.setNumber(task.getEpisode().getNumber());
-        taskDto.setEpisode(episode);
+        if (taskDto.getEpisode() != null) {
+            var episode = new EpisodeDto();
+            episode.setId(task.getEpisode().getId());
+            episode.setNumber(task.getEpisode().getNumber());
+            taskDto.setEpisode(episode);
+        }
 
         taskDto.setName(task.getName());
         return taskDto;
@@ -38,10 +40,12 @@ public class TaskConverter {
         Task task = new Task();
         task.setId(taskDto.getId());
 
-        var episode = new Episode();
-        episode.setId(task.getEpisode().getId());
-        episode.setNumber(task.getEpisode().getNumber());
-        task.setEpisode(episode);
+        if (task.getEpisode() != null) {
+            var episode = new Episode();
+            episode.setId(task.getEpisode().getId());
+            episode.setNumber(task.getEpisode().getNumber());
+            task.setEpisode(episode);
+        }
 
         task.setName(taskDto.getName());
         return task;

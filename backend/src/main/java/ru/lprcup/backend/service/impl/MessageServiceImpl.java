@@ -170,7 +170,7 @@ public class MessageServiceImpl implements MessageService {
             return null;
         }
 
-        if (!user.getIsAdmin()) {
+        if (!user.getIsAdmin() && dialog.get().getId() > 0) {
             if (dialog.get().getStudent() != null && dialog.get().getStudent().getId() != user.getId()) {
                 return null;
             }

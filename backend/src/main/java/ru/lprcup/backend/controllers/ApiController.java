@@ -50,6 +50,12 @@ public class ApiController {
             return ResponseEntity.badRequest().body("Invalid token");
         }
 
+        if (user.getIsAdmin()) {
+            return ResponseEntity.ok(
+                gradeService.getAllGrades()
+            );
+        }
+
         return ResponseEntity.ok(user.getGrades());
     }
 

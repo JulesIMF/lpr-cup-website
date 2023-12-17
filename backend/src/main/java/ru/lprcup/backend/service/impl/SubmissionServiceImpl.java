@@ -80,8 +80,7 @@ public class SubmissionServiceImpl implements SubmissionService {
         }
 
         var submissionDto = submissionConverter.toDto(submission);
-        submissionDto.setEpisode(null);
-        submissionDto.setStudent(null);
+        submissionDto.getEpisode().setDialogs(null);
         submissionDto.setMessage(null);
 
         return submissionDto;

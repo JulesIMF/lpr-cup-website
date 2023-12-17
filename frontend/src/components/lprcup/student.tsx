@@ -10,7 +10,7 @@ interface LprCupStudentSelectorParams {
     status: string;
     activeId: number | undefined;
     activeIdUpdate: React.Dispatch<React.SetStateAction<number | undefined>>;
-    activeDialogUpdate: React.Dispatch<React.SetStateAction<Dialog>>;
+    activeDialogUpdate: React.Dispatch<React.SetStateAction<Dialog | undefined>>;
     dialog: Dialog;
     date: Date;
 }
@@ -63,7 +63,7 @@ interface LprCupStudentsParams {
     dialogs: Array<Dialog>;
     activeId: number | undefined;
     activeIdUpdate: React.Dispatch<React.SetStateAction<number | undefined>>;
-    activeDialogUpdate: React.Dispatch<React.SetStateAction<Dialog>>;
+    activeDialogUpdate: React.Dispatch<React.SetStateAction<Dialog | undefined>>;
 }
 
 function LprCupStudents(params: LprCupStudentsParams) {
@@ -85,7 +85,7 @@ function LprCupStudents(params: LprCupStudentsParams) {
 }
 interface LprCupStudentPanelParams {
     dialogs: Array<Dialog>;
-    activeDialogUpdate: React.Dispatch<React.SetStateAction<Dialog>>;
+    activeDialogUpdate: React.Dispatch<React.SetStateAction<Dialog | undefined>>;
 }
 
 export function LprCupStudentPanel(params: LprCupStudentPanelParams) {

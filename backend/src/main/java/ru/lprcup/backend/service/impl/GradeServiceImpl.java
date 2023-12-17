@@ -54,4 +54,15 @@ public class GradeServiceImpl implements GradeService {
         var episodes = gradeEntity.getEpisodes();
         return episodes != null ? episodes.size() : 0l;
     }
+
+    @Override
+    public List<GradeDto> getAllGrades() {
+        var grades = gradeRepository.findAll();
+        var result = new ArrayList<GradeDto>();
+        for (var g : grades) {
+            result.add(gradeConverter.toDto(g));
+        }
+
+        return result;
+    }
 }

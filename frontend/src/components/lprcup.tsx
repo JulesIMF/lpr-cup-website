@@ -38,14 +38,12 @@ export function LprCup() {
         },)
     }, [])
 
-    var newsDialog = getNewsDialog(season);
-
-    var [activeEpisode, activeEpisodeUpdate] = useState(0); // Новости по умолчанию
-    var [activeDialog, activeDialogUpdate] = useState<Dialog>(newsDialog); // Новости по умолчанию
-
+    var [activeEpisode, activeEpisodeUpdate] = useState(1); // Новости по умолчанию
+    var [activeDialog, activeDialogUpdate] = useState<Dialog | undefined>(undefined); // Новости по умолчанию
+    
     useEffect(() => {
         if (activeEpisode == 0) {
-            activeDialogUpdate(newsDialog);
+            activeDialogUpdate(undefined);
             return;
         }
         if (isAdmin()) {
@@ -55,12 +53,13 @@ export function LprCup() {
                     // activeDialogUpdate(loadedDialogs[0]);
                 }
                 else {
-                    activeDialogUpdate(newsDialog);
+                    activeDialogUpdate(undefined);
                 }
             })
         }
         else {
-            getAdminDialog(season, activeEpisode).then((dialog) => {
+            getAdminDialog(season, grade, activeEpisode).then((dialog) => {
+                console.log(dialog);
                 activeDialogUpdate(dialog);
             })
         }

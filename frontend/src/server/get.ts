@@ -1,30 +1,61 @@
 import { Message, RealMessage } from "./message";
 import { Season } from "./season";
 import { Dialog } from "./dialog";
-import { extractNewMessages, getUser } from "./server";
+import { extractNewMessages, getUser, requestToServer } from "./server";
 import { Submission } from "./submission";
 
 
 
 // Done
 export async function getSeasons() {
-    // FIXME: на самом деле спрашиваем на сервере
-    var promise = new Promise<Array<Season>>((resolve, reject) => {
-        resolve(new Array<Season>(
-            new Season(2024, 5, [10, 11]),
-            new Season(2023, 4, [9, 10, 11]),
-            new Season(2022, 3, [9])
-        ));
-    });
+    var promise = requestToServer(
+        "GET",
+        "/api/seasons"
+    ).then(v => v.json()).then(
+        (v) => {
+            if (!v) {
+                return undefined;
+            }
+
+            var res = new Array<Season>();
+            var seasons = new Set<number>();
+            for (var grade of v) {
+                seasons.add(grade.season)
+            }
+
+            var year = 0;
+
+            for (var s of seasons) {
+                var grades = new Array<number>();
+                for (var g of v) {
+                    if (g.season == s) {
+                        grades.push(g.number);
+                        year = g.year;
+                    }
+                }
+
+                res.push(new Season(
+                    year,
+                    s,
+                    grades
+                ))
+            }
+
+            return res;
+        }
+    )
 
     return promise;
 }
 
 // Done
 export async function getEpisodesCount(season: number, grade: number) {
-    var promise = new Promise<number>((resolve, reject) => {
-        resolve(3);
-    });
+    var promise = requestToServer(
+        "GET",
+        `/api/episodesCount?season=${season}&grade=${grade}`
+    ).then(v => v.json()).then((v) => {
+        return v;
+    })
 
     return promise;
 }

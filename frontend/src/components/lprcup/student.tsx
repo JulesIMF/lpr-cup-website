@@ -48,7 +48,6 @@ function LprCupStudentSelector(params: LprCupStudentSelectorParams) {
         <button
             className={className}
             onClick={(e) => {
-                console.log(`Select ${params.id}`);
                 params.activeIdUpdate(params.id);
                 params.activeDialogUpdate(params.dialog)
             }}

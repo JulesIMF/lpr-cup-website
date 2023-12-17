@@ -34,7 +34,6 @@ export function LprCup() {
         }
 
         getEpisodesCount(season, grade).then((loadedCount) => {
-            console.log(`Всего эпизодов: ${loadedCount}`)
             episodesCountUpdate(loadedCount)
         },)
     }, [])

@@ -1,8 +1,10 @@
 import { Message, RealMessage } from "./message";
 import { Season } from "./season";
 import { Dialog } from "./dialog";
-import { extractNewMessages } from "./server";
+import { extractNewMessages, getUser } from "./server";
 import { Submission } from "./submission";
+
+
 
 // Done
 export async function getSeasons() {
@@ -118,7 +120,7 @@ export async function getAdminDialog(season: number, episode: number) {
 }
 
 export function isAdmin() {
-    return false;
+    return getUser().isAdmin;
 }
 
 var messages = new Array<Message>(

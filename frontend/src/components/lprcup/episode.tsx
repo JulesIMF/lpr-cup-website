@@ -21,7 +21,6 @@ function LprCupEpisodeSelector(params: LprCupEpisodeSelectorParams) {
             className={className}
             id={params.id}
             onClick={(e) => {
-                console.log(`Select ${params.id}`);
                 params.activeIdUpdate(params.id);
             }}
         >

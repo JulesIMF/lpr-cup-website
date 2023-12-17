@@ -46,5 +46,8 @@
 .titlebar_a{
     display: flex;
     color: #e9b809;
-    text-decoration: none;  
+    text-decoration: none;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
 }

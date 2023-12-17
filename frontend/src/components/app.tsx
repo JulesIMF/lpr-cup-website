@@ -11,8 +11,10 @@ import { Rules } from './about';
 import { Restoration } from './restoration';
 import { LprCup } from './lprcup';
 import { LprCupSubmission } from './submission';
+import { whoAmI } from '../server/server';
 
 export function App() {
+    whoAmI();
     return (
         <div className="app">
             <BrowserRouter>

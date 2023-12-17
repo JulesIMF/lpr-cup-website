@@ -27,14 +27,10 @@ export class PasswordMatcher {
 
     public onPasswordChange = (newPassword: string) => {
         this.change(new Match(newPassword, this.state.confirm));
-        console.log("Called password")
-        // console.log(`"${this.state.password}" "${this.state.confirm}"`);
     }
 
     public onConfirmChange = (newConfirm: string) => {
         this.change(new Match(this.state.password, newConfirm));
-        console.log("Called confirm")
-        // console.log(`"${this.state.password}" "${this.state.confirm}"`);
     }
 
     public isMatched() {
@@ -91,7 +87,6 @@ export function TextBox(params: TextBoxParams) {
     var onInput = (e: React.FormEvent<HTMLInputElement>) => {
         const target = e.target as HTMLInputElement;
         var value = target.value;
-        // console.log(`${params.id} now is "${value}"`)
         params.onChange?.(value);
     }
 

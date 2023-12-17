@@ -13,7 +13,6 @@ interface SeasonsListParams {
 }
 
 function SeasonsList(params: SeasonsListParams) {
-    console.log(params.seasons)
     return (
         <div className="grades_list">
             {
@@ -51,15 +50,11 @@ export function Grades() {
 
     // Выполняется один раз за загрузку страницы
     useEffect(() => {
-        console.log(isLoggedIn());
         if (!isLoggedIn()) {
             navigateTo("/login")
         }
-        console.log(seasons)
         getSeasons().then((loadedSeasons) => {
-            console.log(loadedSeasons)
             changeSeasons(loadedSeasons);
-            console.log("Changed")
         },)
     }, [])
     

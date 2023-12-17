@@ -65,7 +65,6 @@ function LprCupDialogSend(params: LprCupDialogSendParams) {
             style={{ backgroundImage: "url(/images/send.png)" }}
             onClick={(e) => {
                 params.onClick();
-                console.log("sent");
             }}
         />
     );
@@ -195,7 +194,6 @@ function getTextWidth(text: string, fontSize: string) {
     // Удаляем временный элемент из DOM
     document.body.removeChild(div);
 
-    console.log(`"${text}": ${width}`);
     return width;
 }
 
@@ -238,8 +236,6 @@ function addDateMessages(messages: Message[]) {
         return messages;
     }
 
-    console.log(messages)
-
     var messagesWithDate = new Array<Message>();
     var length = messages.length;
 
@@ -264,7 +260,6 @@ function addDateMessages(messages: Message[]) {
 }
 
 function LprCupMessages(params: LprCupMessagesParams) {
-    console.log(params.messages);
     return (
         <div id="lprcup_dialog_messages">
             {

@@ -136,7 +136,6 @@ export function SignUp() {
         }
         catch(e) {
             changeErrorText((e as Error).message)
-            console.log(e)
         }
     }
 

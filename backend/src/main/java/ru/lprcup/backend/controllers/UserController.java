@@ -78,6 +78,7 @@ public class UserController {
         Long id = jwtTokenProvider.getUserIdFromToken(jwtToken);
         UserDto user = userService.getUserById(id);
         user.setPassword(null);
+        user.setGrades(null);
 
         return ResponseEntity.ok(user);
     }

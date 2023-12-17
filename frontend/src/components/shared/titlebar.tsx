@@ -1,19 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import "./styles/titlebar.css";
-import { isLoggedIn } from '../../server/server';
+import { isLoggedIn, logOut } from '../../server/server';
 
 interface TitleBarButtonParams {
     id: string;
     text: string;
-    where: string;
+    where?: string;
+    onClick?: () => void;
 }
 
 function TitleBarButton(params: TitleBarButtonParams) {
-    return (
-        <a className='titlebar_a' href={params.where} key={params.id}>
-            <b>{params.text}</b>
-        </a>
-    );
+    if (params.where) {
+        return (
+            <a className='titlebar_a' href={params.where} key={params.id}>
+                <b>{params.text}</b>
+            </a>
+        );
+    }
+    else {
+        return (
+            <label className='titlebar_a' onClick={params.onClick} key={params.id}>
+                <b>{params.text}</b>
+            </label>
+        ); 
+    }    
 }
 
 class TitleBarParams {
@@ -41,6 +51,7 @@ export function TitleBar(params: TitleBarParams) {
         }
 
         else {
+            buttons.push(<TitleBarButton id="login" text="Выйти" onClick={() => { console.log("log out"); logOut()}}/>)
             // buttons.push(<TitleBarButton id="login" text="Настройки" where="/settings"/>)
         }
 

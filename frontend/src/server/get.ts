@@ -165,7 +165,9 @@ export async function getAllMessages(dialog: Dialog) {
         "GET",
         `/api/allMessages?dialogId=${dialog.id}`
     ).then(v => v.json()).then((v) => {
-        return (v as Array<any>).map((x) => toMessage(x)).reverse();
+        return (v as Array<any>).map((x) => toMessage(x)).sort((a, b) => {
+            return b.date.getTime() - a.date.getTime();
+        });
     })
 
     return promise;

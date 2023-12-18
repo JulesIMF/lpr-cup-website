@@ -25,6 +25,7 @@ public class Message {
     @Column(columnDefinition = "TIMESTAMP", nullable = true)
     private LocalDateTime time;
 
+    @Column(length = 1024)
     private String text;
 
     @OneToOne

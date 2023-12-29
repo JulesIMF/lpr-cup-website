@@ -26,8 +26,6 @@ export function LogIn() {
             var response = logIn(data);
             response.then((v) => {
                 if (v == 200) {
-                    console.log("Navigate")
-                    console.log(isLoggedIn())
                     navigateTo("/grades")
                 }
 

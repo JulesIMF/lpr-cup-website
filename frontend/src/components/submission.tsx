@@ -43,8 +43,6 @@ function LprCupSubmissionOverview(params: LprCupSubmissionOverviewParams) {
             return;
         }
 
-        console.log(task);
-
         params.updateSubmission(
             currentSubmission?.nextVerdict(task)
         )

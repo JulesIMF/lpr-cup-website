@@ -2,14 +2,14 @@ import React from 'react';
 import { Screen } from './screen';
 import { PlainText } from './shared/plain';
 // import './styles/about.css';
-import about from "./html/about.html";
-import rules from "./html/rules.html";
+// import about from "./html/about.html";
+// import rules from "./html/rules.html";
 
 export function About() {
     return (
         <Screen pageTitle="Про Кубок ЛФИ">
             <PlainText>
-                <div style={{width: "100%"}} dangerouslySetInnerHTML={{ __html: about }} />
+                {/* <div style={{width: "100%"}} dangerouslySetInnerHTML={{ __html: about }} /> */}
             </PlainText>
         </Screen>
     );
@@ -19,7 +19,7 @@ export function Rules() {
     return (
         <Screen pageTitle="Правила Кубка ЛФИ">
             <PlainText>
-                <div style={{width: "100%"}} dangerouslySetInnerHTML={{ __html: rules }} />
+                {/* <div style={{width: "100%"}} dangerouslySetInnerHTML={{ __html: rules }} /> */}
             </PlainText>
 
             <div style={{width: "100%", alignItems: "center"}}>

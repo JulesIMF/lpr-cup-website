@@ -13,7 +13,6 @@ interface SeasonsListParams {
 }
 
 function SeasonsList(params: SeasonsListParams) {
-    console.log(params.seasons)
     return (
         <div className="grades_list">
             {
@@ -22,7 +21,7 @@ function SeasonsList(params: SeasonsListParams) {
                         <div className="grades_season">
                             <div className="grades_labels_div">
                                 <label className="grades_season_label">{`${season.seasonNumber} Сезон`}</label>
-                                <label className="grades_season_user_label">{`(${season.year} год, твой ${season.userGrade} класс)`}</label>
+                                <label className="grades_season_user_label">{`(${season.year} год)`}</label>
                             </div>
                             <div className="grades_buttons_div">
                                 {
@@ -51,15 +50,13 @@ export function Grades() {
 
     // Выполняется один раз за загрузку страницы
     useEffect(() => {
-        console.log(isLoggedIn());
         if (!isLoggedIn()) {
             navigateTo("/login")
         }
-        console.log(seasons)
         getSeasons().then((loadedSeasons) => {
-            console.log(loadedSeasons)
-            changeSeasons(loadedSeasons);
-            console.log("Changed")
+            if (loadedSeasons) {
+                changeSeasons(loadedSeasons);
+            }            
         },)
     }, [])
     

@@ -21,7 +21,6 @@ function LprCupEpisodeSelector(params: LprCupEpisodeSelectorParams) {
             className={className}
             id={params.id}
             onClick={(e) => {
-                console.log(`Select ${params.id}`);
                 params.activeIdUpdate(params.id);
             }}
         >
@@ -70,7 +69,7 @@ interface LprCupEpisodePanelParams {
 }
 
 export function LprCupEpisodePanel(params: LprCupEpisodePanelParams) {
-    var [activeId, activeIdUpdate] = useState("selector_0");
+    var [activeId, activeIdUpdate] = useState("selector_1");
 
     useEffect(() => {
         // Не хочется тут использовать регулярки :)
@@ -81,11 +80,11 @@ export function LprCupEpisodePanel(params: LprCupEpisodePanelParams) {
     return (
         <div id='lprcup_episode_panel'>
             <div id="lces_real_selectors">
-                <LprCupEpisodeSelector
+                {/* <LprCupEpisodeSelector
                     id="selector_0"
                     caption="Новости"
                     activeId={activeId}
-                    activeIdUpdate={activeIdUpdate} />
+                    activeIdUpdate={activeIdUpdate} /> */}
                 {LprCupEpisodes({ count: params.episodesCount, activeId: activeId, activeIdUpdate: activeIdUpdate })}
             </div>
             <LprCupBack />

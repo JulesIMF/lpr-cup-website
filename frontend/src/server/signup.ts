@@ -3,7 +3,7 @@ import { postSignUpRequest } from './server'
 export class SignUpData {
     surname: string = "";
     name: string = "";
-    patronimic: string = "";
+    patronymic: string = "";
     country: string = "";
     region: string = "";
     currentGrade: string | number = "";
@@ -59,5 +59,4 @@ export function signUp(data: SignUpData) {
     data.checkAndPrepare();
     // HACK: это, конечно, временное решение
     var promise = postSignUpRequest(data);
-    return promise.then((v) => {console.log(`Got ${v} on signup`)});
 }

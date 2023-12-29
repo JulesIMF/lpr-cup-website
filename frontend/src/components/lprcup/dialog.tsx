@@ -14,17 +14,22 @@ interface LprCupDialogAttachmentParams {
     changeAttachedFile: React.Dispatch<React.SetStateAction<File | undefined>>;
 }
 
+interface LprCupDialogSubmission {
+    isSubmission: boolean;
+    changeIsSubmission: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 function truncateFileName(name: string, maxLength: number): string {
     if (name.length <= maxLength) {
-      return name;
+        return name;
     }
-    
+
     const stem = name.slice(0, name.lastIndexOf('.'));
     const extension = name.slice(name.lastIndexOf('.'));
     const truncatedFileName = stem.slice(0, maxLength - extension.length - 4) + '....' + extension;
-    
+
     return truncatedFileName;
-  }
+}
 
 function LprCupDialogAttachment(params: LprCupDialogAttachmentParams) {
     if (params.attachedFile == undefined) {
@@ -40,7 +45,7 @@ function LprCupDialogAttachment(params: LprCupDialogAttachmentParams) {
             />
         );
     }
-    
+
     return (
         <div id="lprcup_dialog_unpin">
             <button
@@ -57,6 +62,32 @@ function LprCupDialogAttachment(params: LprCupDialogAttachmentParams) {
     )
 }
 
+function LprCupDialogIsSubmission(params: LprCupDialogSubmission) {
+    if (params.isSubmission == false) {
+        return (
+            <button
+                id="lprcup_dialog_attach"
+                className="lprcup_dialog_button"
+                style={{ backgroundImage: "url(/images/attach.svg)" }}
+                onClick={(e) => {
+                    params.changeIsSubmission(true);
+                }}
+            />
+        );
+    }
+
+    return (
+        <button
+            id="lprcup_dialog_send"
+            className="lprcup_dialog_button"
+            style={{ backgroundImage: "url(/images/cross.svg)" }}
+            onClick={(e) => {
+                params.changeIsSubmission(false);
+            }}
+        />
+    )
+}
+
 function LprCupDialogSend(params: LprCupDialogSendParams) {
     return (
         <button
@@ -65,26 +96,27 @@ function LprCupDialogSend(params: LprCupDialogSendParams) {
             style={{ backgroundImage: "url(/images/send.png)" }}
             onClick={(e) => {
                 params.onClick();
-                console.log("sent");
             }}
         />
     );
 }
 
 interface LprCupDialogTextareaParams {
-    send: (text: string, attachedFile?: File) => void;
+    send: (text: string, isSubmission: boolean, attachedFile?: File) => void;
 }
 
 function LprCupDialogTextarea(params: LprCupDialogTextareaParams) {
     var [attachedFile, changeAttachedFile] = useState<File | undefined>(undefined);
+    var [isSubmission, changeIsSubmission] = useState<boolean>(false);
 
     var sendWrapper = () => {
         var textField = document.getElementById("lprcup_dialog_textarea") as HTMLTextAreaElement;
         var text = textField.value;
         if (text != "" || attachedFile != undefined) {
-            params.send(text, attachedFile);
+            params.send(text, isSubmission);
             textField.value = "";
             changeAttachedFile(undefined);
+            changeIsSubmission(false);
         }
     };
 
@@ -97,7 +129,7 @@ function LprCupDialogTextarea(params: LprCupDialogTextareaParams) {
     if (isAdmin()) {
         return (
             <div id="lprcup_dialog_input">
-                <LprCupDialogAttachment attachedFile={attachedFile} changeAttachedFile={changeAttachedFile}/>
+                {/* <LprCupDialogAttachment attachedFile={attachedFile} changeAttachedFile={changeAttachedFile} /> */}
                 <textarea
                     id="lprcup_dialog_textarea"
                     placeholder="Напишите что-нибудь в чат..."
@@ -109,7 +141,8 @@ function LprCupDialogTextarea(params: LprCupDialogTextareaParams) {
     } else {
         return (
             <div id="lprcup_dialog_input">
-                <LprCupDialogAttachment attachedFile={attachedFile} changeAttachedFile={changeAttachedFile}/>
+                {/* <LprCupDialogAttachment attachedFile={attachedFile} changeAttachedFile={changeAttachedFile} /> */}
+                <LprCupDialogIsSubmission isSubmission={isSubmission} changeIsSubmission={changeIsSubmission}/>
                 <textarea
                     id="lprcup_dialog_textarea"
                     placeholder="Напиши что-нибудь в чат или нажми на скрепку, чтобы отправить решение..."
@@ -144,11 +177,11 @@ function formatDate(date: Date) {
     ];
 
     if (now.getFullYear() != date.getFullYear()) {
-        return `${String(date.getDate()).padStart(2, "0")} ${monthWordGenetive[date.getMonth() - 1]} ${String(date.getFullYear()).padStart(2, "0")} г.`;
+        return `${String(date.getDate()).padStart(2, "0")} ${monthWordGenetive[date.getMonth()]} ${String(date.getFullYear()).padStart(2, "0")} г.`;
     }
 
     if (now.getMonth() != date.getMonth() || (now.getDate() - date.getDate() > 1)) {
-        return `${String(date.getDate()).padStart(2, "0")} ${monthWordGenetive[date.getMonth() - 1]}`;
+        return `${String(date.getDate()).padStart(2, "0")} ${monthWordGenetive[date.getMonth()]}`;
     }
 
     if (now.getDate() - date.getDate() == 1) {
@@ -195,7 +228,6 @@ function getTextWidth(text: string, fontSize: string) {
     // Удаляем временный элемент из DOM
     document.body.removeChild(div);
 
-    console.log(`"${text}": ${width}`);
     return width;
 }
 
@@ -238,8 +270,6 @@ function addDateMessages(messages: Message[]) {
         return messages;
     }
 
-    console.log(messages)
-
     var messagesWithDate = new Array<Message>();
     var length = messages.length;
 
@@ -264,7 +294,6 @@ function addDateMessages(messages: Message[]) {
 }
 
 function LprCupMessages(params: LprCupMessagesParams) {
-    console.log(params.messages);
     return (
         <div id="lprcup_dialog_messages">
             {
@@ -279,38 +308,45 @@ function LprCupMessages(params: LprCupMessagesParams) {
 }
 
 interface LprCupDialogParams {
-    dialog: Dialog;
+    dialog: Dialog | undefined;
 }
 
 export function LprCupDialog(params: LprCupDialogParams) {
     var [messages, messagesUpdate] = useState<Array<Message>>([]);
-    var sendText = (x: string, attachedFile?: File) => {
-        postTextMessage(params.dialog, x, attachedFile);
+    var sendText = (x: string, isSubmission: boolean, attachedFile?: File,) => {
+        if (params.dialog) {
+            postTextMessage(params.dialog, x, isSubmission);
+        }
     };
 
     useEffect(() => {
-        getAllMessages(params.dialog).then((loadedMessages) => {
-            messagesUpdate(loadedMessages);
-        })
-    }, [])
+        console.log(params.dialog)
+        if (params.dialog) {
+            getAllMessages(params.dialog).then((loadedMessages) => {
+                messagesUpdate(loadedMessages);
+            })
+        }
+    }, [params.dialog])
 
     useEffect(() => {
         const interval = setInterval(() => {
-            getNewIncomingMessages(params.dialog).then((newMessages) => {
-                if (newMessages.length) {
-                    messagesUpdate(currentMessages => [...newMessages, ...currentMessages]);
-                }
-            });
+            if (params.dialog) {
+                getNewIncomingMessages(params.dialog).then((newMessages) => {
+                    if (newMessages.length) {
+                        messagesUpdate(currentMessages => [...newMessages, ...currentMessages]);
+                    }
+                });
+            }
         }, 1000/*ms*/);
 
         return () => {
             clearInterval(interval);
         };
-    }, []);
+    }, [params.dialog]);
 
     return (
         <div id="lprcup_dialog">
-            <span id="lprcup_dialog_title">{params.dialog.name}</span>
+            <span id="lprcup_dialog_title">{params.dialog ? params.dialog.name : "Диалог не выбран"}</span>
             <LprCupMessages messages={messages} />
             <LprCupDialogTextarea send={sendText} />
         </div>

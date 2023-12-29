@@ -41,7 +41,6 @@ export class Submission {
         // var copy: Submission = deepCopy(this);
         var copy: Submission = this.clone();
 
-        console.log("copy: ", copy);
         var current = this.verdict.get(task);
         if (current == "n") {
             copy.verdict.set(task, "c");
@@ -56,8 +55,6 @@ export class Submission {
             var index = options.lastIndexOf(current as ("n" | "m" | "c" | "p" | "i"));
             var newVerdict = options.at((index + 1) % options.length) as ("n" | "m" | "c" | "p" | "i");
             copy.verdict.set(task, newVerdict);
-
-            console.log(task, current, index, newVerdict);
         }
 
         return copy;

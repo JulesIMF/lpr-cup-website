@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Screen } from './screen';
-import { Button } from './shared/button'
+import { Button } from '../shared/button'
 import './styles/notfound.css';
-import { CentralHeader, CentralText } from './shared/central';
+import { CentralHeader, CentralText } from '../shared/central';
 
 export function NotFound() {
     return (

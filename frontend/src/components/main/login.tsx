@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Screen } from './screen';
-import { Button } from './shared/button';
+import { Button } from '../shared/button';
 import './styles/login.css';
-import { CentralHeader, CentralText } from './shared/central';
-import { TextBox, getTextBoxValue } from './shared/textbox';
-import { LogInData, logIn } from '../server/login';
+import { CentralHeader, CentralText } from '../shared/central';
+import { TextBox, getTextBoxValue } from '../shared/textbox';
+import { LogInData, logIn } from '../../server/login';
 import { useNavigate } from 'react-router-dom';
-import { isLoggedIn } from '../server/server';
+import { isLoggedIn } from '../../server/server';
 
 export function LogIn() {
     useEffect(() => {
@@ -58,8 +58,8 @@ export function LogIn() {
                 <label id="login_fail">{failText}</label>
                 <Button caption="Войти в личный кабинет" width="700px" height="60px" onClick={processLogin}/>
                 <div id="login_a_div">
-                    <a id="login_signup" href="/signup">Регистрация</a>
-                    <a id="login_restoration" href="/restoration">Не можешь войти?</a>
+                    <a id="login_signup" href="/src/components/main/signup">Регистрация</a>
+                    <a id="login_restoration" href="/src/components/main/restoration">Не можешь войти?</a>
                 </div>
             </div>
         </Screen>

@@ -1,7 +1,5 @@
-import { SignUpData } from "./signup";
-import { LogInData } from "./login";
-import { Message } from "./message";
-import { useNavigate } from "react-router-dom";
+import {SignUpData} from "./signup";
+import {LogInData} from "./login";
 
 class User extends SignUpData {
     public id: number = 0;
@@ -103,33 +101,17 @@ export async function postLogInRequest(data: LogInData): Promise<number> {
         false
     )
 
-    var promise = f.then((v) => {
+    return f.then((v) => {
         console.log(v)
         if (v.ok) {
             // localStorage.setItem("lpr-cup-token", )
-            v.json().then((v) => {localStorage.setItem("lpr-cup-token", v.token)});
+            v.json().then((v) => {
+                localStorage.setItem("lpr-cup-token", v.token)
+            });
         }
 
         return v.status
-    })
-
-    return promise;
-}
-
-export var newMessages = new Array<Message>();
-
-export function addNewMessages(extraMessages: Array<Message>) {
-    newMessages = newMessages.concat(extraMessages);
-}
-
-export function extractNewMessages() {
-    if (newMessages.length == 0) {
-        return []
-    }
-
-    var oldNewMessages = newMessages;
-    newMessages = new Array<Message>();
-    return oldNewMessages;
+    });
 }
 
 export function isLoggedIn(): boolean {

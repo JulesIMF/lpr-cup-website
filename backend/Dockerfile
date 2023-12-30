@@ -6,7 +6,7 @@ RUN mvn clean package -DskipTests
 
 # Этап сборки контейнера
 FROM openjdk:17-jdk-slim
-EXPOSE 80
+EXPOSE 8080
 WORKDIR /app
 COPY --from=builder /app/target/backend-0.0.1-SNAPSHOT.jar backend.jar
 ENTRYPOINT ["java", "-jar", "backend.jar"]

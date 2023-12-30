@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Screen } from './screen';
-import { getSeasons } from '../server/get';
-import { Season } from "../server/season";
+import {getSeasons, isAdmin} from '../../server/get';
+import { Season } from "../../server/season";
 import './styles/grades.css'
-import { CentralHeader } from './shared/central';
-import { Button } from './shared/button';
-import { isLoggedIn } from '../server/server';
+import { CentralHeader } from '../shared/central';
+import { Button } from '../shared/button';
+import { isLoggedIn } from '../../server/server';
 import { useNavigate } from 'react-router-dom';
 
 interface SeasonsListParams {
@@ -44,6 +44,14 @@ function SeasonsList(params: SeasonsListParams) {
     )
 }
 
+function AddGrade() {
+    if (!isAdmin()) {
+        return <></>
+    }
+
+    return <Button height="45px" width="400px" where="/grades/add" caption="Добавить класс"/>
+}
+
 export function Grades() {
     var navigateTo = useNavigate()      
     var [seasons, changeSeasons] = useState(new Array<Season>());
@@ -66,6 +74,8 @@ export function Grades() {
             <CentralHeader marginTop="50px" marginBottom="50px">
                 Добро пожаловать домой!
             </CentralHeader>
+
+            <AddGrade/>
 
             <SeasonsList seasons={seasons}/>
         </Screen>

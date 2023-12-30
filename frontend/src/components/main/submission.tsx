@@ -1,13 +1,13 @@
 import React, { ReactNode, useEffect, useState } from 'react';
 import { Screen } from './screen';
-import { CentralHeader, CentralText } from './shared/central';
+import { CentralHeader, CentralText } from '../shared/central';
 import { useNavigate } from 'react-router-dom';
-import { isLoggedIn } from '../server/server';
-import { getSubmission, isAdmin } from '../server/get';
-import { Submission } from "../server/submission";
+import { isLoggedIn } from '../../server/server';
+import { getSubmission, isAdmin } from '../../server/get';
+import { Submission } from "../../server/submission";
 import './styles/submission.css'
-import { Button } from './shared/button';
-import { postSubmissionUpdate } from '../server/post';
+import { Button } from '../shared/button';
+import { postSubmissionUpdate } from '../../server/post';
 
 interface LprCupSubmissionOverviewParams {
     submission: Submission | undefined;

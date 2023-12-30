@@ -1,7 +1,7 @@
 import { Message, RealMessage } from "./message";
 import { Season } from "./season";
 import { Dialog } from "./dialog";
-import { extractNewMessages, getUser, requestToServer } from "./server";
+import { getUser, requestToServer } from "./server";
 import { Submission } from "./submission";
 
 

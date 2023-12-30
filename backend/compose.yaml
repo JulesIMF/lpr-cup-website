@@ -1,18 +1,17 @@
 version: '3.8'
 services:
-  backend:
-    build: .
-    container_name: backend2
-    mem_limit: 512m
-    ports:
-      - "80:80"
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db:5432/postgres
-      - SPRING_DATASOURCE_USERNAME=username
-      - SPRING_DATASOURCE_PASSWORD=password
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-    depends_on:
-      - service-db
+#  backend:
+#    build: .
+#    container_name: backend2
+#    ports:
+#      - "8080:8080"
+#    environment:
+#      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db:5432/postgres
+#      - SPRING_DATASOURCE_USERNAME=username
+#      - SPRING_DATASOURCE_PASSWORD=password
+#      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+#    depends_on:
+#      - service-db
 
   service-db:
     image: postgres:14.7-alpine

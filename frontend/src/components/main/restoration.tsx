@@ -1,6 +1,6 @@
 import React from 'react';
 import { Screen } from './screen';
-import { CentralHeader, CentralText } from './shared/central';
+import { CentralHeader, CentralText } from '../shared/central';
 
 export function Restoration() {
     return (

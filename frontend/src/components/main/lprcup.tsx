@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Screen } from './screen';
-import { isLoggedIn } from '../server/server';
+import { isLoggedIn } from '../../server/server';
 import { useNavigate } from 'react-router-dom';
 import './styles/cup.css'
-import { LprCupEpisodePanel } from './lprcup/episode';
-import { LprCupStudentPanel } from './lprcup/student';
-import { LprCupDialog } from './lprcup/dialog';
-import { getAdminDialog, getEpisodesCount, getNewsDialog, getStudentDialogs, isAdmin } from '../server/get';
-import { Dialog } from '../server/dialog';
+import { LprCupEpisodePanel } from '../lprcup/episode';
+import { LprCupStudentPanel } from '../lprcup/student';
+import { LprCupDialog } from '../lprcup/dialog';
+import { getAdminDialog, getEpisodesCount, getNewsDialog, getStudentDialogs, isAdmin } from '../../server/get';
+import { Dialog } from '../../server/dialog';
 
 export function LprCup() {
     var navigateTo = useNavigate();

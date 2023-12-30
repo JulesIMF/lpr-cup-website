@@ -11,7 +11,8 @@ import { Rules } from './about';
 import { Restoration } from './restoration';
 import { LprCup } from './lprcup';
 import { LprCupSubmission } from './submission';
-import { whoAmI } from '../server/server';
+import { whoAmI } from '../../server/server';
+import {AddGrade} from "./addgrade";
 
 export function App() {
     whoAmI();
@@ -28,6 +29,11 @@ export function App() {
                     <Route path="/info" element={<Outlet />}>
                         <Route index element={<About/>} />
                         <Route path="rules" element={<Rules/>} />
+                    </Route>
+
+                    <Route path="/grades" element={<Outlet />}>
+                        <Route index element={<Grades/>} />
+                        <Route path="add" element={<AddGrade/>} />
                     </Route>
 
                     <Route path="/lprcup" element={<Outlet />}>

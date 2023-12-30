@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { CentralHeader, CentralText } from './shared/central';
-import { Button } from './shared/button';
+import { CentralHeader, CentralText } from '../shared/central';
+import { Button } from '../shared/button';
 import { Screen } from './screen';
 import './styles/welcome.css';
 import { useNavigate } from 'react-router-dom';
-import { isLoggedIn } from '../server/server';
+import { isLoggedIn } from '../../server/server';
 
 export function Welcome() {
     var navigateTo = useNavigate();

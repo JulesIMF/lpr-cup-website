@@ -43,3 +43,10 @@
     width: fit-content;
     gap: 50px;
 }
+
+#add_grades_params {
+    display: flex;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    flex-direction: column;
+}

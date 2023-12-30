@@ -9,7 +9,7 @@
 
 #signup_data {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 100px;
     align-items: center;
     margin-top: 70px;

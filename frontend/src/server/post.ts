@@ -2,7 +2,7 @@ import { Dialog } from "./dialog";
 import { isAdmin } from "./get";
 import { Submission } from "./submission";
 import { Message, RealMessage } from "./message";
-import { addNewMessages, requestToServer } from "./server";
+import { requestToServer } from "./server";
 
 function escapeHtml (x: string) {
     const htmlEscapes: { [key: string]: string } = {

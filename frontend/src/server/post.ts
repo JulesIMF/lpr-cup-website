@@ -3,6 +3,7 @@ import { isAdmin } from "./get";
 import { Submission } from "./submission";
 import { Message, RealMessage } from "./message";
 import { requestToServer } from "./server";
+import {Season} from "./season";
 
 function escapeHtml (x: string) {
     const htmlEscapes: { [key: string]: string } = {
@@ -36,16 +37,25 @@ export async function postSubmissionUpdate(submission: Submission) {
         verdictObject[key] = value;
     });
 
-    var s = JSON.stringify({
+    let s = JSON.stringify({
         submissionId: submission.id,
         verdicts: verdictObject
-    })
+    });
 
-    requestToServer(
+    return requestToServer(
         "PATCH",
         "/api/patchSubmission",
         s    
     )
+}
 
-    console.log(s);
+export async function postNewGrade(season: number, year: number) {
+    return requestToServer(
+        "POST",
+        "/api/newGrade",
+        JSON.stringify({
+            season: season,
+            year: year
+        })
+    )
 }

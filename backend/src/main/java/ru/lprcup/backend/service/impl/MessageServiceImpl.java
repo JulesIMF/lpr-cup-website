@@ -105,9 +105,6 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public boolean postMessage(UserDto user, Long dialogId, String text, boolean isSubmission) {
         var dialog = dialogRepository.findById(dialogId);
-        if (dialog == null) {
-            return false;
-        }
 
         if (!user.getIsAdmin()) {
             if (dialog.get().getStudent() == null) {

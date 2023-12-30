@@ -1,26 +1,18 @@
 package ru.lprcup.backend.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import ru.lprcup.backend.data.User;
+import ru.lprcup.backend.data.Grade;
 import ru.lprcup.backend.repository.GradeRepository;
-import ru.lprcup.backend.repository.UserRepository;
 import ru.lprcup.backend.service.api.GradeService;
 import ru.lprcup.backend.service.converters.GradeConverter;
-import ru.lprcup.backend.service.converters.UserConverter;
 import ru.lprcup.backend.service.dto.GradeDto;
-import ru.lprcup.backend.service.dto.RoleDto;
-import ru.lprcup.backend.service.dto.UserDto;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -53,6 +45,17 @@ public class GradeServiceImpl implements GradeService {
         
         var episodes = gradeEntity.getEpisodes();
         return episodes != null ? episodes.size() : 0l;
+    }
+
+    @Override
+    public void addNewSeason(NewSeasonParams params) {
+        for (long gradeNo = 9L; gradeNo <= 11; gradeNo++) {
+            var grade = new Grade();
+            grade.setSeason(params.season);
+            grade.setNumber(gradeNo);
+            grade.setYear(params.year);
+            gradeRepository.save(grade);
+        }
     }
 
     @Override

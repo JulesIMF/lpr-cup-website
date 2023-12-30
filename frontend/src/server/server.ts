@@ -53,7 +53,6 @@ export function whoAmI() {
         }
     ).then((v) => {
         if (v) {
-            console.log("OOOO");
             console.log(v);
             user = new User();
             user.name = v.name;

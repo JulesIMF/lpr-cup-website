@@ -6,6 +6,7 @@ import { CentralHeader, CentralText } from '../shared/central';
 import {getTextBoxValue, TextBox} from "../shared/textbox";
 import {useNavigate} from "react-router-dom";
 import {isAdmin} from "../../server/get";
+import {postNewGrade} from "../../server/post";
 
 export function AddGrade() {
     let navigateTo = useNavigate();
@@ -13,26 +14,29 @@ export function AddGrade() {
         navigateTo("/");
     }
 
-    let [statusText, updateStatusText] = "";
+    let [statusText, updateStatusText] = useState("");
 
     return (
         <Screen pageTitle="Добавить класс" titleBarCaption="Кубок ЛФИ потерялся..." hideFooter={true}>
             <div id="add_grades_params">
-                <TextBox type="number" caption="Класс" width="400px" id="grade"></TextBox>
                 <TextBox type="number" caption="Номер Сезона" width="400px" id="season"></TextBox>
                 <TextBox type="number" caption="Год Сезона" width="400px" id="year"></TextBox>
             </div>
 
             <Button caption="Добавить класс" width="400px" height="45px" onClick={() => {
                 try {
-                    var grade = Number(getTextBoxValue("grade"))
-                    var season = Number(getTextBoxValue("season"))
-                    var year = Number(getTextBoxValue("year"))
-
+                    let season = Number(getTextBoxValue("season"))
+                    let year = Number(getTextBoxValue("year"))
+                    postNewGrade(season, year).then(r => {
+                        if (r.ok) {
+                            navigateTo("/grades");
+                        } else {
+                            updateStatusText(`Ошибка ${r.status}`)
+                        }
+                    })
                 } catch (e) {
-
+                    updateStatusText(`Ошибка: ${e}`);
                 }
-
             }}/>
 
             <label style={{color: "red", fontSize: "15px"}}>{statusText}</label>

@@ -253,4 +253,27 @@ public class ApiController {
 
         return submissionService.patchSubmission(user, patch) ? ResponseEntity.ok().build() : ResponseEntity.status(403).build();
     }
+
+    @PostMapping("/newGrade")
+    public ResponseEntity<?> newGrade(
+            @RequestHeader("ApiToken") final String jwtToken,
+            @RequestBody final GradeService.NewSeasonParams params) {
+        if (params.year == null || params.season == null) {
+            return ResponseEntity.badRequest().body("Null options");
+        }
+
+        JwtTokenDto token = jwtTokenService.getTokenByName(jwtToken);
+        if (!jwtTokenProvider.validateToken(jwtToken) || token == null) {
+            return ResponseEntity.badRequest().body("No such token");
+        }
+
+        UserDto user = userService.getUserById(jwtTokenProvider.getUserIdFromToken(jwtToken));
+        if (!user.getIsAdmin()) {
+            return ResponseEntity.status(403).build();
+        }
+
+        gradeService.addNewSeason(params);
+
+        return ResponseEntity.ok().build();
+    }
 }

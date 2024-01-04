@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './styles/dialog.css'
-import { getAllMessages, getNewIncomingMessages, isAdmin } from '../../server/get';
-import { DateMessage, Message, RealMessage } from "../../server/message";
-import { Dialog } from '../../server/dialog';
-import { postTextMessage } from '../../server/post';
+import {getAllMessages, getNewIncomingMessages, isAdmin} from '../../server/get';
+import {DateMessage, Message, RealMessage} from "../../server/message";
+import {Dialog} from '../../server/dialog';
+import {postTextMessage} from '../../server/post';
 
 interface LprCupDialogSendParams {
     onClick: () => void;
@@ -38,7 +38,7 @@ function LprCupDialogAttachment(params: LprCupDialogAttachmentParams) {
                 type="file"
                 id="lprcup_dialog_attach"
                 className="lprcup_dialog_button"
-                style={{ backgroundImage: "url(/images/attach.svg)" }}
+                style={{backgroundImage: "url(/images/attach.svg)"}}
                 onChange={(e) => {
                     params.changeAttachedFile(e.target.files?.[0])
                 }}
@@ -51,7 +51,7 @@ function LprCupDialogAttachment(params: LprCupDialogAttachmentParams) {
             <button
                 id="lprcup_dialog_send"
                 className="lprcup_dialog_button"
-                style={{ backgroundImage: "url(/images/cross.svg)" }}
+                style={{backgroundImage: "url(/images/cross.svg)"}}
                 onClick={(e) => {
                     params.changeAttachedFile(undefined);
                 }}
@@ -68,7 +68,7 @@ function LprCupDialogIsSubmission(params: LprCupDialogSubmission) {
             <button
                 id="lprcup_dialog_attach"
                 className="lprcup_dialog_button"
-                style={{ backgroundImage: "url(/images/attach.svg)" }}
+                style={{backgroundImage: "url(/images/attach.svg)"}}
                 onClick={(e) => {
                     params.changeIsSubmission(true);
                 }}
@@ -80,7 +80,7 @@ function LprCupDialogIsSubmission(params: LprCupDialogSubmission) {
         <button
             id="lprcup_dialog_send"
             className="lprcup_dialog_button"
-            style={{ backgroundImage: "url(/images/cross.svg)" }}
+            style={{backgroundImage: "url(/images/cross.svg)"}}
             onClick={(e) => {
                 params.changeIsSubmission(false);
             }}
@@ -93,7 +93,7 @@ function LprCupDialogSend(params: LprCupDialogSendParams) {
         <button
             id="lprcup_dialog_send"
             className="lprcup_dialog_button"
-            style={{ backgroundImage: "url(/images/send.png)" }}
+            style={{backgroundImage: "url(/images/send.png)"}}
             onClick={(e) => {
                 params.onClick();
             }}
@@ -135,7 +135,7 @@ function LprCupDialogTextarea(params: LprCupDialogTextareaParams) {
                     placeholder="Напишите что-нибудь в чат..."
                     onKeyDown={onKeyDown}
                 />
-                <LprCupDialogSend onClick={sendWrapper} />
+                <LprCupDialogSend onClick={sendWrapper}/>
             </div>
         )
     } else {
@@ -148,7 +148,7 @@ function LprCupDialogTextarea(params: LprCupDialogTextareaParams) {
                     placeholder="Напиши что-нибудь в чат или нажми на скрепку, чтобы отправить решение..."
                     onKeyDown={onKeyDown}
                 />
-                <LprCupDialogSend onClick={sendWrapper} />
+                <LprCupDialogSend onClick={sendWrapper}/>
             </div>
         )
     }
@@ -199,7 +199,7 @@ function LprCupMessageAttachment(params: LprCupMessageParams) {
         <div className="lcm_attachment_div">
             <a
                 className="lcm_pdf"
-                style={{ backgroundImage: "url(/images/pdf.png)" }}
+                style={{backgroundImage: "url(/images/pdf.png)"}}
                 href={realMessage.attachmentUrl}
             />
             <a href={realMessage.attachmentUrl!}>{name}</a>
@@ -252,11 +252,13 @@ function LprCupMessage(params: LprCupMessageParams) {
 
     return (
         <div className={"lprcup_message lcm_real " + (realMessage.mine ? "lcm_mine" : "lcm_other")}>
-            <span className="lcm_text" style={{ width: width }}>
-                <text dangerouslySetInnerHTML={{ __html: realMessage.text.trimStart().trimEnd() }} style={{ width: width }}></text>
+            <span className="lcm_text" style={{width: width}}>
+                <text dangerouslySetInnerHTML={{__html: realMessage.text.trimStart().trimEnd()}}
+                      style={{width: width}}></text>
             </span>
-            {realMessage.attachmentUrl ? <LprCupMessageAttachment message={params.message} /> : <></>}
-            <label className="lcm_message_date">{`${String(params.message.date.getHours()).padStart(2, "0")}:${String(params.message.date.getMinutes()).padStart(2, "0")}`}</label>
+            {realMessage.attachmentUrl ? <LprCupMessageAttachment message={params.message}/> : <></>}
+            <label
+                className="lcm_message_date">{`${String(params.message.date.getHours()).padStart(2, "0")}:${String(params.message.date.getMinutes()).padStart(2, "0")}`}</label>
         </div>
     )
 }
@@ -299,7 +301,7 @@ function LprCupMessages(params: LprCupMessagesParams) {
             {
                 addDateMessages(params.messages).map((message) => {
                     return (
-                        <LprCupMessage message={message} />
+                        <LprCupMessage message={message}/>
                     )
                 })
             }
@@ -347,8 +349,8 @@ export function LprCupDialog(params: LprCupDialogParams) {
     return (
         <div id="lprcup_dialog">
             <span id="lprcup_dialog_title">{params.dialog ? params.dialog.name : "Диалог не выбран"}</span>
-            <LprCupMessages messages={messages} />
-            <LprCupDialogTextarea send={sendText} />
+            <LprCupMessages messages={messages}/>
+            <LprCupDialogTextarea send={sendText}/>
         </div>
     )
 }

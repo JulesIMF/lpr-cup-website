@@ -26,7 +26,7 @@
     appearance: none;
     border: none;
     border-color: transparent;
-    background-size:cover;
+    background-size: cover;
 }
 
 .titlebar_lprcupisyou {
@@ -43,7 +43,7 @@
     gap: 15%;
 }
 
-.titlebar_a{
+.titlebar_a {
     display: flex;
     color: #e9b809;
     text-decoration: none;

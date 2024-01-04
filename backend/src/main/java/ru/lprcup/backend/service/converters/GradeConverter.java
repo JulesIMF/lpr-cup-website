@@ -1,14 +1,13 @@
 package ru.lprcup.backend.service.converters;
 
-import java.util.ArrayList;
-
-import org.springframework.stereotype.Component;
-
 import lombok.RequiredArgsConstructor;
-import ru.lprcup.backend.data.Grade;
-import ru.lprcup.backend.service.dto.GradeDto;
+import org.springframework.stereotype.Component;
 import ru.lprcup.backend.data.Episode;
+import ru.lprcup.backend.data.Grade;
 import ru.lprcup.backend.service.dto.EpisodeDto;
+import ru.lprcup.backend.service.dto.GradeDto;
+
+import java.util.ArrayList;
 
 @Component
 @RequiredArgsConstructor
@@ -31,6 +30,7 @@ public class GradeConverter {
 
         return gradeDto;
     }
+
     public Grade toEntity(GradeDto gradeDto) {
         Grade grade = new Grade();
         grade.setId(gradeDto.getId());

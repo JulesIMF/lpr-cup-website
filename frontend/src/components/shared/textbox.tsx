@@ -2,12 +2,13 @@ import React from 'react';
 import "./styles/textbox.css";
 
 class Match {
+    password: string;
+    confirm: string;
+
     constructor(newPassword: string = "", newConfirm: string = "") {
         this.password = newPassword;
         this.confirm = newConfirm;
     }
-    password: string;
-    confirm: string;
 }
 
 export enum MatchState {
@@ -55,13 +56,13 @@ interface TextBoxParams {
     caption?: string;
     width?: string;
     type?: "text" |
-    "password" |
-    "email" |
-    "number" |
-    "search" |
-    "tel" |
-    "url" |
-    "time";
+        "password" |
+        "email" |
+        "number" |
+        "search" |
+        "tel" |
+        "url" |
+        "time";
     onChange?: (newValue: string) => void;
     onEnter?: () => void;
     passwordMatchState?: MatchState;
@@ -79,7 +80,7 @@ export function getTextBoxValue(id: string) {
     }
 
     return input.value;
-}   
+}
 
 export function TextBox(params: TextBoxParams) {
     var width = (params.width ? params.width : "100px")
@@ -96,8 +97,8 @@ export function TextBox(params: TextBoxParams) {
         }
     }
 
-    if (params.type != "password" || 
-        params.passwordMatchState == undefined || 
+    if (params.type != "password" ||
+        params.passwordMatchState == undefined ||
         params.passwordMatchState == MatchState.Empty) {
 
         return (
@@ -106,10 +107,10 @@ export function TextBox(params: TextBoxParams) {
                 <input
                     type={params.type}
                     id={params.id}
-                    style={{ width: width }}
+                    style={{width: width}}
                     onInput={onInput}
                     onKeyDown={onKeyDown}
-                    />
+                />
             </div>
         );
     }
@@ -140,7 +141,7 @@ export function TextBox(params: TextBoxParams) {
         <div className="textbox">
             <div className='password_matcher_div'>
                 <label>{params.caption}</label>
-                <label className="password_matcher" style={{ color: getColor(params.passwordMatchState) }}>
+                <label className="password_matcher" style={{color: getColor(params.passwordMatchState)}}>
                     {getPasswordCaption(params.passwordMatchState)}
                 </label>
             </div>
@@ -148,7 +149,7 @@ export function TextBox(params: TextBoxParams) {
             <input
                 type={params.type}
                 id={params.id}
-                style={{ width: width }}
+                style={{width: width}}
                 onInput={onInput}
                 onKeyDown={onKeyDown}
             />

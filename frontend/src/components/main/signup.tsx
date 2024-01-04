@@ -1,112 +1,112 @@
-import React, { useRef, useState } from 'react';
-import { Screen } from './screen';
-import { CentralText, CentralHeader } from '../shared/central';
+import React, {useState} from 'react';
+import {Screen} from './screen';
+import {CentralHeader, CentralText} from '../shared/central';
 import './styles/signup.css';
-import { PasswordMatcher, TextBox, getTextBoxValue } from '../shared/textbox';
-import { Select, getSelectValue } from '../shared/select';
-import { Button } from '../shared/button';
-import { SignUpData, signUp } from '../../server/signup'
-import { SignKeyObjectInput } from 'crypto';
-import { useNavigate } from 'react-router-dom';
+import {getTextBoxValue, PasswordMatcher, TextBox} from '../shared/textbox';
+import {getSelectValue, Select} from '../shared/select';
+import {Button} from '../shared/button';
+import {signUp, SignUpData} from '../../server/signup'
+import {useNavigate} from 'react-router-dom';
 
 class Match {
-    constructor (newPassword: string = "", newConfirm: string = "") {
+    password: string = "";
+    confirm: string = "";
+
+    constructor(newPassword: string = "", newConfirm: string = "") {
         this.password = newPassword;
         this.confirm = newConfirm;
     }
-    password: string = "";
-    confirm: string = "";
 }
 
 function RussiaRegionSelector() {
     return (
-    <Select id="region" caption="Регион РФ" width="700px">
-        <option value="1">Республика Адыгея</option>
-        <option value="2">Республика Алтай  </option>
-        <option value="3">Республика Башкортостан</option>
-        <option value="4">Республика Бурятия</option>
-        <option value="5">Республика Дагестан</option>
-        <option value="6">Республика Ингушетия</option>
-        <option value="7">Кабардино-Балкарская Республика</option>
-        <option value="8">Республика Калмыкия</option>
-        <option value="9">Карачаево-Черкесская Республика</option>
-        <option value="10">Республика Карелия</option>
-        <option value="11">Республика Коми</option>
-        <option value="12">Республика Марий Эл</option>
-        <option value="13">Республика Мордовия</option>
-        <option value="14">Республика Саха (Якутия)</option>
-        <option value="15">Республика Северная Осетия - Алания</option>
-        <option value="16">Республика Татарстан</option>
-        <option value="17">Республика Тыва</option>
-        <option value="18">Удмуртская Республика</option>
-        <option value="19">Республика Хакасия</option>
-        <option value="20">Чеченская Республика</option>
-        <option value="21">Чувашская Республика</option>
-        <option value="22">Алтайский край</option>
-        <option value="75">Забайкальский край</option>
-        <option value="41">Камчатский край</option>
-        <option value="23">Краснодарский край</option>
-        <option value="24">Красноярский край</option>
-        <option value="59">Пермский край</option>
-        <option value="25">Приморский край</option>
-        <option value="26">Ставропольский край</option>
-        <option value="27">Хабаровский край</option>
-        <option value="28">Амурская область</option>
-        <option value="29">Архангельская область</option>
-        <option value="30">Астраханская область</option>
-        <option value="31">Белгородская область</option>
-        <option value="32">Брянская область</option>
-        <option value="33">Владимирская область</option>
-        <option value="34">Волгоградская область</option>
-        <option value="35">Вологодская область</option>
-        <option value="36">Воронежская область</option>
-        <option value="37">Ивановская область</option>
-        <option value="38">Иркутская область</option>
-        <option value="39">Калининградская область</option>
-        <option value="40">Калужская область</option>
-        <option value="42">Кемеровская область</option>
-        <option value="43">Кировская область</option>
-        <option value="44">Костромская область</option>
-        <option value="45">Курганская область</option>
-        <option value="46">Курская область</option>
-        <option value="47">Ленинградская область</option>
-        <option value="48">Липецкая область</option>
-        <option value="49">Магаданская область</option>
-        <option value="50">Московская область</option>
-        <option value="51">Мурманская область</option>
-        <option value="52">Нижегородская область</option>
-        <option value="53">Новгородская область</option>
-        <option value="54">Новосибирская область</option>
-        <option value="55">Омская область</option>
-        <option value="56">Оренбургская область</option>
-        <option value="57">Орловская область</option>
-        <option value="58">Пензенская область</option>
-        <option value="60">Псковская область</option>
-        <option value="61">Ростовская область</option>
-        <option value="62">Рязанская область</option>
-        <option value="63">Самарская область</option>
-        <option value="64">Саратовская область</option>
-        <option value="65">Сахалинская область</option>
-        <option value="66">Свердловская область</option>
-        <option value="67">Смоленская область</option>
-        <option value="68">Тамбовская область</option>
-        <option value="69">Тверская область</option>
-        <option value="70">Томская область</option>
-        <option value="71">Тульская область</option>
-        <option value="72" selected>Тюменская область</option>
-        <option value="73">Ульяновская область</option>
-        <option value="74">Челябинская область</option>
-        <option value="76">Ярославская область</option>
-        <option value="77">Москва</option>
-        <option value="78">Санкт-Петербург</option>
-        <option value="79">Еврейская АО</option>
-        <option value="80">Ненецкий АО</option>
-        <option value="81">Ханты-Мансийский АО</option>
-        <option value="82">Чукотский АО</option>
-        <option value="83">Ямало-Ненецкий АО</option>
-        <option value="84">Севастополь</option>
-        <option value="85">Республика Крым</option>
-    </Select>);
+        <Select id="region" caption="Регион РФ" width="700px">
+            <option value="1">Республика Адыгея</option>
+            <option value="2">Республика Алтай</option>
+            <option value="3">Республика Башкортостан</option>
+            <option value="4">Республика Бурятия</option>
+            <option value="5">Республика Дагестан</option>
+            <option value="6">Республика Ингушетия</option>
+            <option value="7">Кабардино-Балкарская Республика</option>
+            <option value="8">Республика Калмыкия</option>
+            <option value="9">Карачаево-Черкесская Республика</option>
+            <option value="10">Республика Карелия</option>
+            <option value="11">Республика Коми</option>
+            <option value="12">Республика Марий Эл</option>
+            <option value="13">Республика Мордовия</option>
+            <option value="14">Республика Саха (Якутия)</option>
+            <option value="15">Республика Северная Осетия - Алания</option>
+            <option value="16">Республика Татарстан</option>
+            <option value="17">Республика Тыва</option>
+            <option value="18">Удмуртская Республика</option>
+            <option value="19">Республика Хакасия</option>
+            <option value="20">Чеченская Республика</option>
+            <option value="21">Чувашская Республика</option>
+            <option value="22">Алтайский край</option>
+            <option value="75">Забайкальский край</option>
+            <option value="41">Камчатский край</option>
+            <option value="23">Краснодарский край</option>
+            <option value="24">Красноярский край</option>
+            <option value="59">Пермский край</option>
+            <option value="25">Приморский край</option>
+            <option value="26">Ставропольский край</option>
+            <option value="27">Хабаровский край</option>
+            <option value="28">Амурская область</option>
+            <option value="29">Архангельская область</option>
+            <option value="30">Астраханская область</option>
+            <option value="31">Белгородская область</option>
+            <option value="32">Брянская область</option>
+            <option value="33">Владимирская область</option>
+            <option value="34">Волгоградская область</option>
+            <option value="35">Вологодская область</option>
+            <option value="36">Воронежская область</option>
+            <option value="37">Ивановская область</option>
+            <option value="38">Иркутская область</option>
+            <option value="39">Калининградская область</option>
+            <option value="40">Калужская область</option>
+            <option value="42">Кемеровская область</option>
+            <option value="43">Кировская область</option>
+            <option value="44">Костромская область</option>
+            <option value="45">Курганская область</option>
+            <option value="46">Курская область</option>
+            <option value="47">Ленинградская область</option>
+            <option value="48">Липецкая область</option>
+            <option value="49">Магаданская область</option>
+            <option value="50">Московская область</option>
+            <option value="51">Мурманская область</option>
+            <option value="52">Нижегородская область</option>
+            <option value="53">Новгородская область</option>
+            <option value="54">Новосибирская область</option>
+            <option value="55">Омская область</option>
+            <option value="56">Оренбургская область</option>
+            <option value="57">Орловская область</option>
+            <option value="58">Пензенская область</option>
+            <option value="60">Псковская область</option>
+            <option value="61">Ростовская область</option>
+            <option value="62">Рязанская область</option>
+            <option value="63">Самарская область</option>
+            <option value="64">Саратовская область</option>
+            <option value="65">Сахалинская область</option>
+            <option value="66">Свердловская область</option>
+            <option value="67">Смоленская область</option>
+            <option value="68">Тамбовская область</option>
+            <option value="69">Тверская область</option>
+            <option value="70">Томская область</option>
+            <option value="71">Тульская область</option>
+            <option value="72" selected>Тюменская область</option>
+            <option value="73">Ульяновская область</option>
+            <option value="74">Челябинская область</option>
+            <option value="76">Ярославская область</option>
+            <option value="77">Москва</option>
+            <option value="78">Санкт-Петербург</option>
+            <option value="79">Еврейская АО</option>
+            <option value="80">Ненецкий АО</option>
+            <option value="81">Ханты-Мансийский АО</option>
+            <option value="82">Чукотский АО</option>
+            <option value="83">Ямало-Ненецкий АО</option>
+            <option value="84">Севастополь</option>
+            <option value="85">Республика Крым</option>
+        </Select>);
 }
 
 function CountrySelector(changeRussiaSelected: (value: (((prevState: boolean) => boolean) | boolean)) => void) {
@@ -392,8 +392,7 @@ export function SignUp() {
         try {
             signUp(data);
             navigateTo("/login")
-        }
-        catch(e) {
+        } catch (e) {
             changeErrorText((e as Error).message)
         }
     }

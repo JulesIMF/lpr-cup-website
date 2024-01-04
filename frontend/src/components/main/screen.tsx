@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { TitleBar } from '../shared/titlebar';
-import { Button } from '../shared/button';
-import { Footer } from '../shared/footer';
+import React, {useEffect} from 'react';
+import {TitleBar} from '../shared/titlebar';
+import {Footer} from '../shared/footer';
 import './styles/screen.css';
 
 interface ScreenParams {
@@ -13,17 +12,17 @@ interface ScreenParams {
 }
 
 export function Screen(params: ScreenParams) {
-    useEffect(()=>{
+    useEffect(() => {
         document.title = params.pageTitle;
     });
-    
+
     return (
         <div className="screen">
             <TitleBar text={params.titleBarCaption}/>
             <div className="screen_content">
                 {params.children}
             </div>
-            {params.hideFooter? <></> : <Footer />}
+            {params.hideFooter ? <></> : <Footer/>}
         </div>
     );
 }

@@ -3,51 +3,26 @@
  * Path: /home/jules_imf/source/doroshenkoiv-project/backend/src/main/java/ru/lprcup/backend/service/impl
  * Created Date: Friday, December 15th 2023, 12:24:31 pm
  * Author: JulesIMF
- * 
+ *
  * Copyright (c) 2023 Your Company
  */
 package ru.lprcup.backend.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import ru.lprcup.backend.data.Dialog;
-import ru.lprcup.backend.data.Message;
-import ru.lprcup.backend.data.User;
-import ru.lprcup.backend.data.Verdict;
-import ru.lprcup.backend.data.Submission;
-import ru.lprcup.backend.repository.DialogRepository;
-import ru.lprcup.backend.repository.EpisodeRepository;
-import ru.lprcup.backend.repository.GradeRepository;
-import ru.lprcup.backend.repository.MessageRepository;
-import ru.lprcup.backend.repository.SubmissionRepository;
-import ru.lprcup.backend.repository.TaskRepository;
-import ru.lprcup.backend.repository.UserRepository;
-import ru.lprcup.backend.repository.VerdictRepository;
-import ru.lprcup.backend.service.api.DialogService;
-import ru.lprcup.backend.service.api.GradeService;
-import ru.lprcup.backend.service.api.MessageService;
-import ru.lprcup.backend.service.converters.DialogConverter;
-import ru.lprcup.backend.service.converters.EpisodeConverter;
-import ru.lprcup.backend.service.converters.GradeConverter;
-import ru.lprcup.backend.service.converters.MessageConverter;
-import ru.lprcup.backend.service.converters.UserConverter;
-import ru.lprcup.backend.service.dto.DialogDto;
-import ru.lprcup.backend.service.dto.GradeDto;
-import ru.lprcup.backend.service.dto.MessageDto;
-import ru.lprcup.backend.service.dto.RoleDto;
-import ru.lprcup.backend.service.dto.UserDto;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
+import ru.lprcup.backend.data.Message;
+import ru.lprcup.backend.data.Submission;
+import ru.lprcup.backend.data.Verdict;
+import ru.lprcup.backend.repository.*;
+import ru.lprcup.backend.service.api.MessageService;
+import ru.lprcup.backend.service.converters.*;
+import ru.lprcup.backend.service.dto.MessageDto;
+import ru.lprcup.backend.service.dto.UserDto;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -70,6 +45,7 @@ public class MessageServiceImpl implements MessageService {
 
     private final UserConverter userConverter;
     private final UserRepository userRepository;
+    private HashMap<Long, LocalDateTime> lastRequest = new HashMap<Long, LocalDateTime>();
 
     public static String escapeHtml(String input) {
         StringBuilder escaped = new StringBuilder();
@@ -99,8 +75,6 @@ public class MessageServiceImpl implements MessageService {
         }
         return escaped.toString();
     }
-
-    private HashMap<Long, LocalDateTime> lastRequest = new HashMap<Long, LocalDateTime>();
 
     @Override
     public boolean postMessage(UserDto user, Long dialogId, String text, boolean isSubmission) {
@@ -189,7 +163,7 @@ public class MessageServiceImpl implements MessageService {
                 return null;
             }
         }
-        
+
         var messages = messageRepository.findNewMessages(dialog.get(), setRequest(user.getId()));
         var dto = new ArrayList<MessageDto>();
         for (var m : messages) {

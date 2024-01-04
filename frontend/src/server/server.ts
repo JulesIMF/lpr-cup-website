@@ -9,7 +9,7 @@ class User extends SignUpData {
 
 var user: SignUpData | undefined = new SignUpData();
 
-function redirect (url: string, asLink = true){
+function redirect(url: string, asLink = true) {
     asLink ? (window.location.href = url) : window.location.replace(url);
 }
 
@@ -30,7 +30,7 @@ export async function requestToServer(
             addToken ? {
                 'Content-Type': 'application/json; charset=UTF-8',
                 'ApiToken': localStorage.getItem("lpr-cup-token")!
-            } : { 'Content-Type': 'application/json; charset=UTF-8' }
+            } : {'Content-Type': 'application/json; charset=UTF-8'}
         )
     });
 }

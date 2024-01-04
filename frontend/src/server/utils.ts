@@ -1,4 +1,4 @@
-export function termiateAwait(f: Function): [Function, () => Boolean]  {
+export function termiateAwait(f: Function): [Function, () => Boolean] {
     let b = new Boolean();
     b = false;
 
@@ -10,7 +10,9 @@ export function termiateAwait(f: Function): [Function, () => Boolean]  {
             return;
         }
         let promise = res as Promise<any>;
-        promise.finally(() => {b = true});
+        promise.finally(() => {
+            b = true
+        });
     }
 
     let terminated = () => {

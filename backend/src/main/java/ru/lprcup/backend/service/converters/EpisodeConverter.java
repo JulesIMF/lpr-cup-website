@@ -1,6 +1,7 @@
 package ru.lprcup.backend.service.converters;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import ru.lprcup.backend.data.Dialog;
 import ru.lprcup.backend.data.Episode;
 import ru.lprcup.backend.data.Grade;
@@ -10,10 +11,7 @@ import ru.lprcup.backend.service.dto.EpisodeDto;
 import ru.lprcup.backend.service.dto.GradeDto;
 import ru.lprcup.backend.service.dto.TaskDto;
 
-import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
-import java.util.HashSet;
 
 @Component
 @RequiredArgsConstructor

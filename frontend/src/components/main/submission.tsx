@@ -1,13 +1,13 @@
-import React, { ReactNode, useEffect, useState } from 'react';
-import { Screen } from './screen';
-import { CentralHeader, CentralText } from '../shared/central';
-import { useNavigate } from 'react-router-dom';
-import { isLoggedIn } from '../../server/server';
-import { getSubmission, isAdmin } from '../../server/get';
-import { Submission } from "../../server/submission";
+import React, {ReactNode, useEffect, useState} from 'react';
+import {Screen} from './screen';
+import {CentralHeader, CentralText} from '../shared/central';
+import {useNavigate} from 'react-router-dom';
+import {isLoggedIn} from '../../server/server';
+import {getSubmission, isAdmin} from '../../server/get';
+import {Submission} from "../../server/submission";
 import './styles/submission.css'
-import { Button } from '../shared/button';
-import { postSubmissionUpdate } from '../../server/post';
+import {Button} from '../shared/button';
+import {postSubmissionUpdate} from '../../server/post';
 
 interface LprCupSubmissionOverviewParams {
     submission: Submission | undefined;
@@ -24,7 +24,9 @@ interface LprCupTaskSpanParams {
 function LprCupTaskSpan(params: LprCupTaskSpanParams) {
     return <span
         className={`lpr_cup_verdict_span lcvs_${params.verdict}`}
-        onClick={(e) => { params.onClick?.(params.task, params.currentSubmission) }}>
+        onClick={(e) => {
+            params.onClick?.(params.task, params.currentSubmission)
+        }}>
         {params.verdict.toUpperCase()}
     </span>
 }
@@ -33,7 +35,6 @@ function LprCupSubmissionOverview(params: LprCupSubmissionOverviewParams) {
     if (params.submission == undefined) {
         return <></>;
     }
-
 
 
     var entries = new Array<ReactNode>();
@@ -87,7 +88,7 @@ export function LprCupSubmission() {
     const submissionId = Number(submissionIdStr);
 
     var [submission, updateSubmission] = useState<Submission | undefined>(undefined);
-    var [status, updateStatus] = useState({ caption: "", type: "ok" });
+    var [status, updateStatus] = useState({caption: "", type: "ok"});
 
     useEffect(() => {
         if (!isLoggedIn()) {
@@ -126,7 +127,7 @@ export function LprCupSubmission() {
                         <></>
                 }
 
-                <LprCupSubmissionOverview submission={submission} updateSubmission={updateSubmission} />
+                <LprCupSubmissionOverview submission={submission} updateSubmission={updateSubmission}/>
 
                 {
                     isAdmin() ?
@@ -138,19 +139,20 @@ export function LprCupSubmission() {
                                 onClick={() => {
                                     if (submission && !submission?.isCheckCompleted()) {
                                         updateStatus(
-                                            { caption: "Остались непроверенные задачи!", type: "error" }
+                                            {caption: "Остались непроверенные задачи!", type: "error"}
                                         )
                                     } else {
                                         updateSubmission(submission!.setChecked())
                                         postSubmissionUpdate(submission!);
                                         updateStatus(
-                                            { caption: "Проверено!", type: "ok" }
+                                            {caption: "Проверено!", type: "ok"}
                                         )
                                     }
                                 }}
                             />
 
-                            <label id="lpr_cup_submission_status" className={`lcss_${status.type}`}>{status.caption}</label>
+                            <label id="lpr_cup_submission_status"
+                                   className={`lcss_${status.type}`}>{status.caption}</label>
                         </div> :
                         <></>
                 }

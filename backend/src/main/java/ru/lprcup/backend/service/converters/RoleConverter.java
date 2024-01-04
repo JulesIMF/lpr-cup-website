@@ -1,7 +1,6 @@
 package ru.lprcup.backend.service.converters;
 
 import org.springframework.stereotype.Component;
-
 import ru.lprcup.backend.data.Role;
 import ru.lprcup.backend.service.dto.RoleDto;
 

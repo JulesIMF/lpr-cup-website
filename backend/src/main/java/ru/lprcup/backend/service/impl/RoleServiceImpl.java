@@ -2,13 +2,12 @@ package ru.lprcup.backend.service.impl;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import ru.lprcup.backend.data.Role;
 import ru.lprcup.backend.repository.RoleRepository;
 import ru.lprcup.backend.service.api.RoleService;
 import ru.lprcup.backend.service.converters.RoleConverter;
 import ru.lprcup.backend.service.dto.RoleDto;
-
-import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor

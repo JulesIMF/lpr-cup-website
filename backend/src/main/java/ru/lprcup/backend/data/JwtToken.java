@@ -9,10 +9,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class JwtToken {
+    @Column(length = 1024)
+    String token;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-
-    @Column(length = 1024)
-    String token;
 }

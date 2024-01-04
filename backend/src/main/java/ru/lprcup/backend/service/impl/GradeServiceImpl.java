@@ -1,13 +1,12 @@
 package ru.lprcup.backend.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import ru.lprcup.backend.data.Grade;
 import ru.lprcup.backend.repository.GradeRepository;
 import ru.lprcup.backend.service.api.GradeService;
 import ru.lprcup.backend.service.converters.GradeConverter;
 import ru.lprcup.backend.service.dto.GradeDto;
-
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -42,7 +41,7 @@ public class GradeServiceImpl implements GradeService {
         var gradeEntity = gradeRepository.findByNumberAndSeason(grade, season);
         if (gradeEntity == null)
             return -1l;
-        
+
         var episodes = gradeEntity.getEpisodes();
         return episodes != null ? episodes.size() : 0l;
     }

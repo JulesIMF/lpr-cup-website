@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import "./styles/button.css";
 
 class ButtonParams {
@@ -13,8 +13,8 @@ export function Button(params: ButtonParams) {
     // Переход по ссылке
     if (params.where != undefined) {
         return (
-            <a 
-                className='yellow_button' 
+            <a
+                className='yellow_button'
                 style={{width: params.width, height: params.height}}
                 href={params.where}
             >
@@ -25,7 +25,8 @@ export function Button(params: ButtonParams) {
 
     // Действие
     return (
-        <button className='yellow_button' onClick={params.onClick} style={{width: params.width, height: params.height}} type='button'>
+        <button className='yellow_button' onClick={params.onClick} style={{width: params.width, height: params.height}}
+                type='button'>
             {params.caption}
         </button>
     );

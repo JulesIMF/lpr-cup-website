@@ -1,12 +1,10 @@
 package ru.lprcup.backend.data;
 
-import java.util.List;
-import java.util.Set;
-
 import jakarta.persistence.*;
-
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Table(name = "grades")

@@ -3,7 +3,7 @@ user:
   id: integer primary
   name: char(256)
   is_admin: boolean
-  email: 
+  email:
   password_hash: char(512)
 
 # Класс в ОПРЕДЕЛЕННЫЙ Сезон

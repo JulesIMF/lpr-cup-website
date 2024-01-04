@@ -1,11 +1,8 @@
-import { Dialog } from "./dialog";
-import { isAdmin } from "./get";
-import { Submission } from "./submission";
-import { Message, RealMessage } from "./message";
-import { requestToServer } from "./server";
-import {Season} from "./season";
+import {Dialog} from "./dialog";
+import {Submission} from "./submission";
+import {requestToServer} from "./server";
 
-function escapeHtml (x: string) {
+function escapeHtml(x: string) {
     const htmlEscapes: { [key: string]: string } = {
         "&": "&amp;",
         "<": "&lt;",
@@ -14,9 +11,9 @@ function escapeHtml (x: string) {
         "'": "&#039;",
         " ": "&nbsp;",
         "\n": "<br/>"
-      };
-    
-      return x.replace(/[&<>"'\n ]/g, (match) => htmlEscapes[match]);
+    };
+
+    return x.replace(/[&<>"'\n ]/g, (match) => htmlEscapes[match]);
 };
 
 export async function postTextMessage(dialog: Dialog, text: string, isSubmission: boolean) {
@@ -45,7 +42,7 @@ export async function postSubmissionUpdate(submission: Submission) {
     return requestToServer(
         "PATCH",
         "/api/patchSubmission",
-        s    
+        s
     )
 }
 

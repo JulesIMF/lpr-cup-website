@@ -1,20 +1,14 @@
 package ru.lprcup.backend.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import ru.lprcup.backend.data.User;
 import ru.lprcup.backend.repository.UserRepository;
 import ru.lprcup.backend.service.api.UserService;
 import ru.lprcup.backend.service.converters.UserConverter;
-import ru.lprcup.backend.service.dto.RoleDto;
 import ru.lprcup.backend.service.dto.UserDto;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -72,7 +66,7 @@ public class UserServiceImpl implements UserService {
 
         return true;
     }
-    
+
     @Override
     public void deleteUser(Long userId) {
         userRepository.deleteById(userId);
@@ -81,9 +75,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDto> getAllUsers() {
         return userRepository.findAll()
-            .stream()
-            .map(userConverter::toDto)
-            .toList();
+                .stream()
+                .map(userConverter::toDto)
+                .toList();
     }
 
     @Override
@@ -100,7 +94,7 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-    private void encodePassword(UserDto newUser, UserDto user){
+    private void encodePassword(UserDto newUser, UserDto user) {
         newUser.setPassword(user.getPassword());
     }
 }

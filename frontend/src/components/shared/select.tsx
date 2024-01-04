@@ -16,7 +16,7 @@ export function getSelectValue(id: string) {
     }
 
     return select.value;
-} 
+}
 
 export function Select(params: SelectParams) {
     var width = (params.width ? params.width : "100px")
@@ -24,9 +24,9 @@ export function Select(params: SelectParams) {
     return (
         <div className="select_list">
             <label>{params.caption}</label>
-            <select 
-                id={params.id} 
-                style={{ width: width }}
+            <select
+                id={params.id}
+                style={{width: width}}
                 onChange={(e) => {
                     const target = e.target as HTMLSelectElement;
                     var value = target.value;

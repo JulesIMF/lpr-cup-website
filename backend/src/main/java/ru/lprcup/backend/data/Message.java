@@ -1,11 +1,10 @@
 package ru.lprcup.backend.data;
 
-import java.time.LocalDateTime;
-
 import jakarta.persistence.*;
-
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "messages")

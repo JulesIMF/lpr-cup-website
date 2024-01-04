@@ -3,15 +3,15 @@
  * Path: /home/jules_imf/source/doroshenkoiv-project/backend/src/main/java/ru/lprcup/backend/service/impl
  * Created Date: Friday, December 15th 2023, 12:24:31 pm
  * Author: JulesIMF
- * 
+ *
  * Copyright (c) 2023 Your Company
  */
 package ru.lprcup.backend.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.lprcup.backend.data.Dialog;
 import ru.lprcup.backend.data.Episode;
+import ru.lprcup.backend.data.Task;
 import ru.lprcup.backend.repository.DialogRepository;
 import ru.lprcup.backend.repository.EpisodeRepository;
 import ru.lprcup.backend.repository.GradeRepository;
@@ -21,12 +21,6 @@ import ru.lprcup.backend.service.converters.DialogConverter;
 import ru.lprcup.backend.service.converters.EpisodeConverter;
 import ru.lprcup.backend.service.converters.GradeConverter;
 import ru.lprcup.backend.service.converters.UserConverter;
-import ru.lprcup.backend.data.Task;
-import ru.lprcup.backend.service.dto.DialogDto;
-import ru.lprcup.backend.service.dto.UserDto;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor

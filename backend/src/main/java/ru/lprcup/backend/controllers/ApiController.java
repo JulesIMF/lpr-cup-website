@@ -1,13 +1,12 @@
 package ru.lprcup.backend.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import ru.lprcup.backend.security.JwtTokenProvider;
 import ru.lprcup.backend.service.api.*;
 import ru.lprcup.backend.service.dto.JwtTokenDto;
 import ru.lprcup.backend.service.dto.UserDto;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
 class MessageParams {
     public Long dialogId;
@@ -56,7 +55,7 @@ public class ApiController {
 
         if (user.getIsAdmin()) {
             return ResponseEntity.ok(
-                gradeService.getAllGrades()
+                    gradeService.getAllGrades()
             );
         }
 

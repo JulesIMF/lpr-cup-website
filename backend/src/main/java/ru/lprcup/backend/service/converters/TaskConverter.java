@@ -1,22 +1,11 @@
 package ru.lprcup.backend.service.converters;
 
-import java.util.ArrayList;
-
-import org.springframework.stereotype.Component;
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import ru.lprcup.backend.data.Episode;
-import ru.lprcup.backend.data.Grade;
-import ru.lprcup.backend.data.Message;
-import ru.lprcup.backend.data.Submission;
 import ru.lprcup.backend.data.Task;
-import ru.lprcup.backend.data.Verdict;
 import ru.lprcup.backend.service.dto.EpisodeDto;
-import ru.lprcup.backend.service.dto.GradeDto;
-import ru.lprcup.backend.service.dto.MessageDto;
-import ru.lprcup.backend.service.dto.SubmissionDto;
 import ru.lprcup.backend.service.dto.TaskDto;
-import ru.lprcup.backend.service.dto.VerdictDto;
 
 @Component
 @RequiredArgsConstructor

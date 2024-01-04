@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Screen } from './screen';
+import React, {useEffect, useState} from 'react';
+import {Screen} from './screen';
 import {getSeasons, isAdmin} from '../../server/get';
-import { Season } from "../../server/season";
+import {Season} from "../../server/season";
 import './styles/grades.css'
-import { CentralHeader } from '../shared/central';
-import { Button } from '../shared/button';
-import { isLoggedIn } from '../../server/server';
-import { useNavigate } from 'react-router-dom';
+import {CentralHeader} from '../shared/central';
+import {Button} from '../shared/button';
+import {isLoggedIn} from '../../server/server';
+import {useNavigate} from 'react-router-dom';
 
 interface SeasonsListParams {
     seasons: Array<Season>;
@@ -27,9 +27,9 @@ function SeasonsList(params: SeasonsListParams) {
                                 {
                                     season.grades.map((grade: Number) => {
                                         return (
-                                            <Button 
-                                                height="90px" 
-                                                width="300px" 
+                                            <Button
+                                                height="90px"
+                                                width="300px"
                                                 where={`/lprcup?season=${season.seasonNumber}&grade=${grade}`}
                                                 caption={`${grade} класс`}/>
                                         )
@@ -53,7 +53,7 @@ function AddGrade() {
 }
 
 export function Grades() {
-    var navigateTo = useNavigate()      
+    var navigateTo = useNavigate()
     var [seasons, changeSeasons] = useState(new Array<Season>());
 
     // Выполняется один раз за загрузку страницы
@@ -64,10 +64,10 @@ export function Grades() {
         getSeasons().then((loadedSeasons) => {
             if (loadedSeasons) {
                 changeSeasons(loadedSeasons);
-            }            
+            }
         },)
     }, [])
-    
+
 
     return (
         <Screen pageTitle="Выбор класса">

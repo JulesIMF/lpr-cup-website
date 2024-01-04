@@ -9,7 +9,8 @@ interface CentralParams {
 
 export function CentralHeader(params: CentralParams) {
     return (
-        <div className="central central_header" style={{marginTop: params.marginTop, marginBottom: params.marginBottom}}>
+        <div className="central central_header"
+             style={{marginTop: params.marginTop, marginBottom: params.marginBottom}}>
             {params.children}
         </div>);
 }

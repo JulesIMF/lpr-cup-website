@@ -8,19 +8,19 @@
     font-size: 18px;
 }
 
-.plain_text h1{
-    font-size: 40px;    
+.plain_text h1 {
+    font-size: 40px;
     font-style: normal;
     font-weight: normal;
 }
 
-.plain_text h2{
+.plain_text h2 {
     font-size: 30px;
     font-family: 'Inter';
     font-weight: bolder;
 }
 
-.plain_text h3{
+.plain_text h3 {
     text-align: left;
     font-weight: bold;
     font-style: italic;

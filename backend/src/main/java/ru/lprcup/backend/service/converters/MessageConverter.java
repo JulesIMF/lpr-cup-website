@@ -1,14 +1,11 @@
 package ru.lprcup.backend.service.converters;
 
-import org.springframework.stereotype.Component;
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import ru.lprcup.backend.data.Dialog;
-import ru.lprcup.backend.data.Grade;
 import ru.lprcup.backend.data.Message;
 import ru.lprcup.backend.data.User;
 import ru.lprcup.backend.service.dto.DialogDto;
-import ru.lprcup.backend.service.dto.GradeDto;
 import ru.lprcup.backend.service.dto.MessageDto;
 import ru.lprcup.backend.service.dto.UserDto;
 

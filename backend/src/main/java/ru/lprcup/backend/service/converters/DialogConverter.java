@@ -1,21 +1,17 @@
 package ru.lprcup.backend.service.converters;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import ru.lprcup.backend.data.Dialog;
 import ru.lprcup.backend.data.Episode;
 import ru.lprcup.backend.data.Message;
-import ru.lprcup.backend.data.Task;
 import ru.lprcup.backend.data.User;
 import ru.lprcup.backend.service.dto.DialogDto;
 import ru.lprcup.backend.service.dto.EpisodeDto;
 import ru.lprcup.backend.service.dto.MessageDto;
-import ru.lprcup.backend.service.dto.TaskDto;
 import ru.lprcup.backend.service.dto.UserDto;
 
-import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
-import java.util.HashSet;
 
 @Component
 @RequiredArgsConstructor
@@ -38,8 +34,7 @@ public class DialogConverter {
             user.setPatronymic(dialog.getStudent().getPatronymic());
             user.setIsAdmin(dialog.getStudent().getIsAdmin());
             dialogDto.setStudent(user);
-        }
-        else {
+        } else {
             dialogDto.setStudent(null);
         }
 
@@ -77,8 +72,7 @@ public class DialogConverter {
             user.setPatronymic(dialogDto.getStudent().getPatronymic());
             user.setIsAdmin(dialogDto.getStudent().getIsAdmin());
             dialog.setStudent(user);
-        }
-        else {
+        } else {
             dialog.setStudent(null);
         }
 

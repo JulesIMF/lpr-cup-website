@@ -64,7 +64,7 @@
     align-items: flex-start;
     overflow: auto;
     -ms-overflow-style: none;
-    scrollbar-width: none; 
+    scrollbar-width: none;
 }
 
 #lprcup_student_panel::-webkit-scrollbar {

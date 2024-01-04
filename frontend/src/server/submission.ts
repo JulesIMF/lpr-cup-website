@@ -1,4 +1,3 @@
-
 export class Submission {
     id: number;
 
@@ -10,6 +9,7 @@ export class Submission {
 
     checked: boolean;
     verdict: Map<string, "n" | "m" | "c" | "p" | "i">;
+
     constructor(id: number, studentName: string, season: number, grade: number, episode: number, trial: number, checked: boolean, verdict: Map<string, "n" | "m" | "c" | "p" | "i">) {
         this.id = id;
         this.studentName = studentName;
@@ -20,21 +20,6 @@ export class Submission {
         this.trial = trial;
         this.checked = checked;
         this.verdict = verdict;
-    }
-
-    private clone() {
-        var copy: Submission = new Submission(
-            this.id,
-            this.studentName,
-            this.season,
-            this.grade,
-            this.episode,
-            this.trial,
-            this.checked,
-            this.verdict
-        );
-
-        return copy;
     }
 
     public nextVerdict(task: string): Submission {
@@ -74,5 +59,20 @@ export class Submission {
         var clone = this.clone();
         clone.checked = newChecked;
         return clone;
+    }
+
+    private clone() {
+        var copy: Submission = new Submission(
+            this.id,
+            this.studentName,
+            this.season,
+            this.grade,
+            this.episode,
+            this.trial,
+            this.checked,
+            this.verdict
+        );
+
+        return copy;
     }
 }

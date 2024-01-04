@@ -1,7 +1,7 @@
 package ru.lprcup.backend.repository;
 
-import ru.lprcup.backend.data.File;
 import org.springframework.data.jpa.repository.JpaRepository;
+import ru.lprcup.backend.data.File;
 
 public interface FileRepository extends JpaRepository<File, Long> {
 }

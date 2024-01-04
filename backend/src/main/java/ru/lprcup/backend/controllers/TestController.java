@@ -1,16 +1,12 @@
 package ru.lprcup.backend.controllers;
 
 
-import java.util.List;
-import java.util.Objects;
-
-
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins="http://localhost:*", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:*", maxAge = 3600)
 @RestController
 @RequestMapping("/test")
 @RequiredArgsConstructor
@@ -25,7 +21,7 @@ public class TestController {
 //   @Autowired
 //   private final UserService userService;
 //   private final UserConverter userConverter;
-    
+
     // @GetMapping("/popular")
     // public ResponseEntity<List<BlogDto>> getPopularBlogs(@RequestParam String plantName) {
     //     List<BlogDto> popularBlogs = blogService.getPopularBlogs(plantName);

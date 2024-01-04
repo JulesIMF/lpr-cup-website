@@ -1,14 +1,13 @@
 package ru.lprcup.backend.service.converters;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import ru.lprcup.backend.data.Grade;
 import ru.lprcup.backend.data.Role;
 import ru.lprcup.backend.data.User;
+import ru.lprcup.backend.service.dto.GradeDto;
 import ru.lprcup.backend.service.dto.RoleDto;
 import ru.lprcup.backend.service.dto.UserDto;
-import ru.lprcup.backend.service.dto.GradeDto;
-
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.HashSet;

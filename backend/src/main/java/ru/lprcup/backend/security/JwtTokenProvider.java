@@ -1,13 +1,15 @@
 package ru.lprcup.backend.security;
 
-import ru.lprcup.backend.service.dto.RoleDto;
-import io.jsonwebtoken.*;
-import java.util.List;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
+import ru.lprcup.backend.service.dto.RoleDto;
+
 import java.util.Date;
+import java.util.List;
 
 @Component
 @Slf4j
@@ -40,6 +42,7 @@ public class JwtTokenProvider {
 
         return Long.parseLong(claims.getSubject());
     }
+
     public boolean validateToken(String authToken) {
         try {
             Jwts.parserBuilder().setSigningKey(jwtSecret).build().parseClaimsJws(authToken);

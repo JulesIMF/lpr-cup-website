@@ -1,6 +1,9 @@
 package ru.lprcup.backend.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import ru.lprcup.backend.data.User;
 import ru.lprcup.backend.security.JwtTokenProvider;
 import ru.lprcup.backend.security.UserPrincipal;
@@ -10,11 +13,6 @@ import ru.lprcup.backend.service.api.RoleService;
 import ru.lprcup.backend.service.api.UserService;
 import ru.lprcup.backend.service.converters.UserConverter;
 import ru.lprcup.backend.service.dto.*;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;

@@ -1,13 +1,12 @@
 package ru.lprcup.backend.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import ru.lprcup.backend.data.JwtToken;
 import ru.lprcup.backend.repository.JwtTokenRepository;
 import ru.lprcup.backend.service.api.JwtTokenService;
 import ru.lprcup.backend.service.converters.JwtTokenConverter;
 import ru.lprcup.backend.service.dto.JwtTokenDto;
-
-import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor

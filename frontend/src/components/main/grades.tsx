@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from 'react';
-import {Screen} from './screen';
+import React, { useEffect, useState } from 'react';
+import { Screen } from './screen';
 import {getSeasons, isAdmin} from '../../server/get';
-import {Season} from "../../server/season";
+import { Season } from "../../server/season";
 import './styles/grades.css'
-import {CentralHeader} from '../shared/central';
-import {Button} from '../shared/button';
-import {isLoggedIn} from '../../server/server';
-import {useNavigate} from 'react-router-dom';
+import { CentralHeader } from '../shared/central';
+import { Button } from '../shared/button';
+import { isLoggedIn } from '../../server/server';
+import { useNavigate } from 'react-router-dom';
 
 interface SeasonsListParams {
     seasons: Array<Season>;

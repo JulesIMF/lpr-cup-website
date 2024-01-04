@@ -26,7 +26,7 @@ export function Select(params: SelectParams) {
             <label>{params.caption}</label>
             <select
                 id={params.id}
-                style={{width: width}}
+                style={{ width: width }}
                 onChange={(e) => {
                     const target = e.target as HTMLSelectElement;
                     var value = target.value;

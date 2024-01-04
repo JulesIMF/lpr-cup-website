@@ -1,4 +1,4 @@
-import {postSignUpRequest} from './server'
+import { postSignUpRequest } from './server'
 
 export class SignUpData {
     surname: string = "";

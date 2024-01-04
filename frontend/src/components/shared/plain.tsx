@@ -8,6 +8,6 @@ interface CentralParams {
 export function PlainText(params: CentralParams) {
     return (
         <div className="plain_text">
-            {params.children}
+                {params.children}
         </div>);
 }

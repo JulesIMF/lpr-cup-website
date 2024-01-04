@@ -18,6 +18,6 @@ public class Task {
 
     private String name;
 
-    @Column(columnDefinition = "numeric(3,2)")
+    @Column(columnDefinition = "numeric(4,2)")
     private Double weight;
 }

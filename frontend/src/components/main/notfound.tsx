@@ -1,13 +1,13 @@
-import React from 'react'
-import {Screen} from './screen';
-import {Button} from '../shared/button'
+import React, { useEffect, useState } from 'react'
+import { Screen } from './screen';
+import { Button } from '../shared/button'
 import './styles/notfound.css';
-import {CentralHeader, CentralText} from '../shared/central';
+import { CentralHeader, CentralText } from '../shared/central';
 
 export function NotFound() {
     return (
         <Screen pageTitle="Кубок ЛФИ потерялся..." titleBarCaption="Кубок ЛФИ потерялся..." hideFooter={true}>
-            <img src="images/hedgehog.webp" alt="" style={{width: "300px", height: "300px", marginTop: "2%"}}/>
+            <img src="images/hedgehog.webp" alt="" style={{ width: "300px", height: "300px", marginTop: "2%" }} />
             <div className="notfound_text_div">
                 <CentralHeader>
                     Ой, что-то потерялось...
@@ -19,8 +19,8 @@ export function NotFound() {
                     </i>
                 </CentralText>
             </div>
-            <div style={{marginTop: "35px"}}>
-                <Button caption="Вернуться на главный экран" where="/" height="60px" width="500px"/>
+            <div style={{ marginTop: "35px" }}>
+                <Button caption="Вернуться на главный экран" where="/" height="60px" width="500px" />
             </div>
         </Screen>
     );

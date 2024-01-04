@@ -1,4 +1,4 @@
-import React, {ReactElement, useEffect, useState} from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import './styles/panel.css'
 import {isAdmin} from "../../server/get";
 
@@ -74,7 +74,7 @@ function LprCupEpisodes(params: LprCupEpisodesParams) {
                 id={`selector_${i + 1}`}
                 caption={`Эпизод ${i + 1}`}
                 activeId={params.activeId}
-                activeIdUpdate={params.activeIdUpdate}/>
+                activeIdUpdate={params.activeIdUpdate} />
         )
     }
 
@@ -107,7 +107,7 @@ export function LprCupEpisodePanel(params: LprCupEpisodePanelParams) {
                     caption="Новости"
                     activeId={activeId}
                     activeIdUpdate={activeIdUpdate} /> */}
-                {LprCupEpisodes({count: params.episodesCount, activeId: activeId, activeIdUpdate: activeIdUpdate})}
+                {LprCupEpisodes({ count: params.episodesCount, activeId: activeId, activeIdUpdate: activeIdUpdate })}
             </div>
             <div className="lces_bottom_buttons">
                 {isAdmin() ? <LprCupNewEpisode season={params.season} grade={params.grade}/> : <></>}

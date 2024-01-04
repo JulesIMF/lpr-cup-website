@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from 'react';
-import {Screen} from './screen';
-import {Button} from '../shared/button';
+import React, { useEffect, useState } from 'react';
+import { Screen } from './screen';
+import { Button } from '../shared/button';
 import './styles/login.css';
-import {CentralHeader, CentralText} from '../shared/central';
-import {getTextBoxValue, TextBox} from '../shared/textbox';
-import {logIn, LogInData} from '../../server/login';
-import {useNavigate} from 'react-router-dom';
-import {isLoggedIn} from '../../server/server';
+import { CentralHeader, CentralText } from '../shared/central';
+import { TextBox, getTextBoxValue } from '../shared/textbox';
+import { LogInData, logIn } from '../../server/login';
+import { useNavigate } from 'react-router-dom';
+import { isLoggedIn } from '../../server/server';
 
 export function LogIn() {
     useEffect(() => {
@@ -27,11 +27,14 @@ export function LogIn() {
             response.then((v) => {
                 if (v == 200) {
                     navigateTo("/grades")
-                } else {
+                }
+
+                else {
                     updateFailText("Неправильные данные для входа!");
                 }
             })
-        } catch (e) {
+        }
+        catch(e) {
             updateFailText((e as Error).message);
         }
 

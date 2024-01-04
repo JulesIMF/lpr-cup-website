@@ -1,10 +1,10 @@
-import React, {useState} from 'react'
-import {Screen} from './screen';
-import {Button} from '../shared/button'
+import React, { useState } from 'react'
+import { Screen } from './screen';
+import { Button } from '../shared/button'
 import './styles/add.css';
 import {getTextBoxValue, TextBox} from "../shared/textbox";
 import {useNavigate} from "react-router-dom";
-import {isAdmin} from "../../server/get";
+import {getEpisodesCount, isAdmin} from "../../server/get";
 import {postNewEpisode, postNewGrade, Task} from "../../server/post";
 
 interface TaskInputParams {
@@ -12,7 +12,7 @@ interface TaskInputParams {
     deleteMyself: () => void;
 }
 
-function TaskInput(params: TaskInputParams) {
+function TaskInput (params: TaskInputParams) {
     function RemoveButton() {
         return (
             <button
@@ -27,9 +27,9 @@ function TaskInput(params: TaskInputParams) {
 
     return (
         <div id={`add_episode_selector_${params.id}`} className="add_episode_selector">
-            <TextBox type="text" caption="Имя" width="200px" id={`add_episode_selector_name_${params.id}`}/>
-            <TextBox type="number" caption="Вес" width="200px" id={`add_episode_selector_weight_${params.id}`}/>
-            <RemoveButton/>
+            <TextBox type="text" caption="Имя" width="200px" id={`add_episode_selector_name_${params.id}`} />
+            <TextBox type="number" caption="Вес" width="200px" id={`add_episode_selector_weight_${params.id}`} />
+            <RemoveButton />
         </div>
     )
 }
@@ -54,7 +54,7 @@ export function AddEpisode() {
         navigateTo("/grades")
     }
 
-    let [tasks, tasksUpdate] = useState({} as { [key: number]: Task });
+    let [tasks, tasksUpdate] = useState({} as { [key: number]: Task }  );
     let [currentId, currentIdUpdate] = useState(0);
     let [statusText, updateStatusText] = useState("");
 
@@ -62,7 +62,7 @@ export function AddEpisode() {
     for (let k in tasks) {
         selectors.push(<TaskInput id={Number(k)} deleteMyself={() => {
             tasksUpdate((t) => {
-                let o = {} as { [key: number]: Task };
+                let o = {} as { [key: number]: Task};
 
                 for (let ik in t) {
                     if (ik != k) {
@@ -86,7 +86,7 @@ export function AddEpisode() {
                     })
 
                     currentIdUpdate(currentId + 1);
-                }} style={{cursor: "pointer",}}>Добавить задание</a></u>
+                }} style={{cursor: "pointer", }}>Добавить задание</a></u>
             </div>
 
             <Button caption="Добавить эпизод" width="400px" height="45px" onClick={() => {

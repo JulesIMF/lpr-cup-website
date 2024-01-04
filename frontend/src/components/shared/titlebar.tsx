@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import "./styles/titlebar.css";
-import {isLoggedIn, logOut} from '../../server/server';
+import { isLoggedIn, logOut } from '../../server/server';
 
 interface TitleBarButtonParams {
     id: string;
@@ -16,7 +16,8 @@ function TitleBarButton(params: TitleBarButtonParams) {
                 <b>{params.text}</b>
             </a>
         );
-    } else {
+    }
+    else {
         return (
             <label className='titlebar_a' onClick={params.onClick} key={params.id}>
                 <b>{params.text}</b>
@@ -47,11 +48,10 @@ export function TitleBar(params: TitleBarParams) {
 
         if (!isLoggedIn()) {
             buttons.push(<TitleBarButton id="login" text="Войти" where="/login"/>)
-        } else {
-            buttons.push(<TitleBarButton id="login" text="Выйти" onClick={() => {
-                console.log("log out");
-                logOut()
-            }}/>)
+        }
+
+        else {
+            buttons.push(<TitleBarButton id="login" text="Выйти" onClick={() => { console.log("log out"); logOut()}}/>)
             // buttons.push(<TitleBarButton id="login" text="Настройки" where="/settings"/>)
         }
 
@@ -65,7 +65,7 @@ export function TitleBar(params: TitleBarParams) {
     return (
         <header className="titlebar">
             {/* Логотип */}
-            <a className='titlebar_logo' style={{backgroundImage: "url(/images/lprcup_logo.jpg)"}} href='/'/>
+            <a className='titlebar_logo' style={{ backgroundImage: "url(/images/lprcup_logo.jpg)" }} href='/' />
 
             {/* Надпись */}
             <b className='titlebar_lprcupisyou'>
@@ -74,7 +74,7 @@ export function TitleBar(params: TitleBarParams) {
 
             {/* Кнопки */}
             <div className='titlebar_a_div'>
-                <TitleBarButtonsList/>
+                <TitleBarButtonsList />
             </div>
         </header>
     );

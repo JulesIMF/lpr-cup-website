@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Dialog} from '../../server/dialog';
+import React, { useEffect, useState } from 'react';
+import { Dialog } from '../../server/dialog';
 
 // 
 // Выбор эпизода
@@ -31,7 +31,6 @@ function formatDate(date: Date) {
 
     return `${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}`;
 }
-
 function truncateName(name: string) {
     if (name.length < 20) {
         return name;
@@ -39,7 +38,6 @@ function truncateName(name: string) {
 
     return name.substring(0, 17) + "...";
 }
-
 function LprCupStudentSelector(params: LprCupStudentSelectorParams) {
     var className = "lprcup_student_selector" + ` lcss_${params.status}`;
     if (params.activeId == params.id) {
@@ -61,7 +59,6 @@ function LprCupStudentSelector(params: LprCupStudentSelectorParams) {
         </button>
     );
 }
-
 interface LprCupStudentsParams {
     dialogs: Array<Dialog>;
     activeId: number | undefined;
@@ -80,13 +77,12 @@ function LprCupStudents(params: LprCupStudentsParams) {
                 activeId={params.activeId}
                 dialog={dialog}
                 activeIdUpdate={params.activeIdUpdate}
-                activeDialogUpdate={params.activeDialogUpdate}/>
+                activeDialogUpdate={params.activeDialogUpdate} />
         );
     });
 
     return episodes;
 }
-
 interface LprCupStudentPanelParams {
     dialogs: Array<Dialog>;
     activeDialogUpdate: React.Dispatch<React.SetStateAction<Dialog | undefined>>;
@@ -97,8 +93,7 @@ export function LprCupStudentPanel(params: LprCupStudentPanelParams) {
         return (
             <div>
                 <div id='lprcup_student_panel'>
-                    <center style={{width: "100%", height: "100%", marginTop: "300px"}}><i>Здесь пока пусто...</i>
-                    </center>
+                    <center style={{ width: "100%", height: "100%", marginTop: "300px" }}><i>Здесь пока пусто...</i></center>
                 </div>
             </div>);
     }
@@ -107,12 +102,7 @@ export function LprCupStudentPanel(params: LprCupStudentPanelParams) {
     return (
         <div>
             <div id='lprcup_student_panel'>
-                {LprCupStudents({
-                    dialogs: params.dialogs,
-                    activeId: activeId,
-                    activeIdUpdate: activeIdUpdate,
-                    activeDialogUpdate: params.activeDialogUpdate
-                })}
+                {LprCupStudents({ dialogs: params.dialogs, activeId: activeId, activeIdUpdate: activeIdUpdate, activeDialogUpdate: params.activeDialogUpdate })}
             </div>
         </div>
 

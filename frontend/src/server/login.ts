@@ -1,4 +1,4 @@
-import {postLogInRequest} from "./server";
+import { postLogInRequest } from "./server";
 
 export class LogInData {
     email: string = "";

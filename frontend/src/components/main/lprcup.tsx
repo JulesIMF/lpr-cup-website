@@ -6,7 +6,7 @@ import './styles/cup.css'
 import {LprCupEpisodePanel} from '../lprcup/episode';
 import {LprCupStudentPanel} from '../lprcup/student';
 import {LprCupDialog} from '../lprcup/dialog';
-import {getAdminDialog, getEpisodesCount, getStudentDialogs, isAdmin} from '../../server/get';
+import {getAdminDialog, getEpisodesCount, getNewsDialog, getStudentDialogs, isAdmin} from '../../server/get';
 import {Dialog} from '../../server/dialog';
 
 export function LprCup() {

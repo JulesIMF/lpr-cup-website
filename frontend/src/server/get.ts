@@ -1,8 +1,8 @@
-import {RealMessage} from "./message";
-import {Season} from "./season";
-import {Dialog} from "./dialog";
-import {getUser, requestToServer} from "./server";
-import {Submission} from "./submission";
+import { Message, RealMessage } from "./message";
+import { Season } from "./season";
+import { Dialog } from "./dialog";
+import { getUser, requestToServer } from "./server";
+import { Submission } from "./submission";
 
 // Done
 export async function getSeasons() {

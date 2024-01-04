@@ -8,6 +8,9 @@ import ru.lprcup.backend.service.dto.JwtTokenDto;
 @Component
 public class JwtTokenConverter {
     public JwtTokenDto toDto(JwtToken token) {
+        if (token == null) {
+            return null;
+        }
         JwtTokenDto tokenDto = new JwtTokenDto();
         tokenDto.setId(token.getId());
         tokenDto.setToken(token.getToken());

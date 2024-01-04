@@ -4,8 +4,6 @@ import { Dialog } from "./dialog";
 import { getUser, requestToServer } from "./server";
 import { Submission } from "./submission";
 
-
-
 // Done
 export async function getSeasons() {
     var promise = requestToServer(
@@ -139,6 +137,7 @@ export async function getAdminDialog(season: number, grade: number, episode: num
 }
 
 export function isAdmin() {
+    console.log(getUser())
     return getUser().isAdmin;
 }
 

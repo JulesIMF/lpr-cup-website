@@ -1,5 +1,6 @@
 import {SignUpData} from "./signup";
 import {LogInData} from "./login";
+import {termiateAwait} from "./utils";
 
 class User extends SignUpData {
     public id: number = 0;
@@ -34,11 +35,13 @@ export async function requestToServer(
     });
 }
 
-export function whoAmI() {
+function whoAmIUnwrapped() {
     if (!isLoggedIn()) {
         return;
     }
-    requestToServer(
+    console.log("WhoAmI?");
+
+    let promise = requestToServer(
         "GET",
         "/users/auth/signup"
     ).then(
@@ -53,6 +56,7 @@ export function whoAmI() {
         }
     ).then((v) => {
         if (v) {
+            console.log("then")
             console.log(v);
             user = new User();
             user.name = v.name;
@@ -62,8 +66,15 @@ export function whoAmI() {
             (user as User).isAdmin = v.isAdmin;
             (user as User).id = v.id;
         }
+    }).catch((e) => {
+        console.log("error")
+        console.log(e);
     })
+
+    return promise;
 }
+
+export let [whoAmI, whoAmITerminated] = termiateAwait(whoAmIUnwrapped);
 
 export function getUser() {
     return user as User;

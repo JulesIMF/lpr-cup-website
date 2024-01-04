@@ -59,3 +59,25 @@ export async function postNewGrade(season: number, year: number) {
         })
     )
 }
+
+export class Task {
+    public name: string;
+    public weight: number;
+
+    constructor(name: string, weight: number) {
+        this.name = name;
+        this.weight = weight;
+    }
+}
+
+export async function postNewEpisode(season: number, grade: number, tasks: Task[]) {
+    return requestToServer(
+        "POST",
+        "/api/newEpisode",
+        JSON.stringify({
+            season: season,
+            grade: grade,
+            tasks: tasks
+        })
+    )
+}

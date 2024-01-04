@@ -10,4 +10,6 @@ import org.springframework.data.repository.query.Param;
 public interface EpisodeRepository extends JpaRepository<Episode, Long> {
     @Query("SELECT e FROM Episode e WHERE e.number = :number AND e.grade = :grade")
     Episode findByNumberAndGrade(@Param("number") Long number, @Param("grade") Grade grade);
+
+    Episode findFirstByGradeOrderByNumberDesc(Grade grade);
 }

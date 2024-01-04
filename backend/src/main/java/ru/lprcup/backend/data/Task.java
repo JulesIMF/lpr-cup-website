@@ -20,4 +20,7 @@ public class Task {
     private Episode episode;
 
     private String name;
+
+    @Column(columnDefinition = "numeric(3,2)")
+    private Double weight;
 }

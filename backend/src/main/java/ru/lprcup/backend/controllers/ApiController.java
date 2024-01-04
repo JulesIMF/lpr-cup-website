@@ -1,20 +1,11 @@
 package ru.lprcup.backend.controllers;
 
-import java.util.List;
-import java.util.Objects;
-
 import lombok.RequiredArgsConstructor;
 import ru.lprcup.backend.security.JwtTokenProvider;
-import ru.lprcup.backend.service.api.DialogService;
-import ru.lprcup.backend.service.api.GradeService;
-import ru.lprcup.backend.service.api.JwtTokenService;
-import ru.lprcup.backend.service.api.MessageService;
-import ru.lprcup.backend.service.api.SubmissionService;
-import ru.lprcup.backend.service.api.UserService;
+import ru.lprcup.backend.service.api.*;
 import ru.lprcup.backend.service.dto.JwtTokenDto;
 import ru.lprcup.backend.service.dto.UserDto;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,16 +27,29 @@ public class ApiController {
     private final DialogService dialogService;
     private final MessageService messageService;
     private final SubmissionService submissionService;
+    private final EpisodeService episodeService;
+
+    private boolean tokenInvalid(String jwtToken) {
+        if (jwtToken == null) {
+            return true;
+        }
+
+        JwtTokenDto token = jwtTokenService.getTokenByName(jwtToken);
+        return !jwtTokenProvider.validateToken(jwtToken) || token == null;
+    }
+
+    private UserDto getUserFromToken(String jwtToken) {
+        return userService.getUserById(jwtTokenProvider.getUserIdFromToken(jwtToken));
+    }
 
     @GetMapping("/seasons")
     public ResponseEntity<?> getSeasons(
             @RequestHeader("ApiToken") final String jwtToken) {
-        JwtTokenDto token = jwtTokenService.getTokenByName(jwtToken);
-        if (!jwtTokenProvider.validateToken(jwtToken) || token == null) {
+        if (tokenInvalid(jwtToken)) {
             return ResponseEntity.badRequest().body("No such token");
         }
 
-        UserDto user = userService.getUserById(jwtTokenProvider.getUserIdFromToken(jwtToken));
+        UserDto user = getUserFromToken(jwtToken);
         if (user == null) {
             return ResponseEntity.badRequest().body("Invalid token");
         }
@@ -67,8 +71,7 @@ public class ApiController {
         if (grade == null || season == null) {
             return ResponseEntity.badRequest().body("Null options");
         }
-        JwtTokenDto token = jwtTokenService.getTokenByName(jwtToken);
-        if (!jwtTokenProvider.validateToken(jwtToken) || token == null) {
+        if (tokenInvalid(jwtToken)) {
             return ResponseEntity.badRequest().body("No such token");
         }
 
@@ -84,12 +87,11 @@ public class ApiController {
         if (grade == null || season == null || episode == null) {
             return ResponseEntity.badRequest().body("Null options");
         }
-        JwtTokenDto token = jwtTokenService.getTokenByName(jwtToken);
-        if (!jwtTokenProvider.validateToken(jwtToken) || token == null) {
+        if (tokenInvalid(jwtToken)) {
             return ResponseEntity.badRequest().body("No such token");
         }
 
-        UserDto user = userService.getUserById(jwtTokenProvider.getUserIdFromToken(jwtToken));
+        UserDto user = getUserFromToken(jwtToken);
         if (user == null) {
             return ResponseEntity.badRequest().body("Invalid token");
         }
@@ -113,12 +115,11 @@ public class ApiController {
             return ResponseEntity.badRequest().body("Null options");
         }
 
-        JwtTokenDto token = jwtTokenService.getTokenByName(jwtToken);
-        if (!jwtTokenProvider.validateToken(jwtToken) || token == null) {
+        if (tokenInvalid(jwtToken)) {
             return ResponseEntity.badRequest().body("No such token");
         }
 
-        UserDto user = userService.getUserById(jwtTokenProvider.getUserIdFromToken(jwtToken));
+        UserDto user = getUserFromToken(jwtToken);
         if (user == null) {
             return ResponseEntity.badRequest().body("Invalid token");
         }
@@ -143,12 +144,11 @@ public class ApiController {
             return ResponseEntity.badRequest().body("Null options");
         }
 
-        JwtTokenDto token = jwtTokenService.getTokenByName(jwtToken);
-        if (!jwtTokenProvider.validateToken(jwtToken) || token == null) {
+        if (tokenInvalid(jwtToken)) {
             return ResponseEntity.badRequest().body("No such token");
         }
 
-        UserDto user = userService.getUserById(jwtTokenProvider.getUserIdFromToken(jwtToken));
+        UserDto user = getUserFromToken(jwtToken);
         if (user == null) {
             return ResponseEntity.badRequest().body("Invalid token");
         }
@@ -166,12 +166,11 @@ public class ApiController {
             return ResponseEntity.badRequest().body("Null options");
         }
 
-        JwtTokenDto token = jwtTokenService.getTokenByName(jwtToken);
-        if (!jwtTokenProvider.validateToken(jwtToken) || token == null) {
+        if (tokenInvalid(jwtToken)) {
             return ResponseEntity.badRequest().body("No such token");
         }
 
-        UserDto user = userService.getUserById(jwtTokenProvider.getUserIdFromToken(jwtToken));
+        UserDto user = getUserFromToken(jwtToken);
         if (user == null) {
             return ResponseEntity.badRequest().body("Invalid token");
         }
@@ -192,12 +191,11 @@ public class ApiController {
             return ResponseEntity.badRequest().body("Null options");
         }
 
-        JwtTokenDto token = jwtTokenService.getTokenByName(jwtToken);
-        if (!jwtTokenProvider.validateToken(jwtToken) || token == null) {
+        if (tokenInvalid(jwtToken)) {
             return ResponseEntity.badRequest().body("No such token");
         }
 
-        UserDto user = userService.getUserById(jwtTokenProvider.getUserIdFromToken(jwtToken));
+        UserDto user = getUserFromToken(jwtToken);
         if (user == null) {
             return ResponseEntity.badRequest().body("Invalid token");
         }
@@ -218,12 +216,11 @@ public class ApiController {
             return ResponseEntity.badRequest().body("Null options");
         }
 
-        JwtTokenDto token = jwtTokenService.getTokenByName(jwtToken);
-        if (!jwtTokenProvider.validateToken(jwtToken) || token == null) {
+        if (tokenInvalid(jwtToken)) {
             return ResponseEntity.badRequest().body("No such token");
         }
 
-        UserDto user = userService.getUserById(jwtTokenProvider.getUserIdFromToken(jwtToken));
+        UserDto user = getUserFromToken(jwtToken);
         if (user == null) {
             return ResponseEntity.badRequest().body("Invalid token");
         }
@@ -241,12 +238,11 @@ public class ApiController {
             return ResponseEntity.badRequest().body("Null options");
         }
 
-        JwtTokenDto token = jwtTokenService.getTokenByName(jwtToken);
-        if (!jwtTokenProvider.validateToken(jwtToken) || token == null) {
+        if (tokenInvalid(jwtToken)) {
             return ResponseEntity.badRequest().body("No such token");
         }
 
-        UserDto user = userService.getUserById(jwtTokenProvider.getUserIdFromToken(jwtToken));
+        UserDto user = getUserFromToken(jwtToken);
         if (user == null) {
             return ResponseEntity.badRequest().body("Invalid token");
         }
@@ -262,17 +258,38 @@ public class ApiController {
             return ResponseEntity.badRequest().body("Null options");
         }
 
-        JwtTokenDto token = jwtTokenService.getTokenByName(jwtToken);
-        if (!jwtTokenProvider.validateToken(jwtToken) || token == null) {
+        if (tokenInvalid(jwtToken)) {
             return ResponseEntity.badRequest().body("No such token");
         }
 
-        UserDto user = userService.getUserById(jwtTokenProvider.getUserIdFromToken(jwtToken));
+        UserDto user = getUserFromToken(jwtToken);
         if (!user.getIsAdmin()) {
             return ResponseEntity.status(403).build();
         }
 
         gradeService.addNewSeason(params);
+
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/newEpisode")
+    public ResponseEntity<?> newEpisode(
+            @RequestHeader("ApiToken") final String jwtToken,
+            @RequestBody final EpisodeService.NewEpisodeParams params) {
+        if (params.grade == null || params.season == null) {
+            return ResponseEntity.badRequest().body("Null options");
+        }
+
+        if (tokenInvalid(jwtToken)) {
+            return ResponseEntity.badRequest().body("No such token");
+        }
+
+        UserDto user = getUserFromToken(jwtToken);
+        if (!user.getIsAdmin()) {
+            return ResponseEntity.status(403).build();
+        }
+
+        episodeService.addNewEpisode(params);
 
         return ResponseEntity.ok().build();
     }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { BrowserRouter, Navigate, Route, Routes, Outlet } from "react-router-dom";
 import { Grades } from "./grades";
 import { NotFound } from "./notfound";
@@ -11,12 +11,22 @@ import { Rules } from './about';
 import { Restoration } from './restoration';
 import { LprCup } from './lprcup';
 import { LprCupSubmission } from './submission';
-import { whoAmI } from '../../server/server';
-import {AddGrade} from "./addgrade";
+import {whoAmI, whoAmITerminated} from '../../server/server';
+import {AddSeasons, AddEpisode} from "./add";
+import {getNewIncomingMessages} from "../../server/get";
 
 export function App() {
     whoAmI();
-    return (
+    var [loaded, updateLoaded] = useState(false);
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (whoAmITerminated()) {
+                updateLoaded(true);
+                clearInterval(interval);
+            }
+        }, 100/*ms*/);
+    }, []);
+    return loaded ? (
         <div className="app">
             <BrowserRouter>
                 <Routes>
@@ -33,12 +43,13 @@ export function App() {
 
                     <Route path="/grades" element={<Outlet />}>
                         <Route index element={<Grades/>} />
-                        <Route path="add" element={<AddGrade/>} />
+                        <Route path="add" element={<AddSeasons/>} />
                     </Route>
 
                     <Route path="/lprcup" element={<Outlet />}>
                         <Route index element={<LprCup/>} />
                         <Route path="submission" element={<LprCupSubmission/>} />
+                        <Route path="add" element={<AddEpisode/>}/>
                     </Route>
 
                     // 404
@@ -47,5 +58,5 @@ export function App() {
                 </Routes>
             </BrowserRouter>
         </div>
-    );
+    ) : <></>;
 }

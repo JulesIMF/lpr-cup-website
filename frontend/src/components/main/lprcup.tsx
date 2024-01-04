@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Screen } from './screen';
-import { isLoggedIn } from '../../server/server';
-import { useNavigate } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Screen} from './screen';
+import {isLoggedIn} from '../../server/server';
+import {useNavigate} from 'react-router-dom';
 import './styles/cup.css'
-import { LprCupEpisodePanel } from '../lprcup/episode';
-import { LprCupStudentPanel } from '../lprcup/student';
-import { LprCupDialog } from '../lprcup/dialog';
-import { getAdminDialog, getEpisodesCount, getNewsDialog, getStudentDialogs, isAdmin } from '../../server/get';
-import { Dialog } from '../../server/dialog';
+import {LprCupEpisodePanel} from '../lprcup/episode';
+import {LprCupStudentPanel} from '../lprcup/student';
+import {LprCupDialog} from '../lprcup/dialog';
+import {getAdminDialog, getEpisodesCount, getNewsDialog, getStudentDialogs, isAdmin} from '../../server/get';
+import {Dialog} from '../../server/dialog';
 
 export function LprCup() {
     var navigateTo = useNavigate();
@@ -40,7 +40,7 @@ export function LprCup() {
 
     var [activeEpisode, activeEpisodeUpdate] = useState(1); // Новости по умолчанию
     var [activeDialog, activeDialogUpdate] = useState<Dialog | undefined>(undefined); // Новости по умолчанию
-    
+
     useEffect(() => {
         if (activeEpisode == 0) {
             activeDialogUpdate(undefined);
@@ -51,13 +51,11 @@ export function LprCup() {
                 studentsUpdate(loadedDialogs);
                 if (loadedDialogs.length > 0) {
                     // activeDialogUpdate(loadedDialogs[0]);
-                }
-                else {
+                } else {
                     activeDialogUpdate(undefined);
                 }
             })
-        }
-        else {
+        } else {
             getAdminDialog(season, grade, activeEpisode).then((dialog) => {
                 console.log(dialog);
                 activeDialogUpdate(dialog);
@@ -73,8 +71,10 @@ export function LprCup() {
                 hideFooter
             >
                 <div id="lprcup_content">
-                    <LprCupEpisodePanel episodesCount={episodesCount} activeEpisodeUpdate={activeEpisodeUpdate} />
-                    {activeEpisode == 0? <></> : <LprCupStudentPanel dialogs={students} activeDialogUpdate={activeDialogUpdate}/>}
+                    <LprCupEpisodePanel episodesCount={episodesCount} activeEpisodeUpdate={activeEpisodeUpdate}
+                                        grade={grade} season={season}/>
+                    {activeEpisode == 0 ? <></> :
+                        <LprCupStudentPanel dialogs={students} activeDialogUpdate={activeDialogUpdate}/>}
                     <LprCupDialog dialog={activeDialog}/>
                 </div>
             </Screen>
@@ -87,12 +87,13 @@ export function LprCup() {
                 hideFooter
             >
                 <div id="lprcup_content">
-                    <LprCupEpisodePanel episodesCount={episodesCount} activeEpisodeUpdate={activeEpisodeUpdate} />
+                    <LprCupEpisodePanel episodesCount={episodesCount} activeEpisodeUpdate={activeEpisodeUpdate}
+                                        grade={grade} season={season}/>
                     <LprCupDialog dialog={activeDialog}/>
                 </div>
             </Screen>
         );
-    }        
+    }
 }
 
 

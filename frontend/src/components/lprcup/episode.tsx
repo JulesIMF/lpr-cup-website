@@ -1,5 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import './styles/panel.css'
+import {isAdmin} from "../../server/get";
 
 // 
 // Выбор эпизода
@@ -32,11 +33,28 @@ function LprCupEpisodeSelector(params: LprCupEpisodeSelectorParams) {
 function LprCupBack() {
     return (
         <a
-            className={"lprcup_episode_selector lces_back"}
+            className={"lprcup_episode_selector lces_special"}
             id={"a_back"}
             href="/grades"
         >
             Назад
+        </a>
+    );
+}
+
+interface LprCupNewEpisodeParams {
+    season: number;
+    grade: number;
+}
+
+function LprCupNewEpisode(params: LprCupNewEpisodeParams) {
+    return (
+        <a
+            className={"lprcup_episode_selector lces_special"}
+            id={"a_new"}
+            href={`/lprcup/add?grade=${params.grade}&season=${params.season}`}
+        >
+            Добавить
         </a>
     );
 }
@@ -66,6 +84,8 @@ function LprCupEpisodes(params: LprCupEpisodesParams) {
 interface LprCupEpisodePanelParams {
     episodesCount: number;
     activeEpisodeUpdate: React.Dispatch<React.SetStateAction<number>>;
+    season: number;
+    grade: number;
 }
 
 export function LprCupEpisodePanel(params: LprCupEpisodePanelParams) {
@@ -77,6 +97,8 @@ export function LprCupEpisodePanel(params: LprCupEpisodePanelParams) {
         params.activeEpisodeUpdate(id);
     }, [activeId])
 
+    console.log(`isAdmin: ${isAdmin()}`)
+
     return (
         <div id='lprcup_episode_panel'>
             <div id="lces_real_selectors">
@@ -87,7 +109,11 @@ export function LprCupEpisodePanel(params: LprCupEpisodePanelParams) {
                     activeIdUpdate={activeIdUpdate} /> */}
                 {LprCupEpisodes({ count: params.episodesCount, activeId: activeId, activeIdUpdate: activeIdUpdate })}
             </div>
-            <LprCupBack />
+            <div className="lces_bottom_buttons">
+                {isAdmin() ? <LprCupNewEpisode season={params.season} grade={params.grade}/> : <></>}
+                <LprCupBack/>
+            </div>
+            
         </div>
     );
 }

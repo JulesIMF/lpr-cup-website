@@ -42,11 +42,16 @@
     height: fit-content;
 }
 
-.lces_back {
-    align-self: flex-end;
-    margin-bottom: 20px;
+.lces_special {
     text-decoration: none;
     color: black;
+}
+
+.lces_bottom_buttons {
+    display: flex;
+    align-self: flex-end;
+    flex-direction: column;
+    margin-bottom: 20px;
 }
 
 #lprcup_student_panel {

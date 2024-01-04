@@ -1,0 +1,32 @@
+.add_episode_selector_remove {
+    display: flex;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 30px;
+    height: 30px;
+    outline: none;
+    background-color: white;
+    background-size: 30px 30px; /* Растягиваем изображение на всю область кнопки */
+    background-repeat: no-repeat; /* Запрещаем повторение изображения */
+    background-position: center;
+    color: transparent;
+    /* Делаем текст кнопки прозрачным */
+    border: none;
+    cursor: pointer;
+    /* Делаем курсор указателем при наведении на кнопку */
+}
+
+#add_params {
+    display: flex;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.add_episode_selector {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    align-items: center;
+}

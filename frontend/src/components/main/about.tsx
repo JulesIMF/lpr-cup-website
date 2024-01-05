@@ -1,9 +1,6 @@
 import React, {useState} from 'react';
 import { Screen } from './screen';
 import { PlainText } from '../shared/plain';
-// import './styles/about.css';
-// import about from "./html/about.html";
-// import rules from "./html/rules.html";
 
 export function About() {
     let [text, updateText] = useState("");
